@@ -4,7 +4,16 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
-/var/
+
+
+#/var/
+/var/cache/*
+/var/log/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/log/.gitkeep
+!var/sessions/.gitkeep
+
 /vendor/
 ###< symfony/framework-bundle ###
 
@@ -18,3 +27,4 @@
 /.buildpath
 /.settings/
 /.idea/
+#*.log
