@@ -1,0 +1,3 @@
+[submodule "public/open-iconic"]
+	path = public/open-iconic
+	url = ../../iconic/open-iconic.git
