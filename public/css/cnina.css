@@ -1,0 +1,248 @@
+table.table tbody tr td.number-list-sell{
+	text-align: right;
+}
+
+table.table.dataTable.no-footer{
+	border-top: 0;
+	border-color: #c4c5c6;
+	border-bottom: 1px solid #c4c5c6;
+}
+
+div.dataTables_wrapper div.dataTables_paginate.paging_simple_numbers ul.pagination li.paginate_button{
+	padding: 0;
+	margin: 0;
+	margin-left: -2px;
+}
+
+div.dataTables_wrapper div.dataTables_filter div.btn-group.currency-sel-box{
+	padding-right: 30px;
+}
+div.dataTables_wrapper div.dataTables_filter div.btn-group.currency-sel-box label{
+	padding-right: 5px;
+}
+div.dataTables_wrapper div.dataTables_filter div.btn-group.currency-sel-box button{
+	bottom: 2px;
+}
+div.dataTables_wrapper div.dataTables_filter div.form-check.form-check-inline input.form-check-input{
+	position: relative;
+	top: 2px;
+}
+
+div.dataTables_wrapper div.dataTables_filter label button.clear-search{
+	border: none;
+	background-color: transparent;
+	padding: 0 1px 0 4px;
+	top: -2px;
+	box-shadow: none;
+	font-size: 15px;
+	color: #999999;
+}
+
+div.dataTables_wrapper div.dataTables_filter label button.clear-search:hover{
+	color: #000;
+}
+
+div.dataTables_wrapper div.dataTables_filter label div.form-check.form-check-inline input{
+	margin-top: 2px;
+	margin-right: 10px;
+}
+
+table.table thead.thead-light tr th{
+	background-color: rgba(218, 164, 90, 0.41);
+	color: #6a8195;
+	text-align: center;
+	vertical-align: middle;
+	border-color: #bfc1c3;
+}
+
+table.table thead.thead-light tr th,
+table.table tbody tr td{
+	border-bottom: 0;
+	border-left: 0;
+	border-color: #c4c5c6;
+}
+
+table.table tbody tr{
+	cursor: pointer;
+}
+table.table tbody tr:hover{
+	background-color: #c5c5c5;
+}
+
+div.dataTables_paginate.paging_full_numbers ul.pagination li.paginate_button.page-item{
+	padding: 0;
+	margin-left: -5px;
+}
+div.dataTables_paginate.paging_full_numbers ul.pagination li.paginate_button.page-item a.page-link{
+	line-height: 10px;
+	font-weight: bold;
+}
+nav.navbar.dashboard-list button{
+	height: 26px;
+	padding: 0 4px 6px 3px;
+	top: 0;
+	left: 15px;
+}
+
+								/* Paging */
+div.dataTables_paginate ul.pagination li.paginate_button.page-item a.page-link,
+div.dataTables_paginate ul.pagination li.paginate_button.page-item.active a.page-link
+,div.dataTables_paginate ul.pagination li.paginate_button.page-item.active a.page-link:hover
+{
+	color: #717171;
+	background-color: #f0d9bb;
+	margin: 0;
+}
+div.dataTables_paginate ul.pagination li.paginate_button.page-item.active a.page-link{
+	cursor: default;
+}
+div.dataTables_paginate ul.pagination li.paginate_button.page-item a.page-link{
+	background-color: #FFF;
+	border-color: #a4a7ab;
+}
+div.dataTables_paginate ul.pagination li.paginate_button.page-item a.page-link:focus{
+	box-shadow: none;
+}
+div.dataTables_paginate ul.pagination li.paginate_button.page-item a.page-link:hover
+{
+	background-color: #c2c2c2;
+	border-color: #a4a7ab;
+}
+
+div.dataTables_paginate ul.pagination li.paginate_button.page-item:hover{
+	border: 1px solid;
+	cursor: default;
+}
+div.dataTables_paginate ul.pagination li.paginate_button.page-item.disabled:hover{
+	border: 1px solid transparent;
+}
+							/* Paging -- end*/
+
+label.group-title{
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+div.container.c-cont{
+	max-width: 1500px;
+}
+
+div.container.c-cont nav.navbar.nav-bar-cnina{
+	height: 35px;
+}
+
+div.jumbotron.bg-info.jumbotron-cnina{
+	padding: 1.3rem 1rem;
+	margin-bottom: 0;
+	color: bisque;
+}
+
+div.jumbotron.bg-info.jumbotron-cnina div.row div.shop-title{
+	font-size: 26px;
+}
+
+div.jumbotron.bg-info.jumbotron-cnina div.lang a.dropdown-toggle,
+nav.nav-bar-cnina ul.navbar-nav.ml-auto li.nav-item.dropdown a.dropdown-toggle,
+nav.nav-bar-cnina div ul li.nav-item a.nav-link
+{
+	color: #ffcc00;
+}
+
+nav.nav-bar-cnina ul.navbar-nav.ml-auto li.nav-item.dropdown a.dropdown-toggle:hover,
+nav.nav-bar-cnina div ul li.nav-item a.nav-link:hover{
+	color: darkgray;
+}
+
+nav.nav-bar-cnina div ul li.nav-item a.nav-link:focus{
+	color: #916319;
+}
+
+div.jumbotron.bg-info.jumbotron-cnina div.lang div.dropdown-menu,
+nav.nav-bar-cnina ul.navbar-nav.ml-auto li.nav-item.dropdown div.dropdown-menu{
+	background-color: lightcyan;
+}
+
+div.jumbotron.bg-info.jumbotron-cnina div.lang div.dropdown-menu  .dropdown-item:hover,
+nav.nav-bar-cnina  .dropdown-item:hover{
+	background-color: bisque;
+}
+
+div.container.c-cont nav.navbar.nav-bar-cnina div ul.user-menu li.nav-item.dropdown{
+	margin-left: 30px;
+}
+
+.form-group.required .col-form-label:after {
+  content: "*";
+  color: red;
+}
+
+
+/* Modal Dialog. General. */
+div.modal-dialog div.modal-content div.modal-body form div.form-group.row label.col-form-label{
+	font-weight: bold;
+	color: #6a8195;
+}
+div.modal-dialog div.modal-content div.modal-body form textarea.form-control{
+	height: 100px;
+}
+div.modal-dialog div.modal-content div.modal-error-content{
+	font-size: 12px;
+	padding-left: 15px;
+	color: red;
+	height: 20px;
+}
+
+div.modal-dialog div.modal-content div.modal-body form div.form-group.row input.position-radio{
+	position: relative;
+	top: 2px;
+}
+
+/* Modal Dialog. */
+
+	/* Product */
+div.modal-dialog div.modal-content div.modal-body form img#product_image{
+	cursor: pointer;
+}
+
+div.modal-dialog div.modal-content div div.modal-body form div.form-group.row.quantity div.indent{
+	width: 35px;
+}
+div.modal-dialog div.modal-content div div.modal-body form div.form-group.row.quantity label.col-form-label{
+	padding-left: 0;
+	padding-right: 0;
+}
+div.modal-dialog div.modal-content div div.modal-body form div.form-group.row div.value{
+	padding-left: 0;
+	padding-right: 0;
+}
+div.modal-dialog div.modal-content div div.modal-body form div.form-group.row div.from-check-box input{
+	width: auto;
+}
+
+div.modal-dialog div.modal-content div div.modal-body form select.currency-select{
+	font-size: 13px;
+	padding: 0 0 0 5px;
+	height: 21px;
+	width: 100px;
+	font-weight: bold;
+	color: #881991;
+	position: relative;
+	top: 8px;
+	border: none;
+	background-color: #f4dcb2;
+}
+
+	/* Collapse (categories) product component */
+div.modal-dialog div.modal-content div div.modal-body form div.form-group.row{
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+div.modal-dialog div.modal-content div div.modal-body form div.accordion div.card{
+	border: 1px solid rgba(0, 0, 0, 0.125);
+}
+div.modal-dialog div.modal-content div div.modal-body form div.accordion div.card div.card-header {
+	padding: 0 0 0 10px;
+	height: 30px;
+	cursor: pointer;
+}

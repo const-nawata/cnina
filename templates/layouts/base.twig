@@ -1,0 +1,132 @@
+{% trans_default_domain 'prompts' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Optional meta tags (NWT) -->
+	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<meta name="keywords" content="nina,container,465" />
+	<meta name="description" content="Internet shop for container 465">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="icon" type="image/png" href="{{ asset('images/H2-16.png') }}" sizes="16x16" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+ -->
+	<script src="http://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<script src="{{ asset('js/cnina.js') }}" type="text/javascript" charset="utf-8"></script>
+	<link href="{{ asset('css/cnina.css') }}" rel="stylesheet" />
+	<link href="{{ asset('open-iconic/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet" />
+
+	<!-- DataTables JS component -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+	{% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	{%   set login_status = 'hidden' %}
+	{%   set logout_status = '' %}
+	{%   set reg_status = 'hidden' %}
+	{%   set edit_status = '' %}
+{% else %}
+	{%   set login_status = '' %}
+	{%   set logout_status = 'hidden' %}
+	{%   set reg_status = '' %}
+	{%   set edit_status = 'hidden' %}
+{% endif %}
+
+<div class="container c-cont">
+
+	<div class="jumbotron bg-info border-bottom border-warning jumbotron-cnina">
+		<div class="row">
+			<div class="col-sm-11 shop-title">{{ shop_name }}</div>
+
+			<div class="col-sm-1 text-right lang">
+				<a class="dropdown-toggle" href="#" role="button" id="langDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ locale_name|trans|capitalize }}</a>
+
+				<div class="dropdown-menu" aria-labelledby="langDropdownMenu">
+					<a class="dropdown-item" lang="en" href="#">{{ 'langs.en'|trans|capitalize }}</a>
+					<a class="dropdown-item" lang="ua" href="#">{{ 'langs.ua'|trans|capitalize }}</a>
+					<a class="dropdown-item" lang="ru" href="#">{{ 'langs.ru'|trans|capitalize }}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-primary nav-bar-cnina">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('index') }}">{{ 'title.home'|trans|capitalize }}</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="dropdown-toggle nav-link" href="#" role="button" id="dashboardDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.dashboard'|trans|capitalize }}</a>
+
+					<div class="dropdown-menu" aria-labelledby="dashboardDropdownMenu">
+						<a class="dropdown-item" itemScope="category" href="{{ path('prodcategory_list') }}">{{ 'title.prodcategories'|trans }}</a>
+						<a class="dropdown-item" itemScope="product" href="{{ path('product_list') }}">{{ 'title.product.pl'|trans|capitalize }}</a>
+						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto user-menu">
+				<li class="nav-item dropdown">
+					<a class="dropdown-toggle" href="#" role="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.user'|trans|capitalize }}</a>
+
+					<div class="dropdown-menu" aria-labelledby="userDropdownMenu">
+						<a class="dropdown-item" id="user_login" {{ login_status }} href="{{ path('user_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>
+						<a class="dropdown-item" id="user_logout" {{ logout_status }} href="{{ path('user_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>
+						<a class="dropdown-item" id="user_register" {{ reg_status }} href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>
+						<a class="dropdown-item" id="user_edit" {{ edit_status }} href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	{% block body %}{% endblock %}
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	let current_url	= "{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"
+	;
+
+	current_url	= current_url.split("/");
+	current_url.shift();
+	current_url.shift();
+	current_url	= current_url.join("/");
+
+	$("div.lang a.dropdown-item").click(function(){
+		window.location.replace( "/"+$(this).attr("lang")+"/"+current_url );
+	});
+});
+</script>
+
+	{% block javascripts %}{% endblock %}
+</body>
+</html>
