@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- translations/validators.en.xlf -->
+
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="entity.field.unique">
+                <source>entity.field.unique</source>
+                <target>Таке значення вже існує. Введіть інше.</target>
+            </trans-unit>
+
+            <trans-unit id="entity.field.not_blank">
+                <source>entity.field.not_blank</source>
+                <target>Значення не повинно бути порожнім.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

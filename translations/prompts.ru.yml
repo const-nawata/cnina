@@ -1,0 +1,108 @@
+langs:
+    en: eng
+    ua: укр
+    ru: рус
+
+hint:
+    clear_filer: 'Очистить фильтр.'
+    image_upload: 'Загрузить новое изображение.'
+
+button:
+    close: закрыть
+    save: сохранить
+    sign-in: вход
+
+form:
+    abbreviation: сокращённо
+    active:
+        a: активно
+        f: активна
+        m: активен
+    after: после
+    address: адрес
+    article: артикул
+    before: до
+    denomination: название
+    description: описание
+    firstname: имя
+    in_pack: 'в упаковке'
+    mail: 'e-mail адрес'
+    out_pack: россыпью
+    packs: упаковок
+    password: пароль
+    phone: телефон
+    position: позиция
+    postcode: индекс
+    price: цена
+    quantity: количество
+    ratio-currency: курс
+    retail: розница
+    sign: знак
+    surname: фамилия
+    username: логин
+    wholesale: опт
+
+message:
+    savedsuccess: 'Сохранено успешно'
+    unconfirmed-acc: 'Ваша учетная запись не подтверждена.'
+
+title:
+    activate: активировать
+    add: добавить
+    category:
+        sn: категория
+        pl: категории
+    create: создать
+    currency: валюта
+    dashboard: настройка
+    deactivate: деактивировать
+    delete: удалить
+    edit: редактировать
+    home: домой
+    list: список
+    login: авторизуйтесь
+    logging-in: авторизация
+    logging-out: выход
+    new:
+        f: новая
+        m: новый
+    product:
+        sn: товар
+        pl: товары
+    prodcategories: 'Категории товара'
+    registering: регистрация
+    sample: образец
+    search: 'поиск'
+    showActive: 'Показать активные'
+    showInStock: 'Показать в наличии'
+    sign-in: 'Пожалуйста, войдите'
+    user: пользователь
+
+datatable:
+    common:
+        are_you_sure: Вы уверены ?
+        you_need_to_select_at_least_one_element: Вы должны выбрать хотя бы один элемент.
+        search: Поиск
+        execute: "выполнять"
+        ok: "OK"
+    datatable:
+        searchPlaceholder: ""
+        emptyTable:     "В таблице отсутствуют данные"
+        info:           "Записи с _START_ до _END_ из _TOTAL_ записей"
+        infoEmpty:      "Записи с 0 до 0 из 0 записей"
+        infoFiltered:   "(отфильтровано из _MAX_ записей)"
+        infoPostFix:    ""
+        infoThousands:  ","
+        lengthMenu:     "Показать _MENU_ записей"
+        loadingRecords: "Загрузка записей..."
+        processing:     "Подождите..."
+        search:         "Поиск:"
+        zeroRecords:    "Записи отсутствуют."
+#        paginate:                          ## Don't delete paginate. It was left to not to break code structure. The active code in the English version.
+#            first:    "Первая"
+#            last:     "Последняя"
+#            next:     "Следующая"
+#            previous: "Предыдущая"
+        aria:
+            sortAscending:  ": активировать для сортировки столбца по возрастанию"
+            sortDescending: ": активировать для сортировки столбца по убыванию"

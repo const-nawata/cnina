@@ -1,0 +1,109 @@
+langs:
+    en: eng
+    ua: укр
+    ru: рус
+
+hint:
+    clear_filer: 'Clear filter.'
+    image_upload: 'Upload new image.'
+
+button:
+    close: close
+    save: save
+    sign-in: 'Sign in'
+
+form:
+    abbreviation: abbreviation
+    active:
+        a: active
+        f: active
+        m: active
+    after: after
+    address: address
+    article: article
+    before: before
+    denomination: name
+    description: description
+    firstname: firstname
+    in_pack: 'in pack'
+    mail: 'e-mail address'
+    out_pack: 'out pack'
+    packs: packs
+    password: password
+    phone: phone
+    position: position
+    postcode: postcode
+    price: price
+    quantity: quantity
+    ratio-currency: ratio
+    retail: retail
+    sign: sign
+    surname: surname
+    username: login
+    wholesale: wholesale
+
+message:
+    savedsuccess: 'Saved successfully'
+    unconfirmed-acc: 'Your account unconfirmed.'
+
+title:
+    activate: activate
+    add: add
+    category:
+        sn: category
+        pl: categories
+    create: create
+    currency: currency
+    dashboard: dashboard
+    deactivate: deactivate
+    delete: delete
+    edit: edit
+    home: home
+    list: list
+    login: 'log in'
+    logging-in: 'log in'
+    logging-out: 'log out'
+    new:
+        f: new
+        m: new
+    product:
+        sn: poduct
+        pl: poducts
+    prodcategories: 'Product categories'
+    registering: register
+    sample: sample
+    search: 'search'
+    showActive: 'Show active'
+    showInStock: 'Show in stock'
+    sign-in: 'Please sign in'
+    user: user
+
+datatable:
+    common:
+        are_you_sure: Are you sure ?
+        you_need_to_select_at_least_one_element: You need to select at least one element.
+        search: Search
+        execute: Execute
+        ok: OK
+    datatable:
+        searchPlaceholder: ""
+        emptyTable:     "No data available in table"
+        info:           "Showing _START_ to _END_ of _TOTAL_ entries"
+        infoEmpty:      "Showing 0 to 0 of 0 entries"
+        infoFiltered:   "(filtered from _MAX_ total entries)"
+        infoPostFix:    ""
+        infoThousands:  ","
+        lengthMenu:     "Show _MENU_ entries"
+        loadingRecords: "Loading..."
+        processing:     "Processing..."
+        search:         "Search:"
+        zeroRecords:    "No matching records found"
+        paginate:
+            first:    "«"
+            last:     "»"
+            next:     "›"
+            previous: "‹"
+        aria:
+            sortAscending:  ": activate to sort column ascending"
+            sortDescending: ": activate to sort column descending"
+

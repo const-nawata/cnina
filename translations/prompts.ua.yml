@@ -1,0 +1,108 @@
+langs:
+    en: eng
+    ua: укр
+    ru: рус
+
+hint:
+    clear_filer: 'Очистити фільтр.'
+    image_upload: 'Завантажити нове зображення.'
+
+button:
+    close: закрити
+    save: зберегти
+    sign-in: вхід
+
+form:
+    abbreviation: скорочено
+    active:
+        a: активно
+        f: активна
+        m: активен
+    after: після
+    address: адреса
+    article: артикул
+    before: до
+    denomination: назва
+    description: опис
+    firstname: ім'я
+    in_pack: 'в упаковці'
+    mail: 'e-mail адреса'
+    out_pack: розсипом
+    packs: упаковок
+    password: пароль
+    phone: телефон
+    position: позиція
+    postcode: індекс
+    price: ціна
+    quantity: кількість
+    ratio-currency: курс
+    retail: роздріб
+    sign: знак
+    surname: прізвище
+    username: логін
+    wholesale: опт
+
+message:
+    savedsuccess: 'Збережено успішно'
+    unconfirmed-acc: 'Ваш обліковий запис не підтверджено.'
+
+title:
+    activate: активувати
+    add: додати
+    category:
+        sn: категорія
+        pl: категорії
+    create: створити
+    currency: валюта
+    dashboard: налаштування
+    deactivate: деактивувати
+    delete: вилучити
+    edit: редагувати
+    home: додому
+    list: список
+    login: авторизуйтесь
+    logging-in: авторизація
+    logging-out: вихід
+    new:
+        f: нова
+        m: новий
+    product:
+        sn: товар
+        pl: товари
+    prodcategories: 'Категорії товару'
+    registering: реєстрація
+    sample: зразок
+    search: 'пошук'
+    showActive: 'Показати активні'
+    showInStock: 'Показати в наявності'
+    sign-in: 'Будь ласка, війдіть'
+    user: користувач
+
+datatable:
+    common:
+        are_you_sure: Ти впевнений ?
+        you_need_to_select_at_least_one_element: Ви повинні вибрати хоча б один елемент.
+        search: Пошук
+        execute: "виконувати"
+        ok: "OK"
+    datatable:
+        searchPlaceholder: ""
+        emptyTable:     ""
+        info:           "Записи з _START_ по _END_ із _TOTAL_ записів"
+        infoEmpty:      "Записи з 0 по 0 із 0 записів"
+        infoFiltered:   "(відфільтровано з _MAX_ записів)"
+        infoPostFix:    ""
+        infoThousands:  ","
+        lengthMenu:     "Показати _MENU_ записів"
+        loadingRecords: ""
+        processing:     "Зачекайте..."
+        search:         "Пошук:"
+        zeroRecords:    "Записи відсутні."
+#        paginate:                          ## Don't delete paginate. It was left to not to break code structure. The active code in the English version.
+#            first:    "Перша"
+#            last:     "Остання"
+#            next:     "Наступна"
+#            previous: "Попередня"
+        aria:
+            sortAscending:  ": активувати для сортування стовпців за зростанням"
+            sortDescending: ": активувати для сортування стовпців за спаданням"
