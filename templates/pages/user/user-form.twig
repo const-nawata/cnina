@@ -1,0 +1,88 @@
+{% extends 'layouts/base.twig' %}
+
+{% trans_default_domain 'prompts' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h1>{{ title|trans|capitalize }}</h1>
+
+{% if errMessage|length %}
+<div class="alert alert-danger" role="alert">{{ errMessage }}</div>
+{% elseif scsMessage|length %}
+<div class="alert alert-success" role="alert">{{ scsMessage }}</div>
+{% endif %}
+
+{{ form_start(userForm) }}
+
+    <div class="form-group row">
+        {{ form_label(userForm.username, 'form.username'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.username) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.plainPassword, 'form.password'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.plainPassword) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.firstname, 'form.firstname'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.firstname) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.surname, 'form.surname'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.surname) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.postcode, 'form.postcode'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.postcode) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.address, 'form.address'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.address) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.phone, 'form.phone'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.phone) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ form_label(userForm.mailAddr, 'form.mail'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label'}} ) }}
+        <div class="col-sm-10">
+            {{ form_widget(userForm.mailAddr) }}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10"></div>
+        <div class="col-sm-2 text-right">
+            <button type="submit" class="btn">{{ 'button.save'|trans|capitalize }}</button>
+        </div>
+    </div>
+
+{{ form_end(userForm) }}
+
+</div>
+
+{% endblock %}

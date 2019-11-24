@@ -1,0 +1,22 @@
+{% trans_default_domain datatable.translationDomain %}
+
+<table id="{{ datatable.name }}" class="table table-striped table-bordered compact">
+	<thead class="thead-light">
+		<tr>
+			<th scope="col" rowspan="2">{{ 'form.denomination'|trans|capitalize }}</th>
+			<th scope="col" rowspan="2">{{ 'form.article'|trans|capitalize }}</th>
+			<th scope="col" colspan="2">{{ 'form.price'|trans|capitalize }}</th>
+			<th scope="col" colspan="3">{{ 'form.quantity'|trans|capitalize }}</th>
+		</tr>
+		<tr>
+			<th scope="col">{{ 'form.wholesale'|trans|capitalize }}</th>
+			<th scope="col">{{ 'form.retail'|trans|capitalize }}</th>
+			<th scope="col">{{ 'form.packs'|trans|capitalize }}</th>
+			<th scope="col">{{ 'form.in_pack'|trans|capitalize }}</th>
+			<th scope="col">{{ 'form.out_pack'|trans|capitalize }}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+    </tbody>
+</table>
