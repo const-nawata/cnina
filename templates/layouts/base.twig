@@ -66,9 +66,9 @@
 				<a class="dropdown-toggle" href="#" role="button" id="langDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ locale_name|trans|capitalize }}</a>
 
 				<div class="dropdown-menu" aria-labelledby="langDropdownMenu">
-					<a class="dropdown-item" lang="en" href="#">{{ 'langs.en'|trans|capitalize }}</a>
-					<a class="dropdown-item" lang="ua" href="#">{{ 'langs.ua'|trans|capitalize }}</a>
-					<a class="dropdown-item" lang="ru" href="#">{{ 'langs.ru'|trans|capitalize }}</a>
+{#					<a class="dropdown-item" lang="en" href="#">{{ 'langs.en'|trans|capitalize }}</a>#}
+{#					<a class="dropdown-item" lang="ua" href="#">{{ 'langs.ua'|trans|capitalize }}</a>#}
+{#					<a class="dropdown-item" lang="ru" href="#">{{ 'langs.ru'|trans|capitalize }}</a>#}
 				</div>
 			</div>
 		</div>
@@ -78,16 +78,16 @@
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('index') }}">{{ 'title.home'|trans|capitalize }}</a>
+{#					<a class="nav-link" href="{{ path('index') }}">{{ 'title.home'|trans|capitalize }}</a>#}
 				</li>
 
 				<li class="nav-item dropdown">
 					<a class="dropdown-toggle nav-link" href="#" role="button" id="dashboardDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.dashboard'|trans|capitalize }}</a>
 
 					<div class="dropdown-menu" aria-labelledby="dashboardDropdownMenu">
-						<a class="dropdown-item" itemScope="category" href="{{ path('prodcategory_list') }}">{{ 'title.prodcategories'|trans }}</a>
-						<a class="dropdown-item" itemScope="product" href="{{ path('product_list') }}">{{ 'title.product.pl'|trans|capitalize }}</a>
-						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>
+{#						<a class="dropdown-item" itemScope="category" href="{{ path('prodcategory_list') }}">{{ 'title.prodcategories'|trans }}</a>#}
+{#						<a class="dropdown-item" itemScope="product" href="{{ path('product_list') }}">{{ 'title.product.pl'|trans|capitalize }}</a>#}
+{#						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>#}
 					</div>
 				</li>
 			</ul>
@@ -97,10 +97,10 @@
 					<a class="dropdown-toggle" href="#" role="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.user'|trans|capitalize }}</a>
 
 					<div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-						<a class="dropdown-item" id="user_login" {{ login_status }} href="{{ path('user_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_logout" {{ logout_status }} href="{{ path('user_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_register" {{ reg_status }} href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_edit" {{ edit_status }} href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>
+{#						<a class="dropdown-item" id="user_login" {{ login_status }} href="{{ path('user_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>#}
+{#						<a class="dropdown-item" id="user_logout" {{ logout_status }} href="{{ path('user_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>#}
+{#						<a class="dropdown-item" id="user_register" {{ reg_status }} href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>#}
+{#						<a class="dropdown-item" id="user_edit" {{ edit_status }} href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>#}
 					</div>
 				</li>
 			</ul>
@@ -112,6 +112,9 @@
 </div>
 
 <script type="text/javascript">
+
+{#
+
 $(document).ready(function(){
 	let current_url	= "{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"
 	;
@@ -125,6 +128,10 @@ $(document).ready(function(){
 		window.location.replace( "/"+$(this).attr("lang")+"/"+current_url );
 	});
 });
+
+#}
+
+
 </script>
 
 	{% block javascripts %}{% endblock %}
