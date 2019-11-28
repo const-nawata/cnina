@@ -4,8 +4,8 @@ namespace App\Controller;
 /**
  * Created by PhpStorm.
  * User: Nawata
- * Date: 03.03.2019
- * Time: 14:30
+ * Date: 22.11.2019
+ * Time: 16:30
  */
 
 //use Omines\DataTablesBundle\Controller\DataTablesTrait;
@@ -54,8 +54,7 @@ class ControllerCore  extends AbstractController
 	protected function show(Request $request, string $view, array $parameters = [], Response $response = null ): Response
 	{
 		$parameters['locale_name']		= 'langs.'.$request->getLocale();
-//		$parameters['shop_name']	= $this->params->get('shop_name');
-		$parameters['shop_name']	= 'Shop name';
+		$parameters['shop_name']	= $this->params->get('shop_name');
 
 		return $this->render( $view, $parameters, $response );
 	}

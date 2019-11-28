@@ -6,10 +6,13 @@ doctrine:
         # either here or in the DATABASE_URL env var (see .env file)
         #driver: 'mysql'
         #server_version: '5.7'
+        driver: 'pdo_mysql'
+        server_version: 'mariadb-10.3.13'       #Console command to check version: "mysql -V", SQL command: "select VERSION();" or "select @@VERSION;"
 
         # Only needed for MySQL (ignored otherwise)
         charset: utf8mb4
         default_table_options:
+            charset: utf8mb4
             collate: utf8mb4_unicode_ci
     orm:
         auto_generate_proxy_classes: true
