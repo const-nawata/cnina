@@ -66,9 +66,9 @@
 				<a class="dropdown-toggle" href="#" role="button" id="langDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ locale_name|trans|capitalize }}</a>
 
 				<div class="dropdown-menu" aria-labelledby="langDropdownMenu">
-{#					<a class="dropdown-item" lang="en" href="#">{{ 'langs.en'|trans|capitalize }}</a>#}
-{#					<a class="dropdown-item" lang="ua" href="#">{{ 'langs.ua'|trans|capitalize }}</a>#}
-{#					<a class="dropdown-item" lang="ru" href="#">{{ 'langs.ru'|trans|capitalize }}</a>#}
+					<a class="dropdown-item" lang="en" href="#">{{ 'langs.en'|trans|capitalize }}</a>
+					<a class="dropdown-item" lang="ua" href="#">{{ 'langs.ua'|trans|capitalize }}</a>
+					<a class="dropdown-item" lang="ru" href="#">{{ 'langs.ru'|trans|capitalize }}</a>
 				</div>
 			</div>
 		</div>
@@ -112,9 +112,6 @@
 </div>
 
 <script type="text/javascript">
-
-{#
-
 $(document).ready(function(){
 	let current_url	= "{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"
 	;
@@ -128,10 +125,6 @@ $(document).ready(function(){
 		window.location.replace( "/"+$(this).attr("lang")+"/"+current_url );
 	});
 });
-
-#}
-
-
 </script>
 
 	{% block javascripts %}{% endblock %}
