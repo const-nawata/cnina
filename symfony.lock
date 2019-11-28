@@ -1,4 +1,7 @@
 {
+    "const-nawata/datatables-bundle": {
+        "version": "0.3-dev"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

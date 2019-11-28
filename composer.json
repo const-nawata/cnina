@@ -1,6 +1,14 @@
 {
     "type": "project",
     "license": "proprietary",
+
+    "repositories":[
+        {
+            "type": "vcs",
+            "url":"https://github.com/const-nawata/datatables-bundle"
+        }
+    ],
+
     "require": {
         "php": "^7.2.5",
         "ext-ctype": "*",
@@ -28,7 +36,8 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "const-nawata/datatables-bundle": "dev-master"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",

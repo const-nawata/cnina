@@ -4,8 +4,102 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "facc7c20ac5e9affc2007f41353a82c1",
+    "content-hash": "ae3884067c156d7cdd96d83d0efa9d1b",
     "packages": [
+        {
+            "name": "const-nawata/datatables-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/const-nawata/datatables-bundle.git",
+                "reference": "9ee001cc57cb5e1f88ec788a4b495c2ce20bd34b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/const-nawata/datatables-bundle/zipball/9ee001cc57cb5e1f88ec788a4b495c2ce20bd34b",
+                "reference": "9ee001cc57cb5e1f88ec788a4b495c2ce20bd34b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0.8",
+                "symfony/framework-bundle": "^3.4|^4.1|^5.0",
+                "symfony/property-access": "^3.4|^4.1|^5.0",
+                "symfony/translation": "^3.4|^4.1|^5.0"
+            },
+            "require-dev": {
+                "doctrine/common": "^2.6",
+                "doctrine/doctrine-bundle": "^1.6.7",
+                "doctrine/orm": "^2.5",
+                "ext-pdo_sqlite": "*",
+                "friendsofphp/php-cs-fixer": "^2.7",
+                "mongodb/mongodb": "^1.2",
+                "phpunit/phpunit": "^6.1|^7.1",
+                "ruflin/elastica": "^6.0",
+                "symfony/browser-kit": "^3.4|^4.1|^5.0",
+                "symfony/css-selector": "^3.4|^4.1|^5.0",
+                "symfony/dom-crawler": "^3.4|^4.1|^5.0",
+                "symfony/phpunit-bridge": "^3.4|^4.1|^5.0",
+                "symfony/templating": "^3.4|^4.1|^5.0",
+                "symfony/twig-bundle": "^3.4|^4.1|^5.0",
+                "symfony/var-dumper": "^3.4|^4.1|^5.0",
+                "symfony/yaml": "^3.4|^4.1|^5.0"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "For integrated access to Doctrine object managers",
+                "doctrine/orm": "For full automated integration with Doctrine entities",
+                "mongodb/mongodb": "For integration with MongoDB collections",
+                "ruflin/elastica": "For integration with Elasticsearch indexes",
+                "symfony/twig-bundle": "To use default Twig based rendering and TwigColumn"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Omines\\DataTablesBundle\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robbert Beesems",
+                    "email": "robbert.beesems@omines.com",
+                    "homepage": "https://omines.nl/"
+                },
+                {
+                    "name": "Niels Keurentjes",
+                    "email": "niels.keurentjes@omines.com",
+                    "homepage": "https://omines.nl/"
+                }
+            ],
+            "description": "Symfony DataTables Bundle with native Doctrine ORM, Elastica and MongoDB support. Forked to Nawata git.",
+            "keywords": [
+                "bundle",
+                "datatable",
+                "datatables",
+                "doctrine",
+                "elastica",
+                "jquery",
+                "mongodb",
+                "orm",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/omines/datatables-bundle/issues",
+                "source": "https://github.com/const-nawata/datatables-bundle/tree/master"
+            },
+            "time": "2019-11-28T18:30:02+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.8.0",
@@ -404,22 +498,23 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "2.0.0",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "82826278bb88ae8c20aee3af3191430dcbcca63a"
+                "reference": "f96fac225563f5b3b4eeb2f80eb982b7f56484d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/82826278bb88ae8c20aee3af3191430dcbcca63a",
-                "reference": "82826278bb88ae8c20aee3af3191430dcbcca63a",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/f96fac225563f5b3b4eeb2f80eb982b7f56484d8",
+                "reference": "f96fac225563f5b3b4eeb2f80eb982b7f56484d8",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.9.0",
                 "jdorn/sql-formatter": "^1.2.16",
                 "php": "^7.1",
+                "symfony/cache": "^4.3.3|^5.0",
                 "symfony/config": "^4.3.3|^5.0",
                 "symfony/console": "^3.4.30|^4.3.3|^5.0",
                 "symfony/dependency-injection": "^4.3.3|^5.0",
@@ -434,7 +529,6 @@
                 "doctrine/coding-standard": "^6.0",
                 "doctrine/orm": "^2.6",
                 "phpunit/phpunit": "^7.5",
-                "symfony/cache": "^3.4.30|^4.3.3|^5.0",
                 "symfony/phpunit-bridge": "^4.2",
                 "symfony/property-info": "^4.3.3|^5.0",
                 "symfony/twig-bridge": "^3.4.30|^4.3.3|^5.0",
@@ -488,7 +582,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2019-11-19T11:43:41+00:00"
+            "time": "2019-11-28T08:38:10+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -3881,16 +3975,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "f6d623160da72288a9b704d324e5a0e4b385331a"
+                "reference": "45c566a1ca16273f7ea6b930e013462e00e14502"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/f6d623160da72288a9b704d324e5a0e4b385331a",
-                "reference": "f6d623160da72288a9b704d324e5a0e4b385331a",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/45c566a1ca16273f7ea6b930e013462e00e14502",
+                "reference": "45c566a1ca16273f7ea6b930e013462e00e14502",
                 "shasum": ""
             },
             "require": {
@@ -3902,7 +3996,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -3937,20 +4031,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-icu.git",
-                "reference": "66810b9d6eb4af54d543867909d65ab9af654d7e"
+                "reference": "b3dffd68afa61ca70f2327f2dd9bbeb6aa53d70b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/66810b9d6eb4af54d543867909d65ab9af654d7e",
-                "reference": "66810b9d6eb4af54d543867909d65ab9af654d7e",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/b3dffd68afa61ca70f2327f2dd9bbeb6aa53d70b",
+                "reference": "b3dffd68afa61ca70f2327f2dd9bbeb6aa53d70b",
                 "shasum": ""
             },
             "require": {
@@ -3963,7 +4057,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -3995,20 +4089,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "6af626ae6fa37d396dc90a399c0ff08e5cfc45b2"
+                "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6af626ae6fa37d396dc90a399c0ff08e5cfc45b2",
-                "reference": "6af626ae6fa37d396dc90a399c0ff08e5cfc45b2",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
+                "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
                 "shasum": ""
             },
             "require": {
@@ -4022,7 +4116,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4057,20 +4151,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "c7fcec8e5cd3fc87f91120b0b5d3cb1b7d44f7a9"
+                "reference": "cfe6ad557c15f3797f667e9518ce759aa04ae4f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/c7fcec8e5cd3fc87f91120b0b5d3cb1b7d44f7a9",
-                "reference": "c7fcec8e5cd3fc87f91120b0b5d3cb1b7d44f7a9",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/cfe6ad557c15f3797f667e9518ce759aa04ae4f3",
+                "reference": "cfe6ad557c15f3797f667e9518ce759aa04ae4f3",
                 "shasum": ""
             },
             "require": {
@@ -4082,7 +4176,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4120,20 +4214,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -4145,7 +4239,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4179,20 +4273,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188"
+                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/2ceb49eaccb9352bff54d22570276bb75ba4a188",
-                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/4b0e2222c55a25b4541305a053013d5647d3a25f",
+                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f",
                 "shasum": ""
             },
             "require": {
@@ -4201,7 +4295,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4237,7 +4331,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T16:25:15+00:00"
         },
         {
             "name": "symfony/process",
@@ -6861,7 +6955,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "const-nawata/datatables-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
