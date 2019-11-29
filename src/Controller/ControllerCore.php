@@ -70,12 +70,13 @@ class ControllerCore  extends AbstractController
 		return empty($query) ? '' : '?'.$query;
 	}
 //______________________________________________________________________________
+
 /*
 	protected function createDataTable(array $options = [])
 	{
 		return $this->datatableFactory->create($options);
 	}
-
+//______________________________________________________________________________
 */
 
 
@@ -97,5 +98,6 @@ class ControllerCore  extends AbstractController
 
 		return [ 'message' => $message, 'field' => $error_field ];
 	}
+//______________________________________________________________________________
 
 }
