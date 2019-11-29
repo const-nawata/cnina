@@ -25,28 +25,63 @@ class UserFixtures extends Fixture
 		$user->setUsername('root');
 		$user->setRoles(['ROLE_ROOT']);
 		$user->setPassword($this->passwordEncoder->encodePassword( $user, '111qqq' ));
+		$user->setFirstname('Root');
+		$user->setSurname('Root-Admin');
+		$user->setMailAddr('root@dummy-mail.tst');
+		$user->setAddress('Root City, Dummy-Root street, 12');
+		$user->setConfirmed(true);
+		$user->setPhone('555-555-55');
+		$user->setPostcode('RT-5566');
 		$manager->persist($user);
 
 		$user = new User();
 		$user->setUsername('admin1');
 		$user->setRoles(['ROLE_ADMIN']);
 		$user->setPassword($this->passwordEncoder->encodePassword( $user, '111qqq' ));
+		$user->setFirstname('Admin1');
+		$user->setSurname('Admin1-Admin');
+		$user->setMailAddr('admin1@dummy-mail.tst');
+		$user->setAddress('Admin1 City, Dummy-Admin1 street, 42');
+		$user->setConfirmed(true);
+		$user->setPhone('555-555-53');
+		$user->setPostcode('A1-1166');
 		$manager->persist($user);
 
 		$user = new User();
 		$user->setUsername('admin2');
 		$user->setRoles(['ROLE_ADMIN']);
 		$user->setPassword($this->passwordEncoder->encodePassword( $user, '111qqq' ));
+		$user->setFirstname('Admin2');
+		$user->setSurname('Admin2-Admin');
+		$user->setMailAddr('admin2@dummy-mail.tst');
+		$user->setAddress('Admin2 City, Dummy-Admin2 street, 15');
+		$user->setConfirmed(true);
+		$user->setPhone('555-555-52');
+		$user->setPostcode('RT-5566');
 		$manager->persist($user);
 
 		$user = new User();
 		$user->setUsername('user1');
 		$user->setPassword($this->passwordEncoder->encodePassword( $user, '111qqq' ));
+		$user->setFirstname('User1');
+		$user->setSurname('User1-User');
+		$user->setMailAddr('user1@dummy-mail.tst');
+		$user->setAddress('User1 City, Dummy-User1 street, 46');
+		$user->setConfirmed(true);
+		$user->setPhone('755-355-55');
+		$user->setPostcode('U1-5649');
 		$manager->persist($user);
 
 		$user = new User();
 		$user->setUsername('user2');
 		$user->setPassword($this->passwordEncoder->encodePassword( $user, '111qqq' ));
+		$user->setFirstname('User2');
+		$user->setSurname('User2-User');
+		$user->setMailAddr('user2@dummy-mail.tst');
+		$user->setAddress('User2 City, Dummy-User2 street, 38');
+		$user->setConfirmed(true);
+		$user->setPhone('535-575-15');
+		$user->setPostcode('U2-8438');
 		$manager->persist($user);
 
 
