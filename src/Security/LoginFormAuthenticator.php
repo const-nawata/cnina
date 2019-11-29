@@ -68,14 +68,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
 
 
-        if( !$user->getConfirmed() ){
-			throw new CustomUserMessageAuthenticationException("Access denied. User's account wan not confirmed.");
-		}
-
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
+
+		if( !$user->getConfirmed() ){
+			throw new CustomUserMessageAuthenticationException("Access denied. User's account wan not confirmed.");
+		}
 
         return $user;
     }
