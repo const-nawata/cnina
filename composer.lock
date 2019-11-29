@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae3884067c156d7cdd96d83d0efa9d1b",
+    "content-hash": "57d10d1b78d7969024457f958d67b76e",
     "packages": [
         {
             "name": "const-nawata/datatables-bundle",
