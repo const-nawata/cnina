@@ -78,7 +78,7 @@ class ControllerCore  extends AbstractController
 
 */
 
-
+/*
 	protected function getFormError( $form ){
 		$fields = $form->all();
 
@@ -97,5 +97,5 @@ class ControllerCore  extends AbstractController
 
 		return [ 'message' => $message, 'field' => $error_field ];
 	}
-
+*/
 }

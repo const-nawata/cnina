@@ -77,9 +77,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-
-dump("credentials");exit;
-
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
@@ -98,12 +95,13 @@ dump("credentials");exit;
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-		return new RedirectResponse($this->urlGenerator->generate('dummy2'));
+
+		return new RedirectResponse($this->urlGenerator->generate('index'));
 //        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('user_login');
+        return $this->urlGenerator->generate('app_login');
     }
 }
