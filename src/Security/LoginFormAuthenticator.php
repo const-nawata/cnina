@@ -67,6 +67,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
 
+
+        if( !$user->getConfirmed() ){
+			throw new CustomUserMessageAuthenticationException("Access denied. User's account wan not confirmed.");
+		}
+
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
@@ -80,9 +85,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
-    /**
-     * Used to upgrade (rehash) the user's password automatically over time.
-     */
+	/**
+	 * Used to upgrade (rehash) the user's password automatically over time.
+	 * @param $credentials
+	 * @return string|null
+	 */
     public function getPassword($credentials): ?string
     {
         return $credentials['password'];
