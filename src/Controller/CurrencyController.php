@@ -6,7 +6,6 @@ use App\Form\CurrencyForm;
 use App\Entity\Currency;
 
 //use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\EntityManagerInterface;
 
 //use Omines\DataTablesBundle\Adapter\Doctrine\ORM\SearchCriteriaProvider;
 //use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
@@ -29,22 +28,28 @@ use Symfony\Component\Form\FormInterface;
 class CurrencyController extends ControllerCore
 {
 
-/**
- * @Route("/list", name="currency_list")
- * @param Request $request
- * @return Response
- */
-	public function getCurrencyList(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+	/**
+	 * @Route("/list", name="currency_list")
+	 * @param PaginatorInterface $paginator
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function getCurrencyList( PaginatorInterface $paginator, Request $request): Response
 	{
 		$post	= $request->request->all();
 
 
+		$em = $this->getDoctrine()->getManager();
 
-		$dql   = "SELECT a FROM App\Entity\Currency a";
+		$db = $em->createQueryBuilder()
+			->select('record')
+			->from(Currency::class, 'record')
+		;
+		$query	= $db->getQuery();
 
-//		$this->getDoctrine()->getRepository(Currency::class)->findAll();
 
-		$query = $em->createQuery($dql);
+
+//		$query = $em->createQuery($dql);
 
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */

@@ -8,25 +8,21 @@ namespace App\Controller;
  * Time: 16:30
  */
 
-//use Omines\DataTablesBundle\Controller\DataTablesTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Psr\Log\LoggerInterface;
 //use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 //use App\CInterface\AuxToolsInterface;
 
 class ControllerCore  extends AbstractController
 {
-//	use DataTablesTrait;
 
 	protected $params;
 	protected $logger;
-//	protected $datatableFactory;
 	protected $translator;
 	protected $tools;
 
