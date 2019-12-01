@@ -33,11 +33,11 @@
 	<link href="{{ asset('open-iconic/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet" />
 
 	<!-- DataTables JS component -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+{#	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">#}
+{#	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">#}
+{#	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">#}
+{#	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>#}
+{#	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>#}
 
 	{% block stylesheets %}{% endblock %}
 </head>
@@ -87,7 +87,7 @@
 					<div class="dropdown-menu" aria-labelledby="dashboardDropdownMenu">
 {#						<a class="dropdown-item" itemScope="category" href="{{ path('prodcategory_list') }}">{{ 'title.prodcategories'|trans }}</a>#}
 {#						<a class="dropdown-item" itemScope="product" href="{{ path('product_list') }}">{{ 'title.product.pl'|trans|capitalize }}</a>#}
-{#						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>#}
+						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>
 					</div>
 				</li>
 			</ul>

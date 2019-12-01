@@ -2,6 +2,45 @@
 {% trans_default_domain 'prompts' %}
 
 {% block body %}
+
+
+
+
+
+
+
+
+
+
+	<div class="count">
+		{{ pagination.getTotalItemCount }}
+	</div>
+	<table>
+		<tr>
+			{# sorting of properties based on query components #}
+			<th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+			<th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.name') }}</th>
+			<th>{{ knp_pagination_sortable(pagination, 'Raitio', 'a.ratio') }}</th>
+		</tr>
+
+		{# table body #}
+		{% for article in pagination %}
+			<tr {% if loop.index is odd %}class="color"{% endif %}>
+				<td>{{ article.id }}</td>
+				<td>{{ article.name }}</td>
+				<td>{{ article.ratio }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	{# display navigation #}
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+
+
+
+{#
+
 <nav class="navbar navbar-expand-lg navbar-light dashboard-list">
 	<h2>{{ headerTitle|trans|capitalize }}</h2>
 	<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
@@ -32,12 +71,32 @@
 
 {% include '/dialogs/modal.twig' %}
 
+
+
+
+
+#}
+
+
+
+
+
+
 {% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+
+
+
+
+
+{#<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>#}
 
 <script>
+
+
+{#
+
 
 function openFormModal( obj ){
 	$.ajax({
@@ -188,6 +247,8 @@ $(function() {
 	{% endif %}
 });
 //______________________________________________________________________________
+#}
+
 
 </script>
 {% endblock %}
