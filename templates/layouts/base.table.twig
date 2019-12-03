@@ -18,7 +18,12 @@
 	<table>
 		<tr>
 			{# sorting of properties based on query components #}
-			<th>{{ knp_pagination_sortable(pagination, 'Id', 'record.id') }}</th>
+
+{#			<th>{{ knp_pagination_sortable(pagination, 'Id', 'record.id') }}</th>#}
+
+			<th>{{ 'Id' }}</th>
+
+
 			<th{% if pagination.isSorted('record.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'record.name') }}</th>
 			<th>{{ knp_pagination_sortable(pagination, 'Raitio', 'record.ratio') }}</th>
 		</tr>

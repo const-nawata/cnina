@@ -32,10 +32,10 @@ class CurrencyController extends ControllerCore
 
 
 		$fields	= [
-			'name'		=> ['searchable' => true ],
-			'symbol'	=> ['searchable' => false ],
-			'ratio'		=> ['searchable' => true ],
-			'isAfterPos'=> ['searchable' => false ]
+			'name'		=> ['title' => 'Name', 		'sortable' => true,		'searchable' => true ],
+			'symbol'	=> ['title' => 'Symbol',	'sortable' => false,	'searchable' => false ],
+			'ratio'		=> ['title' => 'Ratio',		'sortable' => true,		'searchable' => true ],
+			'isAfterPos'=> ['title' => 'Position',	'sortable' => false,	'searchable' => false ]
 		];
 
 
@@ -48,7 +48,7 @@ class CurrencyController extends ControllerCore
 			$request->query->getInt('page', 1), /*page number*/
 			20 /*limit per page*/
 		);
-		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination]);
+		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields]);
 
 /*
 
