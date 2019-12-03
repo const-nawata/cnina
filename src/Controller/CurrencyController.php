@@ -1,24 +1,15 @@
 <?php
 namespace App\Controller;
 
-use App\Form\CurrencyForm;
-
 use App\Entity\Currency;
-
+use App\Form\CurrencyForm;
 //use Doctrine\ORM\QueryBuilder;
-
-//use Omines\DataTablesBundle\Adapter\Doctrine\ORM\SearchCriteriaProvider;
-//use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
-//use Omines\DataTablesBundle\Column\NumberColumn;
-//use Omines\DataTablesBundle\Column\TextColumn;
-
 use Knp\Component\Pager\PaginatorInterface;
-
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\FormInterface;
 
 /**
  * Class CurrencyController
@@ -37,30 +28,15 @@ class CurrencyController extends ControllerCore
 	public function getCurrencyList( PaginatorInterface $paginator, Request $request): Response
 	{
 		$post	= $request->request->all();
-
-
-		$em = $this->getDoctrine()->getManager();
-
-		$db = $em->createQueryBuilder()
-			->select('record')
-			->from(Currency::class, 'record')
+		$query = $this->getDoctrine()
+			->getRepository(Currency::class)->getPagerQuery()
 		;
-		$query	= $db->getQuery();
-
-
-
-//		$query = $em->createQuery($dql);
 
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */
 			$request->query->getInt('page', 1), /*page number*/
 			20 /*limit per page*/
 		);
-
-		// parameters to template
-//		return $this->render('article/list.html.twig', ['pagination' => $pagination]);
-
-
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination]);
 
 /*

@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Currency;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 
@@ -14,14 +13,11 @@ use Psr\Log\LoggerInterface;
  * @method Currency[]    findAll()
  * @method Currency[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CurrencyRepository extends ServiceEntityRepository
+class CurrencyRepository extends CoreRepository
 {
-	protected $logger;
-
     public function __construct( ManagerRegistry $registry, LoggerInterface $logger )
     {
-    	$this->logger	= $logger;
-        parent::__construct($registry, Currency::class);
+        parent::__construct( $registry, Currency::class, $logger );
     }
 //______________________________________________________________________________
 
