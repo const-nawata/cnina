@@ -48,6 +48,12 @@ class CurrencyController extends ControllerCore
 			$request->query->getInt('page', 1), /*page number*/
 			20 /*limit per page*/
 		);
+
+
+//dump($pagination);exit;
+
+
+
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields]);
 
 /*
