@@ -24,16 +24,14 @@ class ControllerCore  extends AbstractController
 	protected $params;
 	protected $logger;
 	protected $translator;
-	protected $tools;
+//	protected $tools;
 
 
 	public function __construct( ParameterBagInterface $params, LoggerInterface $logger, TranslatorInterface $translator
 //		, AuxToolsInterface $tools
-//		, DataTableFactory $datatableFactory
 	){
 		$this->params = $params;
 		$this->logger = $logger;
-//		$this->datatableFactory = $datatableFactory;
 		$this->translator	= $translator;
 //		$this->tools	= $tools;
 	}

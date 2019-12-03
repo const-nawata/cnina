@@ -25,9 +25,28 @@ class CoreRepository extends ServiceEntityRepository
 	}
 //______________________________________________________________________________
 
-	public function getPagerQuery()
+	public function getPagerQuery( $fields=[], $search='' )
 	{
-		return $this->createQueryBuilder('record')->getQuery();
+		$qb	= $this->createQueryBuilder('record');
+
+		if( $search != '' ){
+			$n	= 0;
+			foreach( $fields as $field => $opts ){
+				if( $opts['searchable'] ){
+					$param	= 'p'.$n;
+
+					$qb->orWhere(
+						$qb->expr()->like('record.'.$field, ':'.$param)
+					)
+					->setParameter($param,'%'.$search.'%')
+					;
+
+					$n++;
+				}
+			}
+		}
+
+		return $qb->getQuery();
 	}
 //______________________________________________________________________________
 

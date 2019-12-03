@@ -28,8 +28,19 @@ class CurrencyController extends ControllerCore
 	public function getCurrencyList( PaginatorInterface $paginator, Request $request): Response
 	{
 		$post	= $request->request->all();
+
+
+
+		$fields	= [
+			'name'		=> ['searchable' => true ],
+			'symbol'	=> ['searchable' => false ],
+			'ratio'		=> ['searchable' => true ],
+			'isAfterPos'=> ['searchable' => false ]
+		];
+
+
 		$query = $this->getDoctrine()
-			->getRepository(Currency::class)->getPagerQuery()
+			->getRepository(Currency::class)->getPagerQuery( $fields, 'cy-1' )
 		;
 
 		$pagination = $paginator->paginate(
