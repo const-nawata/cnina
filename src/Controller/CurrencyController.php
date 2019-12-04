@@ -32,15 +32,15 @@ class CurrencyController extends ControllerCore
 
 
 		$fields	= [
-			'name'		=> ['title' => 'Name', 		'sortable' => true,		'searchable' => true ],
-			'symbol'	=> ['title' => 'Symbol',	'sortable' => false,	'searchable' => false ],
-			'ratio'		=> ['title' => 'Ratio',		'sortable' => true,		'searchable' => true ],
-			'isAfterPos'=> ['title' => 'Position',	'sortable' => false,	'searchable' => false ]
+			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true ],
+			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true ],
+			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false ],
+//			['field' => 'isAfterPos','title' => 'Position',	'sortable' => false,	'searchable' => false ]
 		];
 
 
 		$query = $this->getDoctrine()
-			->getRepository(Currency::class)->getPagerQuery( $fields, 'cy-1' )
+			->getRepository(Currency::class)->getPagerQuery( $fields, '' )
 		;
 
 		$pagination = $paginator->paginate(
@@ -48,11 +48,6 @@ class CurrencyController extends ControllerCore
 			$request->query->getInt('page', 1), /*page number*/
 			20 /*limit per page*/
 		);
-
-
-//dump($pagination);exit;
-
-
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields]);
 

@@ -28,20 +28,18 @@ class CoreRepository extends ServiceEntityRepository
 	public function getPagerQuery( $fields=[], $search='' )
 	{
 		$qb	= $this->createQueryBuilder('record');
-/*
+
 		if( $search != '' ){
 			$n	= 0;
-			foreach( $fields as $field => $opts ){
+			foreach( $fields as $opts ){
 				if( $opts['searchable'] ){
 					$qb->orWhere(
-						$qb->expr()->like('record.'.$field, ':p'.$n)
+						$qb->expr()->like('record.'.$opts['field'], ':p'.$n)
 					)->setParameter('p'.$n,'%'.$search.'%');
 					$n++;
 				}
 			}
 		}
-
-*/
 
 		return $qb->getQuery();
 	}
