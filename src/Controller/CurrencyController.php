@@ -35,7 +35,7 @@ class CurrencyController extends ControllerCore
 			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true ],
 			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true ],
 			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false ],
-//			['field' => 'isAfterPos','title' => 'Position',	'sortable' => false,	'searchable' => false ]
+			['field' => 'position',	'title' => 'Position',	'sortable' => false,	'searchable' => false ]
 		];
 
 
@@ -48,6 +48,14 @@ class CurrencyController extends ControllerCore
 			$request->query->getInt('page', 1), /*page number*/
 			20 /*limit per page*/
 		);
+
+
+		$items	= $pagination->getItems();
+		foreach ( $items as &$item ){
+			$item->position	= $item->getIsAfterPos() ? 'after' : 'before';
+		}
+
+		$pagination->setItems($items);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields]);
 

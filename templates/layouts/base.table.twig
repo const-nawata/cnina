@@ -23,8 +23,10 @@
 		{% for record in pagination %}
 			<tr {% if loop.index is odd %}class="color"{% endif %}>
 			{% for opts in fields %}
-				<td>{{ attribute(record, opts.field) }}</td>
+				<td>{{ attribute(record, opts.field) }} </td>
 			{% endfor %}
+
+{#				<td>{{ record.position }}</td>#}
 			</tr>
 		{% endfor %}
 	</table>
