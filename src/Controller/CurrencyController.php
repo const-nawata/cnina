@@ -29,19 +29,20 @@ class CurrencyController extends ControllerCore
 	{
 		$post	= $request->request->all();
 
-
-
 		$fields	= [
 			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true ],
 			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true ],
 			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false ],
-			['field' => 'position',	'title' => 'Position',	'sortable' => false,	'searchable' => false ]
+			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false ]
 		];
 
-
-		$query = $this->getDoctrine()
+ 		$query = $this->getDoctrine()
 			->getRepository(Currency::class)->getPagerQuery( $fields, '' )
 		;
+
+		unset($fields[2]);
+		$fields	= array_values($fields);
+
 
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */
@@ -52,7 +53,11 @@ class CurrencyController extends ControllerCore
 
 		$items	= $pagination->getItems();
 		foreach ( $items as &$item ){
-			$item->position	= $item->getIsAfterPos() ? 'after' : 'before';
+			$val	= rand(11, 9999);
+			$rval	= rand(0, 99);
+			$rval	= $rval > 9 ? $rval : '0'.$rval;
+			$val	= $val.'.'.$rval;
+			$item->sample	= $item->getIsAfterPos() ? $val.$item->getSymbol() : $item->getSymbol().$val;
 		}
 
 		$pagination->setItems($items);
