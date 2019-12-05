@@ -7,26 +7,26 @@
 		{{ pagination.getTotalItemCount }}
 	</div>
 
-	<table>
+	<table class="entity-list">
 		<tr>
-		{% for opts in fields %}
-			{% set value = opts.title|trans|capitalize %}
+		{% for field_opts in fields %}
+			{% set value = field_opts.title|trans|capitalize %}
 
-			{% if opts.sortable %}
-				<th>{{ knp_pagination_sortable(pagination, value, 'record.' ~ opts.field ) }}</th>
+			<th>
+			{% if field_opts.sortable %}
+				{{ knp_pagination_sortable(pagination, value, 'record.' ~ field_opts.field ) }}
 			{% else %}
-				<th>{{ value }}</th>
+				{{ value }}
 			{% endif %}
+			</th>
 		{% endfor %}
 		</tr>
 
 		{% for record in pagination %}
 			<tr {% if loop.index is odd %}class="color"{% endif %}>
-			{% for opts in fields %}
-				<td>{{ attribute(record, opts.field) }} </td>
+			{% for field_opts in fields %}
+				<td>{{ attribute(record, field_opts.field) }} </td>
 			{% endfor %}
-
-{#				<td>{{ record.position }}</td>#}
 			</tr>
 		{% endfor %}
 	</table>
