@@ -2,17 +2,29 @@
 {% trans_default_domain 'prompts' %}
 
 {% block body %}
+{% if table.width is not defined or table.width > 12 or table.width < 1 %}
+    {% set table = table|merge({'width': 12}) %}
+{% endif %}
+
+<div class="row" itemPath="{{ path(itemPath) }}">
+	<div class="col-sm-{{ table.width }}">
+
+	<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
+		<h2>{{ headerTitle|trans|capitalize }}</h2>
+		<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
+	</nav>
 
 	<div class="count">
 		{{ pagination.getTotalItemCount }}
 	</div>
 
-	<table class="entity-list">
+	<table class="table pager-list table-striped table-sm table-bordered">
+		<thead class="thead-light">
 		<tr>
 		{% for field_opts in fields %}
 			{% set value = field_opts.title|trans|capitalize %}
 
-			<th>
+			<th scope="col" class="pager-col-title">
 			{% if field_opts.sortable %}
 				{{ knp_pagination_sortable(pagination, value, 'record.' ~ field_opts.field ) }}
 			{% else %}
@@ -21,14 +33,18 @@
 			</th>
 		{% endfor %}
 		</tr>
+		</thead>
 
+
+		<tbody>
 		{% for record in pagination %}
 			<tr {% if loop.index is odd %}class="color"{% endif %}>
 			{% for field_opts in fields %}
-				<td>{{ attribute(record, field_opts.field) }} </td>
+				<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
 			{% endfor %}
 			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 
 	{# Navigation #}
@@ -36,24 +52,13 @@
 		{{ knp_pagination_render(pagination) }}
 	</div>
 
+	</div>
+</div>
 
 
 {#
 
-<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
-	<h2>{{ headerTitle|trans|capitalize }}</h2>
-	<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
-</nav>
-
-{% if table.width is not defined or table.width > 12 or table.width < 1 %}
-    {% set table = table|merge({'width': 12}) %}
-{% endif %}
-
-<div class="row" itemPath="{{ path(itemPath) }}">
-	<div class="col-sm-{{ table.width }}">
 		<div id="table_body"></div>
-	</div>
-</div>
 
 <form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="post">
 	<input type="hidden" name="searchStr" id="searchStr" value="{{ table.input.search.value }}" />

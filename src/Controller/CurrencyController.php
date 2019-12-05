@@ -30,10 +30,10 @@ class CurrencyController extends ControllerCore
 		$post	= $request->request->all();
 
 		$fields	= [
-			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true ],
-			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true ],
-			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false ],
-			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false ]
+			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
+			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
+			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
+			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
 		];
 
  		$query = $this->getDoctrine()
@@ -47,7 +47,7 @@ class CurrencyController extends ControllerCore
 		$pagination = $paginator->paginate(
 			$query, /* query NOT result */
 			$request->query->getInt('page', 1), /*page number*/
-			20 /*limit per page*/
+			10 /*limit per page*/
 		);
 
 
@@ -62,7 +62,23 @@ class CurrencyController extends ControllerCore
 
 		$pagination->setItems($items);
 
-		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields]);
+		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields, 'headerTitle'	=> 'title.currency',
+			'itemPath'		=> 'currency_form',
+
+
+			'table'	=> [
+//				'data'	=> $table,
+				'width' => 5,
+
+				'input'		=> [
+					'search'=> [
+						'value'	=> empty($post['searchStr']) ? '' : $post['searchStr']
+					]
+				]
+			],
+
+
+			]);
 
 /*
 

@@ -1,6 +1,33 @@
+nav.navbar.dashboard-list button{
+	height: 26px;
+	padding: 0 4px 2px 3px;
+	top: 0;
+	left: 15px;
+}
+
+table.table thead.thead-light tr th{
+	background-color: rgba(218, 164, 90, 0.41);
+	color: #6a8195;
+	text-align: center;
+	vertical-align: middle;
+	border-color: #bfc1c3;
+}
+
+table.table thead.thead-light tr th a.sortable{
+	color: #6a8195;
+}
+
+table.table tbody tr td.list-sell{
+	padding-left: 15px;
+	padding-right: 15px;
+;
+}
+
 table.table tbody tr td.number-list-sell{
 	text-align: right;
 }
+
+/*
 
 table.table.dataTable.no-footer{
 	border-top: 0;
@@ -47,14 +74,6 @@ div.dataTables_wrapper div.dataTables_filter label div.form-check.form-check-inl
 	margin-right: 10px;
 }
 
-table.table thead.thead-light tr th{
-	background-color: rgba(218, 164, 90, 0.41);
-	color: #6a8195;
-	text-align: center;
-	vertical-align: middle;
-	border-color: #bfc1c3;
-}
-
 table.table thead.thead-light tr th,
 table.table tbody tr td{
 	border-bottom: 0;
@@ -77,14 +96,8 @@ div.dataTables_paginate.paging_full_numbers ul.pagination li.paginate_button.pag
 	line-height: 10px;
 	font-weight: bold;
 }
-nav.navbar.dashboard-list button{
-	height: 26px;
-	padding: 0 4px 6px 3px;
-	top: 0;
-	left: 15px;
-}
 
-								/* Paging */
+
 div.dataTables_paginate ul.pagination li.paginate_button.page-item a.page-link,
 div.dataTables_paginate ul.pagination li.paginate_button.page-item.active a.page-link
 ,div.dataTables_paginate ul.pagination li.paginate_button.page-item.active a.page-link:hover
@@ -116,7 +129,10 @@ div.dataTables_paginate ul.pagination li.paginate_button.page-item:hover{
 div.dataTables_paginate ul.pagination li.paginate_button.page-item.disabled:hover{
 	border: 1px solid transparent;
 }
-							/* Paging -- end*/
+
+*/
+
+							/* Paging and Data Table -- end*/
 
 label.group-title{
 	font-weight: bold;
