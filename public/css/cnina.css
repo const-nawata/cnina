@@ -2,19 +2,29 @@ div.container.c-cont div.list-container table.table{
 	margin-bottom: 5px;
 }
 
-div.container.c-cont div.navigation nav ul li a,
-div.container.c-cont div.navigation nav ul li span{
+div.container.c-cont div.navigation nav ul.pagination li a,
+div.container.c-cont div.navigation nav ul.pagination li span{
 	padding-top: 2px;
 	padding-bottom: 2px;
 	color: #6a8195;
 }
-div.container.c-cont div.navigation nav ul li span {
-	background-color: rgba(0,0,0,.05);
-	border-color: #222222;
-}
-div.container.c-cont div.navigation nav ul li.page-item.disabled span{
+div.container.c-cont div.navigation nav ul.pagination li span,
+div.container.c-cont div.navigation nav ul.pagination li.disabled span{
 	border-color: #dee2e6;
-	background-color: transparent;
+}
+div.container.c-cont div.navigation nav ul.pagination li.disabled span{
+	color: rgba(96, 168, 212, 0.57);
+}
+div.container.c-cont div.navigation nav ul.pagination li span {
+	background-color: rgba(145, 108, 62, 0.41);
+}
+
+div.container.c-cont div.navigation nav ul.pagination li a,
+div.container.c-cont div.navigation nav ul.pagination li.disabled span{
+	background-color: rgba(218, 164, 90, 0.41);
+}
+div.container.c-cont div.navigation nav ul.pagination{
+	float:right;
 }
 
 nav.navbar.dashboard-list button{
