@@ -1,3 +1,22 @@
+div.container.c-cont div.list-container table.table{
+	margin-bottom: 5px;
+}
+
+div.container.c-cont div.navigation nav ul li a,
+div.container.c-cont div.navigation nav ul li span{
+	padding-top: 2px;
+	padding-bottom: 2px;
+	color: #6a8195;
+}
+div.container.c-cont div.navigation nav ul li span {
+	background-color: rgba(0,0,0,.05);
+	border-color: #222222;
+}
+div.container.c-cont div.navigation nav ul li.page-item.disabled span{
+	border-color: #dee2e6;
+	background-color: transparent;
+}
+
 nav.navbar.dashboard-list button{
 	height: 26px;
 	padding: 0 4px 2px 3px;
