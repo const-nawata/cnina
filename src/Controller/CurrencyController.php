@@ -27,7 +27,7 @@ class CurrencyController extends ControllerCore
 	 */
 	public function getCurrencyList( PaginatorInterface $paginator, Request $request): Response
 	{
-		$post	= $request->request->all();
+		$post	= $request->query->all();
 
 		$fields	= [
 			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
@@ -44,11 +44,9 @@ class CurrencyController extends ControllerCore
 		$fields	= array_values($fields);
 
 
-		$pagination = $paginator->paginate(
-			$query, /* query NOT result */
-			$request->query->getInt('page', 1), /*page number*/
-			10 /*limit per page*/
-		);
+		$page	= $request->query->getInt('page', 1);
+		$limit	= $request->query->getInt('limit', 10);;
+		$pagination = $paginator->paginate( $query, $page, $limit );
 
 
 		$items	= $pagination->getItems();
