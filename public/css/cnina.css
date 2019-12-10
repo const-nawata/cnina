@@ -1,3 +1,15 @@
+div.container.c-cont div.list-container input.search-input{
+	padding-bottom: 0;
+	padding-top: 0;
+	height: 25px;
+	width: 100px;
+}
+
+div.container.c-cont div.list-container button.search-button{
+	top: 0;
+	height: 25px;
+}
+
 div.container.c-cont div.list-container table.table{
 	margin-bottom: 5px;
 }
