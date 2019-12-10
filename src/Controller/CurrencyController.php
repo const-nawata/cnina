@@ -3,8 +3,6 @@ namespace App\Controller;
 
 use App\Entity\Currency;
 use App\Form\CurrencyForm;
-//use Doctrine\ORM\QueryBuilder;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +19,10 @@ class CurrencyController extends ControllerCore
 
 	/**
 	 * @Route("/list", name="currency_list")
-	 * @param PaginatorInterface $paginator
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function getCurrencyList( PaginatorInterface $paginator, Request $request): Response
+	public function getCurrencyList( Request $request): Response
 	{
 		$post	= $request->query->all();
 
@@ -36,29 +33,16 @@ class CurrencyController extends ControllerCore
 			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
 		];
 
- 		$query = $this->getDoctrine()
-			->getRepository(Currency::class)->getPagerQuery( $fields, '' )
-		;
-
 		unset($fields[2]);	// Don't show symbol. Show combined value (sample).
 		$fields	= array_values($fields);
 
 
 		$page	= $request->query->getInt('page', 1);
 		$limit	= $request->query->getInt('limit', 10);;
-		$pagination = $paginator->paginate( $query, $page, $limit );
 
 
-		$items	= $pagination->getItems();
-		foreach ( $items as &$item ){
-			$val	= rand(11, 9999);
-			$rval	= rand(0, 99);
-			$rval	= $rval > 9 ? $rval : '0'.$rval;
-			$val	= $val.'.'.$rval;
-			$item->sample	= $item->getIsAfterPos() ? $val.$item->getSymbol() : $item->getSymbol().$val;
-		}
-
-		$pagination->setItems($items);
+		$pagination	= $this->getDoctrine()
+			->getRepository(Currency::class)->getPaginator($page, $limit);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields, 'headerTitle'	=> 'title.currency',
 			'itemPath'		=> 'currency_form',

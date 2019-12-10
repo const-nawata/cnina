@@ -6,6 +6,7 @@ use App\Entity\Currency;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -17,10 +18,13 @@ use Psr\Log\LoggerInterface;
 class CoreRepository extends ServiceEntityRepository
 {
 	protected $logger;
+	protected $paginator;
+	protected $viewFields;
 
-	public function __construct( ManagerRegistry $registry, $entityClass, LoggerInterface $logger )
+	public function __construct( ManagerRegistry $registry, $entityClass, LoggerInterface $logger, PaginatorInterface $paginator )
 	{
 		$this->logger	= $logger;
+		$this->paginator= $paginator;
 		parent::__construct( $registry, $entityClass );
 	}
 //______________________________________________________________________________
@@ -32,6 +36,26 @@ class CoreRepository extends ServiceEntityRepository
 		if( $search != '' ){
 			$n	= 0;
 			foreach( $fields as $opts ){
+				if( $opts['searchable'] ){
+					$qb->orWhere(
+						$qb->expr()->like('record.'.$opts['field'], ':p'.$n)
+					)->setParameter('p'.$n,'%'.$search.'%');
+					$n++;
+				}
+			}
+		}
+
+		return $qb->getQuery();
+	}
+//______________________________________________________________________________
+
+	public function getPagerQueryMod( $search='' )
+	{
+		$qb	= $this->createQueryBuilder('record');
+
+		if( $search != '' ){
+			$n	= 0;
+			foreach( $this->viewFields as $opts ){
 				if( $opts['searchable'] ){
 					$qb->orWhere(
 						$qb->expr()->like('record.'.$opts['field'], ':p'.$n)

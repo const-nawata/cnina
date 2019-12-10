@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Currency;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -15,11 +17,55 @@ use Psr\Log\LoggerInterface;
  */
 class CurrencyRepository extends CoreRepository
 {
-    public function __construct( ManagerRegistry $registry, LoggerInterface $logger )
+
+//	private $viewFields	= [
+//		['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
+//		['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
+//		['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
+////		['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
+//	];
+
+    public function __construct( ManagerRegistry $registry, LoggerInterface $logger, PaginatorInterface $paginator )
     {
-        parent::__construct( $registry, Currency::class, $logger );
+    	$this->viewFields	= [
+			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
+			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
+			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
+//		['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
+		];
+        parent::__construct( $registry, Currency::class, $logger, $paginator );
     }
 //______________________________________________________________________________
+
+
+	/**
+	 * @param integer $page
+	 * @param integer $limit
+	 * @param string $search
+	 * @return PaginationInterface
+	 */
+	public function getPaginator( $page, $limit, $search='' ){
+		$query = $this->getPagerQueryMod( $search );
+
+		$pagination = $this->paginator->paginate( $query, $page, $limit );
+
+		$fields	= $this->viewFields;
+		unset($fields[2]);
+
+		$items	= $pagination->getItems();
+
+		foreach ( $items as &$item ){
+			$val	= rand(11, 9999);
+			$rval	= rand(0, 99);
+			$rval	= $rval > 9 ? $rval : '0'.$rval;
+			$val	= $val.'.'.$rval;
+			$item->sample	= $item->getIsAfterPos() ? $val.$item->getSymbol() : $item->getSymbol().$val;
+		}
+
+		$pagination->setItems($items);
+
+		return $pagination;
+	}
 
 	/**
 	 * @param integer $id
