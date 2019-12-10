@@ -40,7 +40,7 @@ class CurrencyController extends ControllerCore
 			->getRepository(Currency::class)->getPagerQuery( $fields, '' )
 		;
 
-		unset($fields[2]);
+		unset($fields[2]);	// Don't show symbol. Show combined value (sample).
 		$fields	= array_values($fields);
 
 
@@ -67,7 +67,6 @@ class CurrencyController extends ControllerCore
 
 
 			'table'	=> [
-//				'data'	=> $table,
 				'width' => 5,
 
 				'input'		=> [
