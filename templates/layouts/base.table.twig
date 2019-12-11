@@ -31,15 +31,30 @@
 		</div>
 	</div>
 
+
+
+{% set unsort_css = 'oi oi-elevator unsorted' %}
+{% if pagination.getDirection == 'asc' %}
+	{% set sort_css = 'oi oi-caret-bottom sorted' %}
+{% elseif pagination.getDirection == 'desc' %}
+	{% set sort_css = 'oi oi-caret-top sorted' %}
+{% else %}
+	{% set sort_css = unsort_css %}
+{% endif %}
+
+
 	<table class="table pager-list table-striped table-sm table-bordered">
 		<thead class="thead-light">
 			<tr>
 			{% for field_opts in columns %}
 				{% set value = field_opts.title|trans|capitalize %}
+				{% set field_db = 'record.' ~ field_opts.field %}
 
 				<th scope="col" class="pager-col-title">
+
 				{% if field_opts.sortable %}
-					{{ knp_pagination_sortable(pagination, value, 'record.' ~ field_opts.field ) }}
+					{{ knp_pagination_sortable(pagination, value, field_db ) }}
+					<span class="{% if pagination.isSorted(field_db) %}{{ sort_css }}{% else %}{{ unsort_css }}{% endif %}"></span>
 				{% else %}
 					{{ value }}
 				{% endif %}
