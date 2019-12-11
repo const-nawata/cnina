@@ -35,7 +35,8 @@
 	<table class="table pager-list table-striped table-sm table-bordered">
 		<thead class="thead-light">
 		<tr>
-		{% for field_opts in fields %}
+{#		{% for field_opts in fields %}#}
+		{% for field_opts in pagination.columns %}
 			{% set value = field_opts.title|trans|capitalize %}
 
 			<th scope="col" class="pager-col-title">
@@ -53,7 +54,8 @@
 		<tbody>
 		{% for record in pagination %}
 			<tr {% if loop.index is odd %}class="color"{% endif %}>
-			{% for field_opts in fields %}
+{#			{% for field_opts in fields %}#}
+			{% for field_opts in pagination.columns %}
 				<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
 			{% endfor %}
 			</tr>

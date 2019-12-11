@@ -24,88 +24,22 @@ class CurrencyController extends ControllerCore
 	 */
 	public function getCurrencyList( Request $request): Response
 	{
-		$post	= $request->query->all();
-
-		$fields	= [
-			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
-			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
-			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
-			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
-		];
-
-		unset($fields[2]);	// Don't show symbol. Show combined value (sample).
-		$fields	= array_values($fields);
-
-
 		$page	= $request->query->getInt('page', 1);
-		$limit	= $request->query->getInt('limit', 10);;
+		$limit	= $request->query->getInt('limit', 10);
 
+		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit);
 
-		$pagination	= $this->getDoctrine()
-			->getRepository(Currency::class)->getPaginator($page, $limit);
-
-		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'fields' => $fields, 'headerTitle'	=> 'title.currency',
+		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'headerTitle'	=> 'title.currency',
 			'itemPath'		=> 'currency_form',
-
 
 			'table'	=> [
 				'width' => 5,
 
 				'input'		=> [
-					'search'=> [
-						'value'	=> empty($post['searchStr']) ? '' : $post['searchStr']
-					]
+					'search'=> $request->query->get('search', '')
 				]
 			],
-
-
-			]);
-
-/*
-
-
-		//	Next dummy call is necessary to get correct is_after_pos value. Hernya kakaya to.
-		$this->getDoctrine()->getRepository(Currency::class)->findAll();
-
-		$table = $this->createDataTable([])
-			->setName('list_category')
-			->setTemplate('pages/currency/table.template.twig')
-			->add('name', TextColumn::class,[])
-			->add('ratio', NumberColumn::class, ['searchable' => false, 'className' => 'number-list-sell'])
-			->add('symbol', TextColumn::class,['className' => 'number-list-sell', 'data' => function( Currency $currency, $symbol ) {
-				$example	= rand(100,999).'.'.rand(0,9).rand(0,9);
-				return $currency->getIsAfterPos() ? $example.$symbol : $symbol.$example;
-			}])
-
-			->createAdapter(ORMAdapter::class, [
-				'entity' => Currency::class
-			])
-			->handleRequest($request);
-
-		if ($table->isCallback()) {
-			return $table->getResponse();
-		}
-
-		return $this->show($request, 'layouts/base.table.twig', [
-			'table'	=> [
-				'data'	=> $table,
-				'width' => 5,
-
-				'input'		=> [
-					'search'=> [
-						'value'	=> empty($post['searchStr']) ? '' : $post['searchStr']
-					]
-				]
-			],
-
-			'headerTitle'	=> 'title.currency',
-			'itemPath'		=> 'currency_form',
 		]);
-
-*/
-
-
-
 
 	}
 //______________________________________________________________________________

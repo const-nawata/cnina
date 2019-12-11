@@ -18,25 +18,15 @@ use Psr\Log\LoggerInterface;
 class CurrencyRepository extends CoreRepository
 {
 
-//	private $viewFields	= [
-//		['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
-//		['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
-//		['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
-////		['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
-//	];
-
     public function __construct( ManagerRegistry $registry, LoggerInterface $logger, PaginatorInterface $paginator )
     {
-    	$this->viewFields	= [
-			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,		'searchable' => true,	'css' => '' ],
-			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,		'searchable' => true,	'css' => 'number-list-sell' ],
-			['field' => 'symbol',	'title' => 'form.sign',				'sortable' => false,	'searchable' => false,	'css' => '' ],
-//		['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,	'searchable' => false,	'css' => 'number-list-sell' ]
+		$this->fields	= [
+			'name'	=> ['searchable' => true ],
+			'ratio'	=> ['searchable' => true]
 		];
-        parent::__construct( $registry, Currency::class, $logger, $paginator );
+		parent::__construct( $registry, Currency::class, $logger, $paginator );
     }
 //______________________________________________________________________________
-
 
 	/**
 	 * @param integer $page
@@ -44,12 +34,13 @@ class CurrencyRepository extends CoreRepository
 	 * @param string $search
 	 * @return PaginationInterface
 	 */
-	public function getPaginator( $page, $limit, $search='' ){
-		$query = $this->getPagerQueryMod( $search );
+	public function getPaginator( $page, $limit, $search='' ): PaginationInterface
+	{
+		$query = $this->getPagerQuery( $search );
 
 		$pagination = $this->paginator->paginate( $query, $page, $limit );
 
-		$fields	= $this->viewFields;
+		$fields	= $this->fields;
 		unset($fields[2]);
 
 		$items	= $pagination->getItems();
@@ -63,6 +54,14 @@ class CurrencyRepository extends CoreRepository
 		}
 
 		$pagination->setItems($items);
+
+
+		//TODO:Maybe it is better to use Pagination->options
+		$pagination->columns	= [
+			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,	'css' => '' ],
+			['field' => 'ratio',	'title' => 'form.ratio-currency',	'sortable' => true,	'css' => 'number-list-sell' ],
+			['field' => 'sample',	'title' => 'title.sample',			'sortable' => false,'css' => 'number-list-sell' ]
+		];
 
 		return $pagination;
 	}
