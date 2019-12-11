@@ -46,6 +46,12 @@ class Currency
      */
     private $isAfterPos;
 
+	/**
+	 * @var string
+	 * This field is random calculated to show example
+	 */
+    private $sample;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,4 +104,21 @@ class Currency
 
         return $this;
     }
+
+    public function setSample($sample): self
+	{
+    	$this->sample	= $sample;
+    	return $this;
+	}
+
+	public function getSample(): ?string
+	{
+		$val	= rand(11, 9999);
+		$rval	= rand(0, 99);
+		$rval	= $rval > 9 ? $rval : '0'.$rval;
+		$val	= $val.'.'.$rval;
+		$this->sample	= $this->getIsAfterPos() ? $val.$this->getSymbol() : $this->getSymbol().$val;
+
+		return $this->sample;
+	}
 }

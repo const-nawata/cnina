@@ -40,22 +40,6 @@ class CurrencyRepository extends CoreRepository
 
 		$pagination = $this->paginator->paginate( $query, $page, $limit );
 
-		$fields	= $this->fields;
-		unset($fields[2]);
-
-		$items	= $pagination->getItems();
-
-		foreach ( $items as &$item ){
-			$val	= rand(11, 9999);
-			$rval	= rand(0, 99);
-			$rval	= $rval > 9 ? $rval : '0'.$rval;
-			$val	= $val.'.'.$rval;
-			$item->sample	= $item->getIsAfterPos() ? $val.$item->getSymbol() : $item->getSymbol().$val;
-		}
-
-		$pagination->setItems($items);
-
-
 		//TODO:Maybe it is better to use Pagination->options
 		$pagination->columns	= [
 			['field' => 'name',		'title' => 'form.denomination', 	'sortable' => true,	'css' => '' ],
