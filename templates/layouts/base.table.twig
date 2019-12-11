@@ -6,6 +6,8 @@
     {% set table = table|merge({'width': 12}) %}
 {% endif %}
 
+{% set columns = pagination.getCustomParameter('columns') %}
+
 <div class="row list-container" itemPath="{{ path(itemPath) }}">
 	<div class="col-sm-{{ table.width }}">
 
@@ -20,42 +22,36 @@
 		</div>
 
 		<div class="col-sm-9">
-
-
 			<div class="input-group mb-1 search-block">
 				<input type="text" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div class="input-group-append">
 					<button class="input-group-text oi oi-magnifying-glass search-button"></button>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
 	<table class="table pager-list table-striped table-sm table-bordered">
 		<thead class="thead-light">
-		<tr>
-{#		{% for field_opts in fields %}#}
-		{% for field_opts in pagination.columns %}
-			{% set value = field_opts.title|trans|capitalize %}
+			<tr>
+			{% for field_opts in columns %}
+				{% set value = field_opts.title|trans|capitalize %}
 
-			<th scope="col" class="pager-col-title">
-			{% if field_opts.sortable %}
-				{{ knp_pagination_sortable(pagination, value, 'record.' ~ field_opts.field ) }}
-			{% else %}
-				{{ value }}
-			{% endif %}
-			</th>
-		{% endfor %}
-		</tr>
+				<th scope="col" class="pager-col-title">
+				{% if field_opts.sortable %}
+					{{ knp_pagination_sortable(pagination, value, 'record.' ~ field_opts.field ) }}
+				{% else %}
+					{{ value }}
+				{% endif %}
+				</th>
+			{% endfor %}
+			</tr>
 		</thead>
-
 
 		<tbody>
 		{% for record in pagination %}
 			<tr {% if loop.index is odd %}class="color"{% endif %}>
-{#			{% for field_opts in fields %}#}
-			{% for field_opts in pagination.columns %}
+			{% for field_opts in columns %}
 				<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
 			{% endfor %}
 			</tr>
@@ -74,7 +70,6 @@
 
 {#
 
-		<div id="table_body"></div>
 
 <form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="post">
 	<input type="hidden" name="searchStr" id="searchStr" value="{{ table.input.search.value }}" />
