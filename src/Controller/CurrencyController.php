@@ -26,18 +26,15 @@ class CurrencyController extends ControllerCore
 	{
 		$page	= $request->query->getInt('page', 1);
 		$limit	= $request->query->getInt('limit', 10);
+		$search	= $request->query->get('search', '');
 
-		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit);
+		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit, $search);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'headerTitle'	=> 'title.currency',
 			'itemPath'		=> 'currency_form',
 
 			'table'	=> [
-				'width' => 5,
-
-				'input'		=> [
-					'search'=> $request->query->get('search', '')
-				]
+				'width' => 5
 			],
 		]);
 

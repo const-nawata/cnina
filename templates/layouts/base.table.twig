@@ -7,6 +7,7 @@
 {% endif %}
 
 {% set columns = pagination.getCustomParameter('columns') %}
+{% set search = pagination.getCustomParameter('search') %}
 
 <div class="row list-container" itemPath="{{ path(itemPath) }}">
 	<div class="col-sm-{{ table.width }}">
@@ -23,15 +24,13 @@
 
 		<div class="col-sm-9">
 			<div class="input-group mb-1 search-block">
-				<input type="text" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+				<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div class="input-group-append">
-					<button class="input-group-text oi oi-magnifying-glass search-button"></button>
+					<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button"></button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 {% set unsort_css = 'oi oi-elevator unsorted' %}
 {% if pagination.getDirection == 'asc' %}
@@ -41,7 +40,6 @@
 {% else %}
 	{% set sort_css = unsort_css %}
 {% endif %}
-
 
 	<table class="table pager-list table-striped table-sm table-bordered">
 		<thead class="thead-light">
@@ -83,47 +81,40 @@
 </div>
 
 
+<form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
+	<input type="hidden" name="search" id="search" value=" value="{{ search }}" />
+
+	{% if pagination.page is defined and pagination.page > 0 %}
+	<input type="hidden" name="page" id="page" value="1" />
+	{% endif %}
+
 {#
 
+	{% if table.input.isActive is defined %}
+		<input type="hidden" name="showActive" id="showActive" value="{{ table.input.isActive.value }}" />
+	{% endif %}
 
-<form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="post">
-	<input type="hidden" name="searchStr" id="searchStr" value="{{ table.input.search.value }}" />
-
-{% if table.input.isActive is defined %}
-	<input type="hidden" name="showActive" id="showActive" value="{{ table.input.isActive.value }}" />
-{% endif %}
-
-{% if table.input.currency is defined %}
-	<input type="hidden" name="currency" id="currency" value="{{ table.input.currency.item.id }}" />
-{% endif %}
+	{% if table.input.currency is defined %}
+		<input type="hidden" name="currency" id="currency" value="{{ table.input.currency.item.id }}" />
+	{% endif %}
+	#}
 
 </form>
-
 {% include '/dialogs/modal.twig' %}
-
-
-
-
-
-#}
-
-
-
-
-
 
 {% endblock %}
 
 {% block javascripts %}
+<script type="text/javascript">
 
+$(document).ready(function(){
 
+    $("#search_btn").on('click',function (event) {
+		$("#search").val( $("#search_input").val());
+        $('form#form-resp').submit();
+    });
 
-
-
-{#<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>#}
-
-<script>
-
+});
 
 {#
 

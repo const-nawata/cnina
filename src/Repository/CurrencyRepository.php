@@ -38,8 +38,9 @@ class CurrencyRepository extends CoreRepository
 		$pagination = $this->paginator->paginate($this->getPagerQuery($search), $page, $limit);
 
 		$pagination->setCustomParameters([
-			'size' => 'small',
-			'columns' => [
+			'size'		=> 'small',
+			'search'	=> $search,
+			'columns'	=> [
 				['field' => 'name', 'title' => 'form.denomination', 'sortable' => true, 'css' => ''],
 				['field' => 'ratio', 'title' => 'form.ratio-currency', 'sortable' => true, 'css' => 'number-list-sell'],
 				['field' => 'sample', 'title' => 'title.sample', 'sortable' => false, 'css' => 'number-list-sell']
