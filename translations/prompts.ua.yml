@@ -78,6 +78,9 @@ title:
     sign-in: 'Будь ласка, війдіть'
     user: користувач
 
+pager:
+    info: "Показано з _START_ по _END_ із _TOTAL_ записів"
+
 datatable:
     common:
         are_you_sure: Ти впевнений ?

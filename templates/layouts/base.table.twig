@@ -9,32 +9,6 @@
 {% set columns = pagination.getCustomParameter('columns') %}
 {% set search = pagination.getCustomParameter('search') %}
 
-<div class="row list-container" itemPath="{{ path(itemPath) }}">
-	<div class="col-sm-{{ table.width }}">
-
-	<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
-		<h2>{{ headerTitle|trans|capitalize }}</h2>
-		<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
-	</nav>
-
-	<div class="row">
-		<div class="col-sm-3">
-			{{ pagination.getTotalItemCount }}
-		</div>
-
-		<div class="col-sm-9">
-			<div class="input-group mb-1 search-block">
-				<div class="input-group-prepend">
-					<button id="clear_search_btn" class="input-group-text oi oi-x search-button" title="{{ 'hint.clear_filer'|trans|capitalize }}"></button>
-				</div>
-				<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'title.search'|trans|capitalize }}"></button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 {% set unsort_css = 'oi oi-elevator unsorted' %}
 {% if pagination.getDirection == 'asc' %}
 	{% set sort_css = 'oi oi-caret-bottom sorted' %}
@@ -44,42 +18,78 @@
 	{% set sort_css = unsort_css %}
 {% endif %}
 
-	<table class="table pager-list table-striped table-sm table-bordered">
-		<thead class="thead-light">
-			<tr>
-			{% for field_opts in columns %}
-				{% set value = field_opts.title|trans|capitalize %}
-				{% set field_db = 'record.' ~ field_opts.field %}
+{% set n_start	= (pagination.getCurrentPageNumber - 1) * pagination.getItemNumberPerPage + 1 %}
+{% set n_end	= pagination.getCurrentPageNumber * pagination.getItemNumberPerPage %}
 
-				<th scope="col" class="pager-col-title">
+{% if n_end > pagination.getTotalItemCount %}
+	{% set n_end	= pagination.getTotalItemCount %}
+{% endif %}
 
-				{% if field_opts.sortable %}
-					{{ knp_pagination_sortable(pagination, value, field_db ) }}
-					<span class="{% if pagination.isSorted(field_db) %}{{ sort_css }}{% else %}{{ unsort_css }}{% endif %}"></span>
-				{% else %}
-					{{ value }}
-				{% endif %}
-				</th>
+<div class="row list-container" itemPath="{{ path(itemPath) }}">
+	<div class="col-sm-{{ table.width }}">
+
+		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
+			<h2>{{ headerTitle|trans|capitalize }}</h2>
+			<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
+		</nav>
+
+		<div class="row">
+			<div class="col-sm-3">&nbsp;</div>
+			<div class="col-sm-9">
+				<div class="input-group mb-1 search-block">
+					<div class="input-group-prepend">
+						<button id="clear_search_btn" class="input-group-text oi oi-x search-button" title="{{ 'hint.clear_filer'|trans|capitalize }}"></button>
+					</div>
+					<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'title.search'|trans|capitalize }}"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table class="table pager-list table-striped table-sm table-bordered">
+			<thead class="thead-light">
+				<tr>
+				{% for field_opts in columns %}
+					{% set value = field_opts.title|trans|capitalize %}
+					{% set field_db = 'record.' ~ field_opts.field %}
+
+					<th scope="col" class="pager-col-title">
+
+					{% if field_opts.sortable %}
+						{{ knp_pagination_sortable(pagination, value, field_db ) }}
+						<span class="{% if pagination.isSorted(field_db) %}{{ sort_css }}{% else %}{{ unsort_css }}{% endif %}"></span>
+					{% else %}
+						{{ value }}
+					{% endif %}
+					</th>
+				{% endfor %}
+				</tr>
+			</thead>
+
+			<tbody>
+			{% for record in pagination %}
+				<tr {% if loop.index is odd %}class="color"{% endif %}>
+				{% for field_opts in columns %}
+					<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
+				{% endfor %}
+				</tr>
 			{% endfor %}
-			</tr>
-		</thead>
+			</tbody>
+		</table>
 
-		<tbody>
-		{% for record in pagination %}
-			<tr {% if loop.index is odd %}class="color"{% endif %}>
-			{% for field_opts in columns %}
-				<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
-			{% endfor %}
-			</tr>
-		{% endfor %}
-		</tbody>
-	</table>
-
-	{# Navigation #}
-	<div class="navigation">
-		{{ knp_pagination_render(pagination) }}
-	</div>
-
+		<div class="row">
+			<div class="col-sm-4">&nbsp;</div>
+			<div class="col-sm-8">
+				<div class="pager-info">
+					{{ 'pager.info'|trans|replace({'_START_':n_start,'_END_':n_end,_TOTAL_:pagination.getTotalItemCount}) }}
+				</div>
+				<div class="navigation">
+					{{ knp_pagination_render(pagination) }}
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

@@ -78,6 +78,9 @@ title:
     sign-in: 'Please sign in'
     user: user
 
+pager:
+    info: "Showing _START_ to _END_ of _TOTAL_ entries"
+
 datatable:
     common:
         are_you_sure: Are you sure ?

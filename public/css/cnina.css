@@ -27,7 +27,17 @@ div.container.c-cont div.list-container div.search-block button.search-button{
 	cursor: pointer;
 }
 
-													/*	Table styles */
+
+div.container.c-cont div.list-container div.pager-info{
+	font-size: 13px;
+	font-weight: bold;
+	text-align: right;
+	padding-bottom: 5px;
+	/*padding-top: 10px;*/
+	padding-right: 20px;
+}
+
+	/*	Table styles */
 div.container.c-cont div.list-container table.table{
 	margin-bottom: 5px;
 }
@@ -70,7 +80,8 @@ div.container.c-cont div.list-container table.table tbody tr td.number-list-sell
 
 
 div.container.c-cont div.navigation nav ul.pagination li a,
-div.container.c-cont div.navigation nav ul.pagination li span{
+div.container.c-cont div.navigation nav ul.pagination li span,
+div.container.c-cont div.list-container div.pager-info{
 	color: #6a8195;
 }
 div.container.c-cont div.navigation nav ul.pagination li span,
