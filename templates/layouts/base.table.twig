@@ -24,9 +24,12 @@
 
 		<div class="col-sm-9">
 			<div class="input-group mb-1 search-block">
+				<div class="input-group-prepend">
+					<button id="clear_search_btn" class="input-group-text oi oi-x search-button" title="{{ 'hint.clear_filer'|trans|capitalize }}"></button>
+				</div>
 				<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
 				<div class="input-group-append">
-					<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button"></button>
+					<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'title.search'|trans|capitalize }}"></button>
 				</div>
 			</div>
 		</div>
@@ -110,7 +113,13 @@
 $(document).ready(function(){
 
     $("#search_btn").on('click',function (event) {
-		$("#search").val( $("#search_input").val());
+        $("#search").val( $("#search_input").val());
+        $('form#form-resp').submit();
+    });
+
+    $("#clear_search_btn").on('click',function (event) {
+        $("#search").val("");
+        $("#search_input").val("")
         $('form#form-resp').submit();
     });
 
