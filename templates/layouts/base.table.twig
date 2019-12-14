@@ -34,7 +34,20 @@
 		</nav>
 
 		<div class="row">
-			<div class="col-sm-3">&nbsp;</div>
+			<div class="col-sm-3">
+				<div class="btn-group page-limit">
+					<button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ 'pager.limitMenu'|trans|replace({'_LIMIT_':pagination.getItemNumberPerPage}) }}
+					</button>
+					<div class="dropdown-menu">
+						<a id="limit_5"  class="dropdown-item limit" href="#">5</a>
+						<a id="limit_10" class="dropdown-item limit" href="#">10</a>
+						<a id="limit_25" class="dropdown-item limit" href="#">25</a>
+						<a id="limit_50" class="dropdown-item limit" href="#">50</a>
+						<a id="limit_100" class="dropdown-item limit" href="#">100</a>
+					</div>
+				</div>
+			</div>
 			<div class="col-sm-9">
 				<div class="input-group mb-1 search-block">
 					<div class="input-group-prepend">
@@ -93,13 +106,10 @@
 	</div>
 </div>
 
-
 <form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
-	<input type="hidden" name="search" id="search" value=" value="{{ search }}" />
-
-	{% if pagination.page is defined and pagination.page > 0 %}
+	<input type="hidden" name="search" id="search" value="{{ search }}" />
+	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
 	<input type="hidden" name="page" id="page" value="1" />
-	{% endif %}
 
 {#
 
@@ -122,8 +132,21 @@
 
 $(document).ready(function(){
 
+    $("#limit_{{ pagination.getItemNumberPerPage }}").addClass("active");
+
+    $(".limit").on('click',function (event) {
+        $("#limit").val($(this).html() );
+        $('form#form-resp').submit();
+    });
+
     $("#search_btn").on('click',function (event) {
         $("#search").val( $("#search_input").val());
+        $('form#form-resp').submit();
+    });
+
+    $("#clear_search_btn").on('click',function (event) {
+        $("#search").val("");
+        $("#search_input").val("")
         $('form#form-resp').submit();
     });
 

@@ -80,6 +80,7 @@ title:
 
 pager:
     info: "Showing _START_ to _END_ of _TOTAL_ entries"
+    limitMenu: "Show _LIMIT_ entries"
 
 datatable:
     common:

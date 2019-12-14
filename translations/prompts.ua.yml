@@ -80,6 +80,7 @@ title:
 
 pager:
     info: "Показано з _START_ по _END_ із _TOTAL_ записів"
+    limitMenu:     "Показати _LIMIT_ записів"
 
 datatable:
     common:
