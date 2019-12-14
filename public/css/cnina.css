@@ -8,7 +8,7 @@ nav.navbar.dashboard-list button{
 div.container.c-cont div.navigation nav ul.pagination li a,
 div.container.c-cont div.navigation nav ul.pagination li.disabled span,
 div.dropdown-menu a.active,
-div.container.c-cont div.list-container table.table thead.thead-light tr th
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th
 {
 	background-color: rgba(218, 164, 90, 0.41);
 }
@@ -52,40 +52,40 @@ div.container.c-cont div.list-container div.pager-info{
 }
 
 	/*	Table styles */
-div.container.c-cont div.list-container table.table{
+div.container.c-cont div.list-container table.pager-list{
 	margin-bottom: 5px;
 }
-div.container.c-cont div.list-container table.table thead.thead-light tr th{
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th{
 	color: #6a8195;
 	text-align: center;
 	vertical-align: middle;
 	border-color: #bfc1c3;
 }
-div.container.c-cont div.list-container table.table thead.thead-light tr th a.sortable,
-div.container.c-cont div.list-container table.table thead.thead-light tr th a.asc,
-div.container.c-cont div.list-container table.table thead.thead-light tr th a.desc{
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th a.sortable,
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th a.asc,
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th a.desc{
 	color: #6a8195;
 }
 
-div.container.c-cont div.list-container table.table thead.thead-light tr th span.sorted,
-div.container.c-cont div.list-container table.table thead.thead-light tr th span.unsorted{
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th span.sorted,
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th span.unsorted{
 	float: right;
 }
 
-div.container.c-cont div.list-container table.table thead.thead-light tr th span.sorted{
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th span.sorted{
 	font-size: 12px;
 	top: 6px;
 }
-div.container.c-cont div.list-container table.table thead.thead-light tr th span.unsorted{
+div.container.c-cont div.list-container table.pager-list thead.thead-light tr th span.unsorted{
 	top: 4px;
 }
 
-div.container.c-cont div.list-container table.table tbody tr td.list-sell{
+div.container.c-cont div.list-container table.pager-list tbody tr td.list-sell{
 	padding-left: 15px;
 	padding-right: 15px;
 ;
 }
-div.container.c-cont div.list-container table.table tbody tr td.number-list-sell{
+div.container.c-cont div.list-container table.pager-list tbody tr td.number-list-sell{
 	text-align: right;
 }
 														/*	Table styles (end) */
