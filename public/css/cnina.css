@@ -80,10 +80,18 @@ div.container.c-cont div.list-container table.pager-list thead.thead-light tr th
 	top: 4px;
 }
 
+div.container.c-cont div.list-container table.pager-list tbody tr{
+	cursor: pointer;
+}
+div.container.c-cont div.list-container table.pager-list tbody tr.odd_color{
+	background-color: rgba(0,0,0,.05);
+}
+div.container.c-cont div.list-container table.pager-list tbody tr:hover{
+	background-color: rgba(72, 111, 145, 0.33);
+}
 div.container.c-cont div.list-container table.pager-list tbody tr td.list-sell{
 	padding-left: 15px;
 	padding-right: 15px;
-;
 }
 div.container.c-cont div.list-container table.pager-list tbody tr td.number-list-sell{
 	text-align: right;

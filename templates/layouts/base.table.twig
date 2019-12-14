@@ -83,7 +83,7 @@
 
 			<tbody>
 			{% for record in pagination %}
-				<tr class="{% if loop.index is odd %} color{% endif %}">
+				<tr class="{% if loop.index is odd %} odd_color{% endif %}">
 				{% for field_opts in columns %}
 					<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
 				{% endfor %}
