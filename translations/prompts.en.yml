@@ -1,6 +1,6 @@
 langs:
     en: eng
-    ua: укр
+    uk: укр
     ru: рус
 
 hint:
@@ -11,6 +11,7 @@ button:
     close: close
     save: save
     sign-in: 'Sign in'
+    find: find
 
 form:
     abbreviation: abbreviation

@@ -1,3 +1,9 @@
+/* Lang */
+div.container.c-cont div.jumbotron-cnina div.lang div.dropdown-menu{
+	min-width: 0;
+}
+/* Lang (end) */
+
 
 nav.navbar.dashboard-list button{
 	height: 26px;

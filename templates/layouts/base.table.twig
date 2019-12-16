@@ -27,12 +27,12 @@
 
 <div class="row list-container" itemPath="{{ path(itemPath) }}">
 	<div class="col-sm-{{ table.width }}">
-
+		{# 															Add Button #}
 		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
 			<h2>{{ headerTitle|trans|capitalize }}</h2>
 			<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
 		</nav>
-
+		{# 															Limit, Search #}
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="btn-group page-limit">
@@ -53,15 +53,16 @@
 					<div class="input-group-prepend">
 						<button id="clear_search_btn" class="input-group-text oi oi-x search-button" title="{{ 'hint.clear_filer'|trans|capitalize }}"></button>
 					</div>
-					<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+					<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="{{ 'title.search'|trans|capitalize }}" aria-label="Recipient's username" aria-describedby="basic-addon2">
 					<div class="input-group-append">
-						<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'title.search'|trans|capitalize }}"></button>
+						<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'button.find'|trans|capitalize }}"></button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<table class="table pager-list table-striped table-sm table-bordered">
+			{# 															Header #}
 			<thead class="thead-light">
 				<tr>
 				{% for field_opts in columns %}
@@ -80,7 +81,7 @@
 				{% endfor %}
 				</tr>
 			</thead>
-
+			{# 															Table content #}
 			<tbody>
 			{% for record in pagination %}
 				<tr class="{% if loop.index is odd %} odd_color{% endif %}">
@@ -91,7 +92,7 @@
 			{% endfor %}
 			</tbody>
 		</table>
-
+		{# 																Paging #}
 		<div class="row">
 			<div class="col-sm-4">&nbsp;</div>
 			<div class="col-sm-8">

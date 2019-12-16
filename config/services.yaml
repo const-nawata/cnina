@@ -6,7 +6,7 @@
 parameters:
     shop_name: '%env(string:SHOP_NAME)%'
     locale: 'en'
-    app_locales: en|ru|ua
+    app_locales: en|ru|uk
 
 services:
     # default configuration for services in *this* file
