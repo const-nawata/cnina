@@ -4,6 +4,10 @@ div.container.c-cont div.jumbotron-cnina div.lang div.dropdown-menu{
 }
 /* Lang (end) */
 
+div.container.c-cont div.list-container div.btn-group.page-limit button:hover,
+button:hover{
+	background-color: rgba(72, 111, 145, 0.33);
+}
 
 nav.navbar.dashboard-list button{
 	height: 26px;
@@ -121,6 +125,9 @@ div.container.c-cont div.navigation nav ul.pagination li.disabled span{
 div.container.c-cont div.navigation nav ul.pagination li span {
 	background-color: rgba(145, 108, 62, 0.41);
 }
+div.container.c-cont div.navigation nav ul.pagination li a:hover{
+	background-color: rgba(199, 145, 91, 0.56);
+}
 
 div.container.c-cont div.navigation nav ul.pagination{
 	float:right;
@@ -184,9 +191,6 @@ table.table tbody tr td{
 
 table.table tbody tr{
 	cursor: pointer;
-}
-table.table tbody tr:hover{
-	background-color: #c5c5c5;
 }
 
 div.dataTables_paginate.paging_full_numbers ul.pagination li.paginate_button.page-item{
