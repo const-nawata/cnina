@@ -30,7 +30,7 @@
 		{# 															Add Button #}
 		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
 			<h2>{{ headerTitle|trans|capitalize }}</h2>
-			<button id="0" type="button" item="0" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus" title="{{ 'title.create'|trans|capitalize }}"></button>
+			<button id="rec-0" type="button" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
 		</nav>
 		{# 															Limit, Search #}
 		<div class="row">
@@ -84,7 +84,7 @@
 			{# 															Table content #}
 			<tbody>
 			{% for record in pagination %}
-				<tr class="{% if loop.index is odd %} odd_color{% endif %}">
+				<tr id="rec-{{ record.id }}" class="{% if loop.index is odd %} odd_color{% endif %} list-row">
 				{% for field_opts in columns %}
 					<td class="list-sell {{ field_opts.css }}">{{ attribute(record, field_opts.field) }} </td>
 				{% endfor %}
@@ -133,6 +133,11 @@
 
 $(document).ready(function(){
 
+    $("tr.list-row, button.add-item").on('click',function (event) { openFormModal($(this)); })
+        .attr("data-toggle", "modal")
+        .attr("data-target", "#modal_dialog")
+	;
+
     $("#limit_{{ pagination.getItemNumberPerPage }}").addClass("active");
 
     $(".limit").on('click',function (event) {
@@ -147,28 +152,27 @@ $(document).ready(function(){
 
     $("#clear_search_btn").on('click',function (event) {
         $("#search").val("");
-        $("#search_input").val("")
+        $("#search_input").val("");
         $('form#form-resp').submit();
     });
 
     $("#clear_search_btn").on('click',function (event) {
         $("#search").val("");
-        $("#search_input").val("")
+        $("#search_input").val("");
         $('form#form-resp').submit();
     });
 
 });
 
-{#
-
-
 function openFormModal( obj ){
+	let item_id	= obj.attr("id");
+
 	$.ajax({
-		url:  $("div[itemPath]").attr( "itemPath" )+"?id="+obj.attr( "id" ),
+		url:  $("div[itemPath]").attr( "itemPath" )+"?id="+item_id.split("-")[1],
 		type: "POST",
 		async: true,
 		dataType: "json",
-		// data: null,
+
 		success: function( data, textStatus, jqXHR ) {
 			$("#modal_body").html(data.html);
 			$('input:visible:enabled:first', '#modal_dialog').focus();
@@ -187,11 +191,14 @@ function openFormModal( obj ){
 						$("#err_"+data.error.field).html(data.error.message);
 					}else{
 						$('#modal_dialog').modal('toggle');
-						$("#searchStr").val(data.table.input.search.value);
+                        $("#search").val(data.table.input.search.value);
+                        $("#search_input").val(data.table.input.search.value);
 
+{#
 	{% if table.input.isActive is defined %}
 						$("#showActive").val( data.table.input.isActive.value );
 	{% endif %}
+#}
 
 						$('form#form-resp').submit();
 					}
@@ -208,6 +215,7 @@ function openFormModal( obj ){
 }
 //______________________________________________________________________________
 
+{#
 /**
  *
  * @param obj
