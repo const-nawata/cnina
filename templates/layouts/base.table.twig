@@ -25,6 +25,10 @@
 	{% set n_end	= pagination.getTotalItemCount %}
 {% endif %}
 
+<form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
+	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
+	<input type="hidden" name="page" id="page" value="1" />
+
 <div class="row list-container" itemPath="{{ path(itemPath) }}">
 	<div class="col-sm-{{ table.width }}">
 		{# 															Add Button #}
@@ -53,7 +57,7 @@
 					<div class="input-group-prepend">
 						<button id="clear_search_btn" class="input-group-text oi oi-x search-button" title="{{ 'hint.clear_filer'|trans|capitalize }}"></button>
 					</div>
-					<input type="text" id="search_input" name="search_input" value="{{ search }}" class="form-control search-input" placeholder="{{ 'title.search'|trans|capitalize }}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+					<input type="text" id="search" name="search" value="{{ search }}" class="form-control search-input" placeholder="{{ 'title.search'|trans|capitalize }}" aria-label="Recipient's username" aria-describedby="basic-addon2">
 					<div class="input-group-append">
 						<button id="search_btn" class="input-group-text oi oi-magnifying-glass search-button" title="{{ 'button.find'|trans|capitalize }}"></button>
 					</div>
@@ -107,11 +111,6 @@
 	</div>
 </div>
 
-<form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
-	<input type="hidden" name="search" id="search" value="{{ search }}" />
-	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
-	<input type="hidden" name="page" id="page" value="1" />
-
 {#
 
 	{% if table.input.isActive is defined %}
@@ -124,6 +123,7 @@
 	#}
 
 </form>
+
 {% include '/dialogs/modal.twig' %}
 
 {% endblock %}
@@ -146,19 +146,11 @@ $(document).ready(function(){
     });
 
     $("#search_btn").on('click',function (event) {
-        $("#search").val( $("#search_input").val());
         $('form#form-resp').submit();
     });
 
     $("#clear_search_btn").on('click',function (event) {
         $("#search").val("");
-        $("#search_input").val("");
-        $('form#form-resp').submit();
-    });
-
-    $("#clear_search_btn").on('click',function (event) {
-        $("#search").val("");
-        $("#search_input").val("");
         $('form#form-resp').submit();
     });
 
@@ -192,7 +184,6 @@ function openFormModal( obj ){
 					}else{
 						$('#modal_dialog').modal('toggle');
                         $("#search").val(data.table.input.search.value);
-                        $("#search_input").val(data.table.input.search.value);
 
 {#
 	{% if table.input.isActive is defined %}
