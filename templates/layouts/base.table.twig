@@ -124,6 +124,13 @@
 
 </form>
 
+<div id="table_row_tool" class="table-row-tool" >
+	<ul class="list-group">
+		<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
+		<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
+	</ul>
+</div>
+
 {% include '/dialogs/modal.twig' %}
 
 {% endblock %}
@@ -133,10 +140,32 @@
 
 $(document).ready(function(){
 
-    $("tr.list-row, button.add-item").on('click',function (event) { openFormModal($(this)); })
+    $("tr.list-row").on('click',function (event) {
+        let a
+			,x	= event.pageX - 10
+			,y	= event.pageY - 20
+		;
+
+        $("#table_row_tool")
+			.css('visibility','visible')
+        	.offset({ top: y, left: x });
+	});
+
+
+    $("#table_row_tool ul li").on('mouseout',function (event) {
+        event.stopPropagation();
+    });
+
+    $("#table_row_tool").on('mouseout',function (event) {
+        $("#table_row_tool")
+            .css('visibility','hidden');
+
+	});
+
+    $("button.add-item").on('click',function (event) { openFormModal($(this)); })
         .attr("data-toggle", "modal")
         .attr("data-target", "#modal_dialog")
-	;
+    ;
 
     $("#limit_{{ pagination.getItemNumberPerPage }}").addClass("active");
 

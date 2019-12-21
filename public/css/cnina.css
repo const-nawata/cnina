@@ -106,6 +106,29 @@ div.container.c-cont div.list-container table.pager-list tbody tr td.list-sell{
 div.container.c-cont div.list-container table.pager-list tbody tr td.number-list-sell{
 	text-align: right;
 }
+div.table-row-tool{
+	visibility: hidden;
+	position: relative;
+	top: 100px;
+	width:  min-content;				/* Min width for Firefox, Opera and Chrome*/
+	/*height: min-content;*/
+	/*width: -moz-min-content;*/		/* Don't delete. Maybe for Safari*/
+	/*width: -webkit-min-content;*/		/* Don't delete. Maybe for Safari*/
+	display: -ms-grid;					/* Min width for IE*/
+	-ms-grid-columns: min-content;		/* Min width for IE*/
+	font-size: 11px;
+	cursor: pointer;
+	z-index: 10000;
+	padding: 10px;	/*Needed for hiding during mousout event*/
+
+}
+div.table-row-tool ul.list-group li.list-group-item{
+	padding: 3px 10px;
+	z-index: 9999;
+}
+div.table-row-tool ul.list-group li.list-group-item:hover{
+	background-color: #a2c0e5;
+}
 														/*	Table styles (end) */
 
 
