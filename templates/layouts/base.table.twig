@@ -160,7 +160,13 @@ $(document).ready(function(){
         $("#table_row_tool")
             .css('visibility','hidden');
 
-	});
+    });
+
+    $("#table_row_tool").on('click',function (event) {
+        $("#table_row_tool")
+            .css('visibility','hidden');
+
+    });
 
     $("button.add-item").on('click',function (event) { openFormModal($(this)); })
         .attr("data-toggle", "modal")
