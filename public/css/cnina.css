@@ -106,28 +106,54 @@ div.container.c-cont div.list-container table.pager-list tbody tr td.list-sell{
 div.container.c-cont div.list-container table.pager-list tbody tr td.number-list-sell{
 	text-align: right;
 }
-div.table-row-tool{
+
+
+
+table.table-row-tool{
+/*
+
 	visibility: hidden;
+/*
 	position: relative;
 	top: 100px;
-	width:  min-content;				/* Min width for Firefox, Opera and Chrome*/
+
+*/
+
 	/*height: min-content;*/
-	/*width: -moz-min-content;*/		/* Don't delete. Maybe for Safari*/
-	/*width: -webkit-min-content;*/		/* Don't delete. Maybe for Safari*/
-	display: -ms-grid;					/* Min width for IE*/
-	-ms-grid-columns: min-content;		/* Min width for IE*/
+	/*width: -moz-min-content;*/		/* Don't delete. Maybe for Safari */
+	/*width: -webkit-min-content;*/		/* Don't delete. Maybe for Safari */
+
+
+	/*width:  min-content;*/				/* Min width for Firefox, Opera and Chrome */
+	/*display: -ms-grid;*/					/* Min width for IE */
+	/*-ms-grid-columns: min-content;*/		/* Min width for IE */
+	/*padding: 10px;*/						/* Needed for hiding during mousout event */
+
+
+	border-spacing: 0;
 	font-size: 11px;
 	cursor: pointer;
 	z-index: 10000;
-	padding: 10px;	/*Needed for hiding during mousout event*/
 
 }
-div.table-row-tool ul.list-group li.list-group-item{
+table.table-row-tool ul.list-group li.list-group-item{
 	padding: 3px 10px;
 	z-index: 9999;
+	/*border-bottom-left-radius: 0;*/
+	/*border-top-left-radius: 0;*/
+	border-left: 0;
 }
-div.table-row-tool ul.list-group li.list-group-item:hover{
+table.table-row-tool ul.list-group li.list-group-item:hover{
 	background-color: #a2c0e5;
+}
+table.table-row-tool td.row-tool-pointer-td{
+	padding: 0;
+	/*vertical-align: top;*/
+}
+table.table-row-tool canvas.row-tool-pointer{
+	/*border:1px solid #000000;*/
+	/*height: 40px;*/
+	/*width: 20px;*/
 }
 														/*	Table styles (end) */
 
