@@ -1,8 +1,9 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Currency;
 use App\Form\CurrencyForm;
+use App\Form\DeleteForm;
+use App\Entity\Currency;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,13 +32,50 @@ class CurrencyController extends ControllerCore
 		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit, $search);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'headerTitle'	=> 'title.currency',
-			'itemPath'		=> 'currency_form',
+			'editPath' => 'currency_form', 'deletePath' => 'del_currency_form',
 
 			'table'	=> [
 				'width' => 5
 			],
 		]);
 
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @Route("/delete", name="currency_delete")
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function deleteCurrency(Request $request): JsonResponse
+	{
+		$post	= $request->request->all()['currency_form'];
+
+		return new JsonResponse([
+			'success'	=> true,
+			'error'		=> null
+		]);
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @Route("/delcurrencyform", name="del_currency_form")
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function deleteCurrencyForm(Request $request ): JsonResponse
+	{
+		$id	= $request->query->get('id');
+
+		$content	= $this->render('dialogs/delete_modal.twig',[
+			'deleteForm'	=> $this->createForm( DeleteForm::class, ['id' => $id],
+			[
+				'action' => $this->generateUrl('currency_delete'),
+				'method' => 'POST'
+			]
+		)->createView()])->getContent();
+
+		return new JsonResponse([ 'success'	=> true, 'html' => $content ]);
 	}
 //______________________________________________________________________________
 

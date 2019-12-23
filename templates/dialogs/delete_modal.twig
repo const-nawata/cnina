@@ -1,0 +1,32 @@
+{% trans_default_domain 'prompts' %}
+
+
+<div id="delete_modal" class="modal-body">
+
+	<h5>Are you sure?</h5>
+
+
+
+
+
+	{{ form_start(deleteForm) }}
+
+	{{ form_end(deleteForm) }}
+
+
+
+	{#       #}
+
+	<div class="modal-footer">
+		<button type="button" onclick="$('#dialog_form').submit();" class="btn btn-secondary">{{ 'button.save'|trans|capitalize }}</button>
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+
+
+
+});
+</script>

@@ -29,12 +29,12 @@
 	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
 	<input type="hidden" name="page" id="page" value="1" />
 
-<div class="row list-container" itemPath="{{ path(itemPath) }}">
+<div class="row list-container">
 	<div class="col-sm-{{ table.width }}">
 		{# 															Add Button #}
 		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
 			<h2>{{ headerTitle|trans|capitalize }}</h2>
-			<button id="rec-0" type="button" data-toggle="modal" data-target="#modal_dialog"  class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
+			<button id="rec-0" type="button" data-toggle="modal" data-target="#modal_dialog" class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
 		</nav>
 		{# 															Limit, Search #}
 		<div class="row">
@@ -125,14 +125,14 @@
 </form>
 
 <div id="table_row_tool" class="table-row-tool" >
-	<table cellpadding="0" cellspacing="0" border="0" class="table-row-tool">
+	<table cellpadding="0" cellspacing="0" border="0">
 		<tbody>
 		<tr>
 			<td class="row-tool-pointer-td"><canvas width="20" height="44" id="row_tool_pointer" class="row-tool-pointer"></canvas></td>
-			<td>
+			<td class="row-tool-actions">
 				<ul class="list-group">
-					<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
-					<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
+					<li action="edit" class="list-group-item list-group-item-primary" data-toggle="modal" data-target="#modal_dialog">Edit</li>
+					<li action="delete" class="list-group-item list-group-item-primary">Delete</li>
 				</ul>
 			</td>
 		</tr>
@@ -149,9 +149,10 @@
 
 $(document).ready(function(){
 
-    let tpointer = document.getElementById("row_tool_pointer")
-    	,ctx = tpointer.getContext("2d")
-    	,cfn	= 1;
+    let list_tr		= null
+		,tpointer	= document.getElementById("row_tool_pointer")
+    	,ctx		= tpointer.getContext("2d")
+    	,cfn		= 1;
 
     ctx.fillStyle = "#b8daff";
     ctx.strokeStyle = "#a1bfdf";
@@ -175,6 +176,8 @@ $(document).ready(function(){
 		$("#table_row_tool")
 			.css('visibility','visible')
 			.offset({ top: y, left: x });
+
+        list_tr	= $(this);
 	});
 
 	$("#table_row_tool ul li, #row_tool_pointer").on('mouseout',function (event) {
@@ -186,12 +189,38 @@ $(document).ready(function(){
 			.css('visibility','hidden');
 	});
 
-	$("#table_row_tool").on('click',function (event) {
+	// $(".list-group-item")
+    $("#table_row_tool td.row-tool-actions li").on('click',function (event) {
+        let action	= $(this).attr("action");
+
+
+
+        switch( action ){
+            case "edit":	openEditFormModal(list_tr); break;
+            case "delete":	openDeleteModal(list_tr); break;
+        }
+
+
+
+        // openEditFormModal(list_tr);
+
+
+
+
+// alert("Do ation: "+action);
+
 		$("#table_row_tool")
 			.css('visibility','hidden');
-	});
 
-    $("button.add-item").on('click',function (event) { openFormModal($(this)); })
+
+
+
+	})
+		.attr("data-toggle", "modal")
+		.attr("data-target", "#modal_dialog")
+	;
+
+    $("button.add-item").on('click',function (event) { openEditFormModal($(this)); })
         .attr("data-toggle", "modal")
         .attr("data-target", "#modal_dialog")
     ;
@@ -214,11 +243,65 @@ $(document).ready(function(){
 
 });
 
-function openFormModal( obj ){
+function openDeleteModal( obj ){
+    let item_id	= obj.attr("id");
+
+
+    $.ajax({
+        url:  "{{ path(deletePath) }}?id="+item_id.split("-")[1],
+        type: "POST",
+        async: true,
+        dataType: "json",
+
+        success: function( data, textStatus, jqXHR ) {
+            $("#modal_body").html(data.html);
+            // $('input:visible:enabled:first', '#modal_dialog').focus();
+
+
+/*
+
+            $('div#modal_dialog form').submit(function(e) {
+                let $form = $(this);
+
+                $("div[id^='err_']").html("");
+
+                $.ajax({
+                    type:	$form.attr('method'),
+                    url:	$form.attr('action'),
+                    data:	$form.serialize()
+                }).done(function(data) {
+                    if( data.error.message.length > 0 ){
+                        $("#err_"+data.error.field).html(data.error.message);
+                    }else{
+                        $('#modal_dialog').modal('toggle');
+                        $("#search").val(data.table.input.search.value);
+
+                        $('form#form-resp').submit();
+                    }
+                }).fail(function() {
+                    alert("Server system error.");
+                });
+                e.preventDefault();
+            });
+
+
+*/
+
+
+
+
+        },
+        error: function( jqXHR, textStatus, errorThrown ) {
+            alert( "JS system error." );
+        }
+    });
+}
+
+function openEditFormModal( obj ){
 	let item_id	= obj.attr("id");
 
 	$.ajax({
-		url:  $("div[itemPath]").attr( "itemPath" )+"?id="+item_id.split("-")[1],
+        url:  "{{ path(editPath) }}?id="+item_id.split("-")[1],
 		type: "POST",
 		async: true,
 		dataType: "json",
@@ -293,14 +376,14 @@ $(function() {
 
 				dt.on( 'draw', function () {
 					$("table[id^='list_'] tbody tr")
-						.click(function(){ openFormModal($(this)); })
+						.click(function(){ openEditFormModal($(this)); })
 						.attr("data-toggle", "modal")
 						.attr("data-target", "#modal_dialog")
 					;
 				});
 
 				$("table[id^='list_'] tbody tr, button[item]")
-					.click(function(){ openFormModal($(this)); })
+					.click(function(){ openEditFormModal($(this)); })
 					.attr("data-toggle", "modal")
 					.attr("data-target", "#modal_dialog")
 				;
