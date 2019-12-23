@@ -25,45 +25,6 @@
 	{% set n_end	= pagination.getTotalItemCount %}
 {% endif %}
 
-
-
-
-{#		<div id="table_row_tool" class="table-row-tool" >#}
-
-
-			<table id="table_row_tool" cellpadding="0" cellspacing="0" border="0" class="table-row-tool">
-				<tbody>
-					<tr>
-						<td class="row-tool-pointer-td"><canvas width="20" height="44" id="row_tool_pointer" class="row-tool-pointer"></canvas></td>
-						<td>
-							<ul class="list-group">
-								<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
-								<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
-							</ul>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-{#
-
-
-			<div class="col-sm-1">
-
-
-			</div>
-
-			<div class="col-sm-1">
-				<ul class="list-group">
-					<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
-					<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
-				</ul>
-			</div>
-
-#}
-
-{#		</div>#}
-
 <form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
 	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
 	<input type="hidden" name="page" id="page" value="1" />
@@ -162,15 +123,22 @@
 	#}
 
 </form>
-{#
 
 <div id="table_row_tool" class="table-row-tool" >
-	<ul class="list-group">
-		<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
-		<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
-	</ul>
+	<table cellpadding="0" cellspacing="0" border="0" class="table-row-tool">
+		<tbody>
+		<tr>
+			<td class="row-tool-pointer-td"><canvas width="20" height="44" id="row_tool_pointer" class="row-tool-pointer"></canvas></td>
+			<td>
+				<ul class="list-group">
+					<li id="item-edit" class="list-group-item list-group-item-primary">Edit</li>
+					<li id="item-delete" class="list-group-item list-group-item-primary">Delete</li>
+				</ul>
+			</td>
+		</tr>
+		</tbody>
+	</table>
 </div>
-#}
 
 {% include '/dialogs/modal.twig' %}
 
@@ -181,9 +149,9 @@
 
 $(document).ready(function(){
 
-    let tpointer = document.getElementById("row_tool_pointer");
-    let ctx = tpointer.getContext("2d");
-    let cfn	= 1;
+    let tpointer = document.getElementById("row_tool_pointer")
+    	,ctx = tpointer.getContext("2d")
+    	,cfn	= 1;
 
     ctx.fillStyle = "#b8daff";
     ctx.strokeStyle = "#a1bfdf";
@@ -196,38 +164,32 @@ $(document).ready(function(){
     ctx.closePath();
     ctx.fill();
 
+	$("tr.list-row").on('click',function (event) {
+		let a
+			,x	= event.pageX - 40
+			,y	= event.pageY - 20
+		;
 
+		$("#table_row_tool")
+			.css('visibility','visible')
+			.offset({ top: y, left: x });
+	});
 
+	$("#table_row_tool ul li").on('mouseout',function (event) {
+		event.stopPropagation();
+	});
 
-    /*
-rgba(0,0,0,.125);
-		$("tr.list-row").on('click',function (event) {
-			let a
-				,x	= event.pageX - 10
-				,y	= event.pageY - 20
-			;
+	$("#table_row_tool").on('mouseout',function (event) {
+		$("#table_row_tool")
+			.css('visibility','hidden');
 
-			$("#table_row_tool")
-				.css('visibility','visible')
-				.offset({ top: y, left: x });
-		});
+	});
 
-		$("#table_row_tool ul li").on('mouseout',function (event) {
-			event.stopPropagation();
-		});
+	$("#table_row_tool").on('click',function (event) {
+		$("#table_row_tool")
+			.css('visibility','hidden');
 
-		$("#table_row_tool").on('mouseout',function (event) {
-			$("#table_row_tool")
-				.css('visibility','hidden');
-
-		});
-
-		$("#table_row_tool").on('click',function (event) {
-			$("#table_row_tool")
-				.css('visibility','hidden');
-
-		});
-	/*   */
+	});
 
     $("button.add-item").on('click',function (event) { openFormModal($(this)); })
         .attr("data-toggle", "modal")
