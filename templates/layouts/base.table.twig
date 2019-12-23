@@ -165,30 +165,30 @@ $(document).ready(function(){
     ctx.fill();
 
 	$("tr.list-row").on('click',function (event) {
-		let a
-			,x	= event.pageX - 40
-			,y	= event.pageY - 20
+		let xmin= $(this).offset().left
+            ,x	= event.pageX - 40
+            ,y	= $(this).offset().top - 10
 		;
+
+		x	= (xmin > x) ? xmin : x;
 
 		$("#table_row_tool")
 			.css('visibility','visible')
 			.offset({ top: y, left: x });
 	});
 
-	$("#table_row_tool ul li").on('mouseout',function (event) {
+	$("#table_row_tool ul li, #row_tool_pointer").on('mouseout',function (event) {
 		event.stopPropagation();
 	});
 
 	$("#table_row_tool").on('mouseout',function (event) {
 		$("#table_row_tool")
 			.css('visibility','hidden');
-
 	});
 
 	$("#table_row_tool").on('click',function (event) {
 		$("#table_row_tool")
 			.css('visibility','hidden');
-
 	});
 
     $("button.add-item").on('click',function (event) { openFormModal($(this)); })
