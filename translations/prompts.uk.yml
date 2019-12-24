@@ -9,9 +9,11 @@ hint:
 
 button:
     close: закрити
+    find: знайти
+    no: ні
     save: зберегти
     sign-in: вхід
-    find: знайти
+    yes: так
 
 form:
     abbreviation: скорочено
@@ -58,6 +60,7 @@ title:
     dashboard: налаштування
     deactivate: деактивувати
     delete: вилучити
+    deletion: видалення
     edit: редагувати
     home: додому
     list: список
@@ -77,6 +80,8 @@ title:
     showActive: 'Показати активні'
     showInStock: 'Показати в наявності'
     sign-in: 'Будь ласка, війдіть'
+    sureYou: 'Ви впевнені?'
+    underfind: 'не визначено'
     user: користувач
 
 pager:

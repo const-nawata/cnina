@@ -9,9 +9,11 @@ hint:
 
 button:
     close: close
+    find: find
+    no: no
     save: save
     sign-in: 'Sign in'
-    find: find
+    yes: yes
 
 form:
     abbreviation: abbreviation
@@ -58,6 +60,7 @@ title:
     dashboard: dashboard
     deactivate: deactivate
     delete: delete
+    deletion: deletion
     edit: edit
     home: home
     list: list
@@ -77,6 +80,8 @@ title:
     showActive: 'Show active'
     showInStock: 'Show in stock'
     sign-in: 'Please sign in'
+    sureYou: 'Are you sure?'
+    underfind: 'underfind'
     user: user
 
 pager:

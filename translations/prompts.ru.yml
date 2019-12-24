@@ -9,9 +9,11 @@ hint:
 
 button:
     close: закрыть
+    find: найти
+    no: нет
     save: сохранить
     sign-in: вход
-    find: найти
+    yes: да
 
 form:
     abbreviation: сокращённо
@@ -58,6 +60,7 @@ title:
     dashboard: настройка
     deactivate: деактивировать
     delete: удалить
+    deletion: удаление
     edit: редактировать
     home: домой
     list: список
@@ -77,6 +80,8 @@ title:
     showActive: 'Показать активные'
     showInStock: 'Показать в наличии'
     sign-in: 'Пожалуйста, войдите'
+    sureYou: 'Вы уверены?'
+    underfind: 'не определено'
     user: пользователь
 
 pager:
