@@ -48,10 +48,12 @@ form:
 message:
     savedsuccess: 'Сохранено успешно'
     unconfirmed-acc: 'Ваша учетная запись не подтверждена.'
+    undefined-operation: 'Неопределённая операция'
 
 title:
     activate: активировать
     add: добавить
+    adding: добавление
     category:
         sn: категория
         pl: категории
@@ -62,6 +64,7 @@ title:
     delete: удалить
     deletion: удаление
     edit: редактировать
+    editing: редактирование
     home: домой
     list: список
     login: авторизуйтесь
@@ -81,7 +84,7 @@ title:
     showInStock: 'Показать в наличии'
     sign-in: 'Пожалуйста, войдите'
     sureYou: 'Вы уверены?'
-    underfind: 'не определено'
+    undefined: 'не определено'
     user: пользователь
 
 pager:

@@ -3,8 +3,6 @@
 	<div class="modal-body">
 {{ form_start(currencyForm) }}
 
-{#
-
 		<div class="form-group row">
 			<div class="col-sm-3">
 				{{ form_label(currencyForm.name, 'form.denomination'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
@@ -49,9 +47,6 @@
 				{{ form_widget(currencyForm.isAfterPos[1], {'attr':{'class':'position-radio'}}) }}
 			</div>
 		</div>
-
-#}
-
 
 {{ form_end(currencyForm) }}
 

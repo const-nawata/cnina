@@ -48,10 +48,12 @@ form:
 message:
     savedsuccess: 'Збережено успішно'
     unconfirmed-acc: 'Ваш обліковий запис не підтверджено.'
+    undefined-operation: 'Невизначена операція'
 
 title:
     activate: активувати
     add: додати
+    adding: додавання
     category:
         sn: категорія
         pl: категорії
@@ -62,6 +64,7 @@ title:
     delete: вилучити
     deletion: видалення
     edit: редагувати
+    editing: редагування
     home: додому
     list: список
     login: авторизуйтесь
@@ -81,7 +84,7 @@ title:
     showInStock: 'Показати в наявності'
     sign-in: 'Будь ласка, війдіть'
     sureYou: 'Ви впевнені?'
-    underfind: 'не визначено'
+    undefined: 'не визначено'
     user: користувач
 
 pager:

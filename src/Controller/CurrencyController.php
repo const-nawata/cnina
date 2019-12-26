@@ -31,7 +31,7 @@ class CurrencyController extends ControllerCore
 
 		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit, $search);
 
-		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'headerTitle'	=> 'title.currency',
+		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'entityTitle'	=> 'title.currency',
 			'editPath' => 'currency_form', 'deletePath' => 'del_currency_form',
 
 			'table'	=> [
@@ -63,7 +63,7 @@ class CurrencyController extends ControllerCore
 	 * @param Request $request
 	 * @return JsonResponse
 	 */
-	public function deleteCurrencyForm(Request $request ): JsonResponse
+	public function showDelCurrencyForm(Request $request ): JsonResponse
 	{
 		$id	= $request->query->get('id');
 
@@ -101,7 +101,7 @@ class CurrencyController extends ControllerCore
  * @param Request $request
  * @return JsonResponse
  */
-	public function getCurrencyForm(Request $request):JsonResponse
+	public function showCurrencyForm(Request $request):JsonResponse
 	{
 		$repo		= $this->getDoctrine()->getRepository(Currency::class);
 		$id			= $request->query->get('id');
@@ -113,7 +113,7 @@ class CurrencyController extends ControllerCore
 			'currency'		=> $currency,
 		])->getContent();
 
-		return new JsonResponse([ 'success'	=> true, 'html' => $content ]);
+		return new JsonResponse([ 'success'	=> true, 'entityTitle' => 'title.currency', 'entityId' => $id, 'html' => $content ]);
 	}
 //______________________________________________________________________________
 

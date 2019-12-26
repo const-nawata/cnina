@@ -33,7 +33,7 @@
 	<div class="col-sm-{{ table.width }}">
 		{# 															Add Button #}
 		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
-			<h2>{{ headerTitle|trans|capitalize }}</h2>
+			<h2>{{ entityTitle|trans|capitalize }}</h2>
 			<button id="rec-0" type="button" data-toggle="modal" data-target="#modal_dialog" class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
 		</nav>
 		{# 															Limit, Search #}
@@ -307,8 +307,20 @@ function openEditFormModal( obj ){
 		dataType: "json",
 
 		success: function( data, textStatus, jqXHR ) {
+			let formTitle	= "";
+
 			$("#modal_body").html(data.html);
 			$('input:visible:enabled:first', '#modal_dialog').focus();
+
+			if( typeof data.entityId === 'undefined' || data.entityId === null ){
+				formTitle += "{{ 'message.undefined-operation'|trans }}";
+			}else if( data.entityId > 0 ){
+				formTitle += "{{ 'title.editing'|trans|capitalize }}";
+			}else{
+				formTitle += "{{ 'title.adding'|trans|capitalize }}";
+			}
+
+			$("#modal_label").html(formTitle);
 
 			$('div#modal_dialog form').submit(function(e) {
 				let $form = $(this);

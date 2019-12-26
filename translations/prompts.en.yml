@@ -48,10 +48,12 @@ form:
 message:
     savedsuccess: 'Saved successfully'
     unconfirmed-acc: 'Your account unconfirmed.'
+    undefined-operation: 'Undefined operation'
 
 title:
     activate: activate
     add: add
+    adding: adding
     category:
         sn: category
         pl: categories
@@ -62,6 +64,7 @@ title:
     delete: delete
     deletion: deletion
     edit: edit
+    editing: editing
     home: home
     list: list
     login: 'log in'
@@ -81,7 +84,7 @@ title:
     showInStock: 'Show in stock'
     sign-in: 'Please sign in'
     sureYou: 'Are you sure?'
-    underfind: 'underfind'
+    undefined: 'undefined'
     user: user
 
 pager:
