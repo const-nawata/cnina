@@ -158,6 +158,19 @@ div.container.c-cont div.navigation nav ul.pagination{
 	float:right;
 }
 
+
+/*  Deletion  Form */
+div.modal-body h4.delete-confirm-message{
+	width: 100%;
+	text-align: center;
+	position: relative;
+	bottom: 17px;
+}
+
+
+
+
+
 /*  Test message for test push */
 
 /*
