@@ -85,13 +85,10 @@ class CurrencyController extends ControllerCore
 	 */
 	private function generateCurrencyForm(Currency $currency ): FormInterface
 	{
-		return $this->createForm(CurrencyForm::class, $currency, [
+		return $this->createForm(CurrencyForm::class, $currency,
+		[
 			'action' => $this->generateUrl('currency_save'),
 			'method' => 'POST'
-			,'attr' => [
-				'id'			=> 'dialog_form',
-				'currency_id'	=> $currency->getId() ?? 0,
-			]
 		]);
 	}
 //______________________________________________________________________________

@@ -4,12 +4,12 @@
 
 	<h4 class="delete-confirm-message">{{ 'title.sureYou'|trans|capitalize }}</h4>
 
-	{{ form_start(deleteForm) }}
+	{{ form_start(deleteForm), {'attr': {'id': 'dialog_form'}} }}
 
 	{{ form_end(deleteForm) }}
 
 	<div class="modal-footer">
-		<button type="button" onclick="$('#delete_form').submit();" class="btn btn-light">{{ 'button.yes'|trans|capitalize }}</button>
+		<button type="button" onclick="$('#dialog_form').submit();" class="btn btn-light">{{ 'button.yes'|trans|capitalize }}</button>
 		<button type="button" id="no_btn" data-dismiss="modal" class="btn btn-light">{{ 'button.no'|trans|capitalize }}</button>
 	</div>
 </div>
