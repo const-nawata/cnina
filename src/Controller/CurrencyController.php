@@ -113,7 +113,7 @@ class CurrencyController extends ControllerCore
 			'currency'		=> $currency,
 		])->getContent();
 
-		return new JsonResponse([ 'success'	=> true, 'entityTitle' => 'title.currency', 'entityId' => $id, 'html' => $content ]);
+		return new JsonResponse([ 'success'	=> true, 'entityId' => $id, 'html' => $content ]);
 	}
 //______________________________________________________________________________
 
