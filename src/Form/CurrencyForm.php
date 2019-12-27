@@ -21,7 +21,7 @@ class CurrencyForm extends AbstractType
 		$widget_css	= 'form-control form-control-sm';
 
         $builder
-			->add('id', IntegerType::class/*, [ 'mapped' => false, 'data' => $options['attr']['currency_id'] ]*/ )
+			->add('id', IntegerType::class )
 			->add('name', TextType::class, ['attr' => ['class'=> $widget_css], 'required' => false ] )
 			->add('symbol', TextType::class, ['attr' => ['class'=> $widget_css], 'required' => false ] )
 			->add('ratio', NumberType::class, ['attr' => ['class'=> $widget_css], 'scale' => 6, 'required' => false ] )

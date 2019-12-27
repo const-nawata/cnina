@@ -1,58 +1,58 @@
 {% trans_default_domain 'prompts' %}
 
 	<div class="modal-body">
-{{ form_start(currencyForm, {'attr': {'id': 'dialog_form'}}) }}
+{{ form_start(form, {'attr': {'id': 'dialog_form'}}) }}
 
-		<div style="visibility: hidden;">
-			{{ form_widget(currencyForm.id ) }}
+		<div style="display: none;">
+			{{ form_widget(form.id ) }}
 		</div>
 
 		<div class="form-group row">
 			<div class="col-sm-3">
-				{{ form_label(currencyForm.name, 'form.denomination'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
+				{{ form_label(form.name, 'form.denomination'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
 			</div>
 			<div class="col-sm-9">
-				{{ form_widget(currencyForm.name ) }}
+				{{ form_widget(form.name ) }}
 				<div id="err_name" class="modal-error-content"></div>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<div class="col-sm-3">
-				{{ form_label(currencyForm.symbol, 'form.sign'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_symbol'}} ) }}
+				{{ form_label(form.symbol, 'form.sign'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_symbol'}} ) }}
 			</div>
 			<div class="col-sm-9">
-				{{ form_widget(currencyForm.symbol ) }}
+				{{ form_widget(form.symbol ) }}
 				<div class="modal-error-content"></div>		<!-- Dummy -->
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<div class="col-sm-3">
-				{{ form_label(currencyForm.ratio, 'form.ratio-currency'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_ratio'}} ) }}
+				{{ form_label(form.ratio, 'form.ratio-currency'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_ratio'}} ) }}
 			</div>
 
 			<div class="col-sm-9 from-check-box">
-				{{ form_widget(currencyForm.ratio ) }}
+				{{ form_widget(form.ratio ) }}
 				<div class="modal-error-content"></div>		<!-- Dummy -->
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<div class="col-sm-3">
-				{{ form_label(currencyForm.isAfterPos, 'form.position'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos'}}) }}
+				{{ form_label(form.isAfterPos, 'form.position'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos'}}) }}
 			</div>
 
 			<div class="col-sm-6">
-				{{ form_label(currencyForm.isAfterPos[0], 'form.before'|trans|capitalize, {'label_attr':{'class':'col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos_0'}}) }}&nbsp;
-				{{ form_widget(currencyForm.isAfterPos[0], {'attr':{'class':'position-radio'}}) }}
+				{{ form_label(form.isAfterPos[0], 'form.before'|trans|capitalize, {'label_attr':{'class':'col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos_0'}}) }}&nbsp;
+				{{ form_widget(form.isAfterPos[0], {'attr':{'class':'position-radio'}}) }}
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				{{ form_label(currencyForm.isAfterPos[1], 'form.after'|trans|capitalize, {'label_attr':{'class':'col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos_1'}}) }}&nbsp;
-				{{ form_widget(currencyForm.isAfterPos[1], {'attr':{'class':'position-radio'}}) }}
+				{{ form_label(form.isAfterPos[1], 'form.after'|trans|capitalize, {'label_attr':{'class':'col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos_1'}}) }}&nbsp;
+				{{ form_widget(form.isAfterPos[1], {'attr':{'class':'position-radio'}}) }}
 			</div>
 		</div>
 
-{{ form_end(currencyForm) }}
+{{ form_end(form) }}
 
 		<div class="modal-footer">
 			<button type="button" onclick="$('#dialog_form').submit();" class="btn btn-secondary">{{ 'button.save'|trans|capitalize }}</button>

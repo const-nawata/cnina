@@ -106,7 +106,7 @@ class CurrencyController extends ControllerCore
 		$currency	= $data['entity'];
 
 		$content	= $this->render('dialogs/currency_modal.twig',[
-			'currencyForm'	=> $this->generateCurrencyForm($currency)->createView(),
+			'form'	=> $this->generateCurrencyForm($currency)->createView(),
 			'currency'		=> $currency,
 		])->getContent();
 
