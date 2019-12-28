@@ -1,0 +1,19 @@
+{% trans_default_domain 'prompts' %}
+
+	<div class="modal-body">
+		{{ form_start(form, {'attr': {'id': 'dialog_form'}}) }}
+
+			<div style="display: none;">
+				{{ form_widget(form.id ) }}
+			</div>
+
+			{% block body %}{% endblock %}
+
+		{{ form_end(form) }}
+
+		<div class="modal-footer">
+			{% block buttons %}
+				<button type="button" onclick="$('#dialog_form').submit();" class="btn btn-secondary">{{ 'button.save'|trans|capitalize }}</button>
+			{% endblock %}
+		</div>
+	</div>
