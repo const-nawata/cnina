@@ -50,10 +50,46 @@ class CurrencyController extends ControllerCore
 	public function deleteCurrency(Request $request): JsonResponse
 	{
 		$post	= $request->request->all()['delete_form'];
+		$error	= ['message' => ''];
+
+		$em	= $this->getDoctrine()->getManager();
+		$con= $em->getConnection();
+		$con->beginTransaction();
+
+		try {
+			$form = $this->createForm( DeleteForm::class, ['id' => $post['id']],
+				[
+					'action' => $this->generateUrl('currency_delete'),
+					'method' => 'POST'
+				]
+			);
+
+			$form->handleRequest( $request );
+
+			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
+				$repo		= $this->getDoctrine()->getRepository(Currency::class);
+				$currency	= $repo->find($post['id']);
+				$em->remove($currency);
+				$em->flush();
+				$con->commit();
+			}else{
+				$error_content	= $this->getFormError( $form );;
+				throw new \Exception(serialize( $error_content ), 1);
+			}
+		} catch ( \Exception $e) {
+			$success	= false;
+			$message	= $e->getMessage();
+
+			$error	=  ( $e->getCode() == 1 )
+				? unserialize( $message )
+				: ['message' => $message.' / '.$e->getCode()];
+
+			$con->rollBack();
+		}
 
 		return new JsonResponse([
-			'success'	=> true,
-			'error'		=> null
+			'success'	=> $success,
+			'error'		=> $error
 		]);
 	}
 //______________________________________________________________________________
