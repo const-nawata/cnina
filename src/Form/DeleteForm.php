@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+//use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class DeleteForm extends AbstractType
 //		$widget_css	= 'form-control form-control-sm';
 
         $builder
-			->add('id', HiddenType::class )
+			->add('id', IntegerType::class )
 		;
     }
 

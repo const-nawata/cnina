@@ -1,0 +1,11 @@
+{% extends 'dialogs/entity_form.twig' %}
+{% trans_default_domain 'prompts' %}
+
+{% block body %}
+	<h4 class="delete-confirm-message">{{ 'title.sureYou'|trans|capitalize }}</h4>
+{% endblock %}
+
+{% block buttons %}
+	<button type="button" onclick="$('#dialog_form').submit();" class="btn btn-light">{{ 'button.yes'|trans|capitalize }}</button>
+	<button type="button" id="no_btn" data-dismiss="modal" class="btn btn-light">{{ 'button.no'|trans|capitalize }}</button>
+{% endblock %}

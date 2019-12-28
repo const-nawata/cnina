@@ -254,7 +254,10 @@ function openDeleteModal( obj ){
         dataType: "json",
 
         success: function( data, textStatus, jqXHR ) {
+            $("#modal_label").html("{{ 'title.deletion'|trans|capitalize }}");
             $("#modal_body").html(data.html);
+            $("#no_btn").focus();
+
             // $('input:visible:enabled:first', '#modal_dialog').focus();
 
 
@@ -292,7 +295,7 @@ function openDeleteModal( obj ){
 
         },
         error: function( jqXHR, textStatus, errorThrown ) {
-            alert( "JS system error." );
+            alert( "JS system error (Delete form show)." );
         }
     });
 }

@@ -49,7 +49,7 @@ class CurrencyController extends ControllerCore
 	 */
 	public function deleteCurrency(Request $request): JsonResponse
 	{
-		$post	= $request->request->all()['currency_form'];
+		$post	= $request->request->all()['delete_form'];
 
 		return new JsonResponse([
 			'success'	=> true,
@@ -67,8 +67,8 @@ class CurrencyController extends ControllerCore
 	{
 		$id	= $request->query->get('id');
 
-		$content	= $this->render('dialogs/delete_modal.twig',[
-			'deleteForm'	=> $this->createForm( DeleteForm::class, ['id' => $id],
+		$content	= $this->render('dialogs/delete_form.twig',[
+			'form'	=> $this->createForm( DeleteForm::class, ['id' => $id],
 			[
 				'action' => $this->generateUrl('currency_delete'),
 				'method' => 'POST'
