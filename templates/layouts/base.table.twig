@@ -189,32 +189,16 @@ $(document).ready(function(){
 			.css('visibility','hidden');
 	});
 
-	// $(".list-group-item")
     $("#table_row_tool td.row-tool-actions li").on('click',function (event) {
         let action	= $(this).attr("action");
-
-
 
         switch( action ){
             case "edit":	openEditFormModal(list_tr); break;
             case "delete":	openDeleteModal(list_tr); break;
         }
 
-
-
-        // openEditFormModal(list_tr);
-
-
-
-
-// alert("Do ation: "+action);
-
 		$("#table_row_tool")
 			.css('visibility','hidden');
-
-
-
-
 	})
 		.attr("data-toggle", "modal")
 		.attr("data-target", "#modal_dialog")
@@ -246,7 +230,6 @@ $(document).ready(function(){
 
 function openDeleteModal( obj ){
     let item_id	= obj.attr("id");
-
 
     $.ajax({
         url:  "{{ path(deletePath) }}?id="+item_id.split("-")[1],

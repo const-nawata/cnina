@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\DTO\DeleteEntityDto;
 use App\Form\CurrencyForm;
 use App\Form\DeleteEntityForm;
 use App\Entity\Currency;
@@ -57,7 +58,11 @@ class CurrencyController extends ControllerCore
 		$con->beginTransaction();
 
 		try {
-			$form = $this->createForm( DeleteEntityForm::class, ['id' => $post['id']],
+			$form_data	= new DeleteEntityDto();
+			$form_data->setId($post['id']);
+			$form_data->setEntityName($post['entityName']);
+
+			$form = $this->createForm( DeleteEntityForm::class, $form_data,
 				[
 					'action' => $this->generateUrl('currency_delete'),
 					'method' => 'POST'
@@ -101,10 +106,12 @@ class CurrencyController extends ControllerCore
 	 */
 	public function showDelCurrencyForm(Request $request ): JsonResponse
 	{
-		$id	= $request->query->get('id');
+		$form_data	= new DeleteEntityDto();
+		$form_data->setId($request->query->get('id'));
+		$form_data->setEntityName('Currency');
 
 		$content	= $this->render('dialogs/delete_form.twig',[
-			'form'	=> $this->createForm( DeleteEntityForm::class, ['id' => $id ,'entityName' => 'Currency'],
+			'form'	=> $this->createForm( DeleteEntityForm::class, $form_data,
 			[
 				'action' => $this->generateUrl('currency_delete'),
 				'method' => 'POST'

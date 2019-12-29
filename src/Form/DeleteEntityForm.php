@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\DTO\DeleteEntityDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +22,7 @@ class DeleteEntityForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => DeleteEntityDto::class,
         ]);
     }
 }
