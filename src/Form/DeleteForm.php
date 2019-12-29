@@ -14,7 +14,7 @@ class DeleteForm extends AbstractType
     {
         $builder
 			->add('id', IntegerType::class )
-			->add('entity', TextType::class )
+			->add('entityName', TextType::class )
 		;
     }
 

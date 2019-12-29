@@ -67,7 +67,7 @@ class CurrencyController extends ControllerCore
 			$form->handleRequest( $request );
 
 			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
-				$repo		= $this->getDoctrine()->getRepository('App\\Entity\\'.$post['entity']);
+				$repo		= $this->getDoctrine()->getRepository('App\\Entity\\'.$post['entityName']);
 				$currency	= $repo->find($post['id']);
 				$em->remove($currency);
 				$em->flush();
@@ -104,7 +104,7 @@ class CurrencyController extends ControllerCore
 		$id	= $request->query->get('id');
 
 		$content	= $this->render('dialogs/delete_form.twig',[
-			'form'	=> $this->createForm( DeleteForm::class, ['id' => $id ,'entity' => 'Currency'],
+			'form'	=> $this->createForm( DeleteForm::class, ['id' => $id ,'entityName' => 'Currency'],
 			[
 				'action' => $this->generateUrl('currency_delete'),
 				'method' => 'POST'
