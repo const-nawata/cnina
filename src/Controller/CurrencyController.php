@@ -104,21 +104,9 @@ class CurrencyController extends ControllerCore
 	 * @param Request $request
 	 * @return JsonResponse
 	 */
-	public function showDelCurrencyForm(Request $request ): JsonResponse
+	public function showDelCurrencyForm( Request $request ): JsonResponse
 	{
-		$form_data	= new DeleteEntityDto();
-		$form_data->setId($request->query->get('id'));
-		$form_data->setEntityName('Currency');
-
-		$content	= $this->render('dialogs/delete_entity_form.twig',[
-			'form'	=> $this->createForm( DeleteEntityForm::class, $form_data,
-			[
-				'action' => $this->generateUrl('currency_delete'),
-				'method' => 'POST'
-			]
-		)->createView()])->getContent();
-
-		return new JsonResponse([ 'success'	=> true, 'html' => $content ]);
+		return new JsonResponse([ 'success'	=> true, 'html' => $this->getDeleteFormView( $request->query->get('id'), 'Currency' ) ]);
 	}
 //______________________________________________________________________________
 
