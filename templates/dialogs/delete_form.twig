@@ -4,6 +4,10 @@
 {% block body %}
 	<h4 class="delete-confirm-message">{{ 'title.sureYou'|trans|capitalize }}</h4>
 	<div id="err_deletion" class="modal-error-content"></div>
+
+	<div style="display: none;">
+		{{ form_widget(form.entity ) }}
+	</div>
 {% endblock %}
 
 {% block buttons %}
