@@ -110,7 +110,7 @@ class CurrencyController extends ControllerCore
 		$form_data->setId($request->query->get('id'));
 		$form_data->setEntityName('Currency');
 
-		$content	= $this->render('dialogs/delete_form.twig',[
+		$content	= $this->render('dialogs/delete_entity_form.twig',[
 			'form'	=> $this->createForm( DeleteEntityForm::class, $form_data,
 			[
 				'action' => $this->generateUrl('currency_delete'),
