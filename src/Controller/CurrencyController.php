@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Form\CurrencyForm;
-use App\Form\DeleteForm;
+use App\Form\DeleteEntityForm;
 use App\Entity\Currency;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -49,7 +49,7 @@ class CurrencyController extends ControllerCore
 	 */
 	public function deleteCurrency(Request $request): JsonResponse
 	{
-		$post	= $request->request->all()['delete_form'];
+		$post	= $request->request->all()['delete_entity_form'];
 		$error	= ['message' => ''];
 
 		$em	= $this->getDoctrine()->getManager();
@@ -57,7 +57,7 @@ class CurrencyController extends ControllerCore
 		$con->beginTransaction();
 
 		try {
-			$form = $this->createForm( DeleteForm::class, ['id' => $post['id']],
+			$form = $this->createForm( DeleteEntityForm::class, ['id' => $post['id']],
 				[
 					'action' => $this->generateUrl('currency_delete'),
 					'method' => 'POST'
@@ -104,7 +104,7 @@ class CurrencyController extends ControllerCore
 		$id	= $request->query->get('id');
 
 		$content	= $this->render('dialogs/delete_form.twig',[
-			'form'	=> $this->createForm( DeleteForm::class, ['id' => $id ,'entityName' => 'Currency'],
+			'form'	=> $this->createForm( DeleteEntityForm::class, ['id' => $id ,'entityName' => 'Currency'],
 			[
 				'action' => $this->generateUrl('currency_delete'),
 				'method' => 'POST'
