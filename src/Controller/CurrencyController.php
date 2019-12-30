@@ -33,7 +33,7 @@ class CurrencyController extends ControllerCore
 		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit, $search);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'entityTitle'	=> 'title.currency',
-			'editPath' => 'currency_form', 'deletePath' => 'del_currency_form',
+			'editPath' => 'currency_form', 'deletePath' => 'currency_delete_form',
 
 			'table'	=> [
 				'width' => 5
@@ -57,7 +57,7 @@ class CurrencyController extends ControllerCore
 //______________________________________________________________________________
 
 	/**
-	 * @Route("/delcurrencyform", name="del_currency_form")
+	 * @Route("/delcurrencyform", name="currency_delete_form")
 	 * @param Request $request
 	 * @return JsonResponse
 	 */
