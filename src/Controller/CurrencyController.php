@@ -33,8 +33,6 @@ class CurrencyController extends ControllerCore
 		$pagination	= $this->getDoctrine()->getRepository(Currency::class)->getPaginator($page, $limit, $search);
 
 		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'entityTitle'	=> 'title.currency',
-			'editPath' => 'currency_form', 'deletePath' => 'currency_delete_form',
-
 			'table'	=> [
 				'width' => 5
 			],

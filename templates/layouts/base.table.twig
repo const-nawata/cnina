@@ -1,9 +1,13 @@
 {% extends 'layouts/base.twig' %}
 {% trans_default_domain 'prompts' %}
 
-{% block body %}
+{% set entityLow	= app.request.attributes.get('_route')|split('_')[0] %}
+{% set entity		= entityLow|capitalize %}
+{% set editPath		= entityLow ~ '_form' %}
+{% set deletePath	= entityLow ~ '_delete_form' %}
+
 {% if table.width is not defined or table.width > 12 or table.width < 1 %}
-    {% set table = table|merge({'width': 12}) %}
+	{% set table = table|merge({'width': 12}) %}
 {% endif %}
 
 {% set columns = pagination.getCustomParameter('columns') %}
@@ -24,6 +28,9 @@
 {% if n_end > pagination.getTotalItemCount %}
 	{% set n_end	= pagination.getTotalItemCount %}
 {% endif %}
+
+
+{% block body %}
 
 <form id="form-resp" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="get">
 	<input type="hidden" name="limit" id="limit" value="{{ pagination.getItemNumberPerPage }}" />
