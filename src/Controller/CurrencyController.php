@@ -106,7 +106,7 @@ class CurrencyController extends ControllerCore
 	 */
 	public function showDelCurrencyForm( Request $request ): JsonResponse
 	{
-		return new JsonResponse([ 'success'	=> true, 'html' => $this->getDeleteFormView( $request->query->get('id'), 'Currency' ) ]);
+		return new JsonResponse([ 'success'	=> true, 'html' => $this->getDeleteEntityFormView( $request->query->get('id'), 'Currency' ) ]);
 	}
 //______________________________________________________________________________
 

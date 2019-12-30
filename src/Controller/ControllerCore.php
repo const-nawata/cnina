@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\DTO\DeleteEntityDto;
 use App\Form\DeleteEntityForm;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -96,19 +97,24 @@ class ControllerCore  extends AbstractController
 	}
 //______________________________________________________________________________
 
-	protected function getDeleteFormView( int $id, string $entityName): string
+	protected function getDeleteEntityFormInstance( int $id, string $entityName): FormInterface
 	{
 		$form_data	= new DeleteEntityDto();
 		$form_data->setId( $id );
 		$form_data->setEntityName( ucfirst( $entityName ) );
 
+		return $this->createForm( DeleteEntityForm::class, $form_data,
+			[
+				'action' => $this->generateUrl(strtolower($entityName).'_delete'),
+				'method' => 'POST'
+			]
+		);
+	}
+
+	protected function getDeleteEntityFormView( int $id, string $entityName): string
+	{
 		return $this->render('dialogs/delete_entity_form.twig',[
-			'form'	=> $this->createForm( DeleteEntityForm::class, $form_data,
-				[
-					'action' => $this->generateUrl(strtolower($entityName).'_delete'),
-					'method' => 'POST'
-				]
-			)->createView()])->getContent();
+			'form'	=> $this->getDeleteEntityFormInstance( $id, $entityName)->createView()])->getContent();
 
 	}
 //______________________________________________________________________________
