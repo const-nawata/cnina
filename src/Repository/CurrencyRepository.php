@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Currency;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
@@ -48,6 +50,7 @@ class CurrencyRepository extends CoreRepository
 		]);
 		return $pagination;
 	}
+//______________________________________________________________________________
 
 	/**
 	 * @param integer $id
@@ -70,8 +73,8 @@ class CurrencyRepository extends CoreRepository
 
 	/**
 	 * @param array $post
-	 * @throws \Doctrine\ORM\ORMException
-	 * @throws \Doctrine\ORM\OptimisticLockException
+	 * @throws ORMException
+	 * @throws OptimisticLockException
 	 */
 	public function saveFormData(array $post): void
 	{
