@@ -50,52 +50,9 @@ class CurrencyController extends ControllerCore
 	 */
 	public function deleteCurrency(Request $request): JsonResponse
 	{
-		$post	= $request->request->all()['delete_entity_form'];
-		$error	= ['message' => ''];
-
-		$em	= $this->getDoctrine()->getManager();
-		$con= $em->getConnection();
-		$con->beginTransaction();
-
-		try {
-			$form_data	= new DeleteEntityDto();
-			$form_data->setId($post['id']);
-			$form_data->setEntityName($post['entityName']);
-
-			$form = $this->createForm( DeleteEntityForm::class, $form_data,
-				[
-					'action' => $this->generateUrl('currency_delete'),
-					'method' => 'POST'
-				]
-			);
-
-			$form->handleRequest( $request );
-
-			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
-				$repo		= $this->getDoctrine()->getRepository('App\\Entity\\'.$post['entityName']);
-				$currency	= $repo->find($post['id']);
-				$em->remove($currency);
-				$em->flush();
-				$con->commit();
-			}else{
-				$error_content	= $this->getFormError( $form );;
-				throw new \Exception(serialize( $error_content ), 1);
-			}
-		} catch ( \Exception $e) {
-			$success	= false;
-			$message	= $e->getMessage();
-
-			$error	=  ( $e->getCode() == 1 )
-				? unserialize( $message )
-				: ['message' => $message.' / '.$e->getCode()];
-
-			$con->rollBack();
-		}
-
-		return new JsonResponse([
-			'success'	=> $success,
-			'error'		=> $error
-		]);
+		return new JsonResponse(
+			$this->deleteEntity($request)
+		);
 	}
 //______________________________________________________________________________
 
@@ -106,7 +63,10 @@ class CurrencyController extends ControllerCore
 	 */
 	public function showDelCurrencyForm( Request $request ): JsonResponse
 	{
-		return new JsonResponse([ 'success'	=> true, 'html' => $this->getDeleteEntityFormView( $request->query->get('id'), 'Currency' ) ]);
+		return new JsonResponse([
+			'success'	=> true,
+			'html'		=> $this->getDeleteEntityFormView( $request->query->get('id'), 'Currency' )
+		]);
 	}
 //______________________________________________________________________________
 

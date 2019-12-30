@@ -113,9 +113,51 @@ class ControllerCore  extends AbstractController
 
 	protected function getDeleteEntityFormView( int $id, string $entityName): string
 	{
-		return $this->render('dialogs/delete_entity_form.twig',[
-			'form'	=> $this->getDeleteEntityFormInstance( $id, $entityName)->createView()])->getContent();
+		return $this->render('dialogs/delete_entity_form.twig', [
+			'form'	=> $this->getDeleteEntityFormInstance( $id, $entityName)->createView()
+		])->getContent();
 
+	}
+//______________________________________________________________________________
+	protected function deleteEntity(Request $request): array
+	{
+		$post	= $request->request->all()['delete_entity_form'];
+		$error	= ['message' => ''];
+
+		$em	= $this->getDoctrine()->getManager();
+		$con= $em->getConnection();
+		$con->beginTransaction();
+
+		try {
+			$form	= $this->getDeleteEntityFormInstance( $post['id'], $post['entityName']);
+
+			$form->handleRequest( $request );
+
+			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
+				$repo		= $this->getDoctrine()->getRepository('App\\Entity\\'.$post['entityName']);
+				$currency	= $repo->find($post['id']);
+				$em->remove($currency);
+				$em->flush();
+				$con->commit();
+			}else{
+				$error_content	= $this->getFormError( $form );;
+				throw new \Exception(serialize( $error_content ), 1);
+			}
+		} catch ( \Exception $e) {
+			$success	= false;
+			$message	= $e->getMessage();
+
+			$error	=  ( $e->getCode() == 1 )
+				? unserialize( $message )
+				: ['message' => $message.' / '.$e->getCode()];
+
+			$con->rollBack();
+		}
+
+		return [
+			'success'	=> $success,
+			'error'		=> $error
+		];
 	}
 //______________________________________________________________________________
 
