@@ -55,7 +55,7 @@ class CurrencyController extends ControllerCore
 //______________________________________________________________________________
 
 	/**
-	 * @Route("/delcurrencyform", name="currency_delete_form")
+	 * @Route("/deleteform", name="currency_delete_form")
 	 * @param Request $request
 	 * @return JsonResponse
 	 */

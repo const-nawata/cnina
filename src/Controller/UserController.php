@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserForm;
 use Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -145,4 +146,66 @@ class UserController extends ControllerCore
 		]);
 	}
 //______________________________________________________________________________
+
+	/**
+	 * @Route("/list", name="user_list")
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function getCurrencyList( Request $request): Response
+	{
+		$page	= $request->query->getInt('page', 1);
+		$limit	= $request->query->getInt('limit', 10);
+		$search	= $request->query->get('search', '');
+
+		$pagination	= $this->getDoctrine()->getRepository(User::class)->getPaginator($page, $limit, $search);
+
+		return $this->show($request,'layouts/base.table.twig', ['pagination' => $pagination, 'entityTitle'	=> 'title.user',
+			'table'	=> [
+//				'width' => 5
+			],
+		]);
+
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @Route("/deleteform", name="user_delete_form")
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function showDelUserForm( Request $request ): JsonResponse
+	{
+		return new JsonResponse([
+			'success'	=> true,
+			'html'		=> $this->getDeleteEntityFormView( $request->query->get('id'), 'Currency' )
+		]);
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @Route("/form", name="user_form")
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function showUserForm(Request $request):JsonResponse
+	{
+		$repo		= $this->getDoctrine()->getRepository(User::class);
+		$id			= $request->query->get('id');
+		$data		= $repo->getFormData( $id );
+		$user	= $data['entity'];
+
+		$content	= $this->render('dialogs/user_form.twig',[
+			'form'	=> $this->createForm(UserForm::class, $user,
+				[
+					'action' => $this->generateUrl('user_save'),
+					'method' => 'POST'
+				])->createView(),
+			'user'		=> $user,
+		])->getContent();
+
+		return new JsonResponse([ 'success'	=> true, 'entityId' => $id, 'html' => $content ]);
+	}
+//______________________________________________________________________________
+
 }
