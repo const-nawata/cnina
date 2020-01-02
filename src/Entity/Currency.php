@@ -111,7 +111,7 @@ class Currency
     	return $this;
 	}
 
-	public function getSample(): ?string
+	public function getSample(): string
 	{
 		$val	= rand(11, 9999);
 		$rval	= rand(0, 99);

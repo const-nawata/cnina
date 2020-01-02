@@ -93,9 +93,21 @@ div.container.c-cont div.list-container table.pager-list thead.thead-light tr th
 div.container.c-cont div.list-container table.pager-list tbody tr{
 	cursor: pointer;
 }
+
 div.container.c-cont div.list-container table.pager-list tbody tr.odd_color{
-	background-color: rgba(0,0,0,.05);
+	background-color: rgba(0,0,0,.02);
 }
+div.container.c-cont div.list-container table.pager-list tbody tr.even_color{
+	background-color: rgba(0,0,0,.04);
+}
+div.container.c-cont div.list-container table.pager-list tbody tr.odd_color_stressed{
+	background-color: rgba(255,0,0,.06);
+}
+div.container.c-cont div.list-container table.pager-list tbody tr.even_color_stressed{
+	background-color: rgba(255,0,0,.12);
+}
+
+
 div.container.c-cont div.list-container table.pager-list tbody tr:hover{
 	background-color: rgba(72, 111, 145, 0.33);
 }

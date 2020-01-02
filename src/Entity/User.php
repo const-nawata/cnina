@@ -71,6 +71,11 @@ class User implements UserInterface
 	 */
 	private $confirmed;
 
+	/**
+	 * @var bool
+	 */
+	private $stressed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -227,4 +232,17 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getStressed(): bool
+	{
+		$this->stressed	= !$this->getConfirmed();
+		return $this->stressed;
+	}
+
+	public function setStressed(bool $stressed): self
+	{
+		$this->stressed = $stressed;
+
+		return $this;
+	}
 }
