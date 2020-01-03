@@ -6,7 +6,6 @@ use App\Entity\Currency;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 
@@ -28,26 +27,6 @@ class CurrencyRepository extends CoreRepository
 		];
 
 		parent::__construct($registry, Currency::class, $logger, $paginator);
-	}
-//______________________________________________________________________________
-
-	/**
-	 * @param integer $page
-	 * @param integer $limit
-	 * @param string $search
-	 * @return PaginationInterface
-	 */
-	public function getPaginator($page, $limit, $search = ''): PaginationInterface
-	{
-		$pagination = $this->paginator->paginate($this->getPagerQuery($search), $page, $limit);
-
-		$pagination->setCustomParameters([
-			'size'		=> 'small',
-			'search'	=> $search,
-			'columns'	=> $this->columns
-		]);
-
-		return $pagination;
 	}
 //______________________________________________________________________________
 

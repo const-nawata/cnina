@@ -6,7 +6,6 @@ use App\Entity\User;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -53,25 +52,5 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
         $this->_em->persist($user);
         $this->_em->flush();
     }
-
-	/**
-	 * @param integer $page
-	 * @param integer $limit
-	 * @param string $search
-	 * @return PaginationInterface
-	 */
-	public function getPaginator($page, $limit, $search = ''): PaginationInterface
-	{
-		$pagination = $this->paginator->paginate($this->getPagerQuery($search), $page, $limit);
-
-		$pagination->setCustomParameters([
-			'size'		=> 'small',
-			'search'	=> $search,
-			'columns'	=> $this->columns
-		]);
-		return $pagination;
-	}
-//______________________________________________________________________________
-
 
 }

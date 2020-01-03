@@ -6,6 +6,7 @@ use App\Entity\Currency;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 
@@ -19,7 +20,6 @@ class CoreRepository extends ServiceEntityRepository
 {
 	protected $logger;
 	protected $paginator;
-//	protected $fields	= [];
 	protected $columns	= [];
 
 	public function __construct( ManagerRegistry $registry, $entityClass, LoggerInterface $logger, PaginatorInterface $paginator )
@@ -47,6 +47,26 @@ class CoreRepository extends ServiceEntityRepository
 		}
 
 		return $qb->getQuery();
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @param integer $page
+	 * @param integer $limit
+	 * @param string $search
+	 * @return PaginationInterface
+	 */
+	public function getPaginator($page, $limit, $search = ''): PaginationInterface
+	{
+		$pagination = $this->paginator->paginate($this->getPagerQuery($search), $page, $limit);
+
+		$pagination->setCustomParameters([
+			'size'		=> 'small',
+			'search'	=> $search,
+			'columns'	=> $this->columns
+		]);
+
+		return $pagination;
 	}
 //______________________________________________________________________________
 
