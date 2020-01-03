@@ -23,16 +23,17 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry, LoggerInterface $logger, PaginatorInterface $paginator)
     {
-		$this->fields = [
-			'username'	=> ['searchable' => true],
-			'firstname'	=> ['searchable' => true],
-			'surname'	=> ['searchable' => true],
-			'address'	=> ['searchable' => true],
-			'phone'		=> ['searchable' => true],
-			'postcode'	=> ['searchable' => true],
-			'mailAddr'	=> ['searchable' => true]
+		$this->columns	= [
+			['field' => 'username',	'sortable' => true,	'searchable' => true, 'title' => 'form.username', 'css' => ''],
+			['field' => 'firstname','sortable' => true,	'searchable' => true, 'title' => 'form.firstname', 'css' => ''],
+			['field' => 'surname',	'sortable' => true,	'searchable' => true, 'title' => 'form.surname', 'css' => ''],
+			['field' => 'address',	'sortable' => true,	'searchable' => true, 'title' => 'form.address', 'css' => ''],
+			['field' => 'phone',	'sortable' => true,	'searchable' => true, 'title' => 'form.phone', 'css' => ''],
+			['field' => 'postcode',	'sortable' => true,	'searchable' => true, 'title' => 'form.postcode', 'css' => ''],
+			['field' => 'mailAddr',	'sortable' => true,	'searchable' => true, 'title' => 'form.mail', 'css' => '']
 		];
-        parent::__construct($registry, User::class, $logger, $paginator);
+
+		parent::__construct($registry, User::class, $logger, $paginator);
     }
 
 	/**
@@ -66,19 +67,7 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
 		$pagination->setCustomParameters([
 			'size'		=> 'small',
 			'search'	=> $search,
-			'columns'	=> [
-				['field' => 'username', 'title' => 'form.username', 'sortable' => true, 'css' => ''],
-				['field' => 'firstname', 'title' => 'form.firstname', 'sortable' => true, 'css' => ''],
-				['field' => 'surname', 'title' => 'form.surname', 'sortable' => true, 'css' => ''],
-				['field' => 'address', 'title' => 'form.address', 'sortable' => true, 'css' => ''],
-				['field' => 'phone', 'title' => 'form.phone', 'sortable' => true, 'css' => ''],
-				['field' => 'postcode', 'title' => 'form.postcode', 'sortable' => true, 'css' => ''],
-				['field' => 'mailAddr', 'title' => 'form.mail', 'sortable' => true, 'css' => '']
-
-
-//				['field' => 'ratio', 'title' => 'form.ratio-currency', 'sortable' => true, 'css' => 'number-list-sell'],
-//				['field' => 'sample', 'title' => 'title.sample', 'sortable' => false, 'css' => 'number-list-sell']
-			]
+			'columns'	=> $this->columns
 		]);
 		return $pagination;
 	}

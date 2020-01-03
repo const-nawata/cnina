@@ -21,10 +21,12 @@ class CurrencyRepository extends CoreRepository
 
 	public function __construct(ManagerRegistry $registry, LoggerInterface $logger, PaginatorInterface $paginator)
 	{
-		$this->fields = [
-			'name' => ['searchable' => true],
-			'ratio' => ['searchable' => true]
+		$this->columns	= [
+			['field' => 'name',		'sortable' => true,	'searchable' => true, 'title' => 'form.denomination', 'css' => ''],
+			['field' => 'ratio',	'sortable' => true,	'searchable' => true, 'title' => 'form.ratio-currency', 'css' => 'number-list-sell'],
+			['field' => 'sample',	'sortable' => false,'searchable' => false, 'title' => 'title.sample', 'css' => 'number-list-sell']
 		];
+
 		parent::__construct($registry, Currency::class, $logger, $paginator);
 	}
 //______________________________________________________________________________
@@ -42,12 +44,9 @@ class CurrencyRepository extends CoreRepository
 		$pagination->setCustomParameters([
 			'size'		=> 'small',
 			'search'	=> $search,
-			'columns'	=> [
-				['field' => 'name', 'title' => 'form.denomination', 'sortable' => true, 'css' => ''],
-				['field' => 'ratio', 'title' => 'form.ratio-currency', 'sortable' => true, 'css' => 'number-list-sell'],
-				['field' => 'sample', 'title' => 'title.sample', 'sortable' => false, 'css' => 'number-list-sell']
-			]
+			'columns'	=> $this->columns
 		]);
+
 		return $pagination;
 	}
 //______________________________________________________________________________

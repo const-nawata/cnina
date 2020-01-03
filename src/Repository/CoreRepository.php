@@ -19,7 +19,8 @@ class CoreRepository extends ServiceEntityRepository
 {
 	protected $logger;
 	protected $paginator;
-	protected $fields	= [];
+//	protected $fields	= [];
+	protected $columns	= [];
 
 	public function __construct( ManagerRegistry $registry, $entityClass, LoggerInterface $logger, PaginatorInterface $paginator )
 	{
@@ -35,10 +36,10 @@ class CoreRepository extends ServiceEntityRepository
 
 		if( $search != '' ){
 			$n	= 0;
-			foreach( $this->fields as $field => $opts ){
-				if( $opts['searchable'] ){
+			foreach( $this->columns as $column ){
+				if( $column['searchable'] ){
 					$qb->orWhere(
-						$qb->expr()->like('record.'.$field, ':p'.$n)
+						$qb->expr()->like('record.'.$column['field'], ':p'.$n)
 					)->setParameter('p'.$n,'%'.$search.'%');
 					$n++;
 				}
