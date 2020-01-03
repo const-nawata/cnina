@@ -12,6 +12,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+
+/**
+ * Class CurrencyController
+ * @Route("/user")
+ * @package App\Controller
+ */
 class UserController extends ControllerCore
 {
 	/**
@@ -56,7 +62,7 @@ class UserController extends ControllerCore
 	public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder ): Response
 	{
 		$user = new User();
-		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'register']]);
+		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'register', 'level'=>'user']]);
 		$form->handleRequest($request);
 
 		$errs = '';
@@ -109,7 +115,7 @@ class UserController extends ControllerCore
 	public function edit( Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): Response
 	{
 		$user = $this->getUser();
-		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'edit']]);
+		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'edit', 'level'=>'user']]);
 		$form->handleRequest($request);
 
 		$err_field = $err_mess = $scs_message = '';
@@ -190,16 +196,18 @@ class UserController extends ControllerCore
 	 */
 	public function showUserForm(Request $request):JsonResponse
 	{
-		$repo		= $this->getDoctrine()->getRepository(User::class);
-		$id			= $request->query->get('id');
-		$data		= $repo->getFormData( $id );
+		$repo	= $this->getDoctrine()->getRepository(User::class);
+		$id		= $request->query->get('id');
+		$data	= $repo->getFormData( $id );
 		$user	= $data['entity'];
 
 		$content	= $this->render('dialogs/user_form.twig',[
 			'form'	=> $this->createForm(UserForm::class, $user,
 				[
-					'action' => $this->generateUrl('user_save'),
-					'method' => 'POST'
+//					'action' => $this->generateUrl('user_save'),
+					'action' => $this->generateUrl('dummy2'),
+					'method' => 'POST',
+					'attr' => ['mode'=> ($id > 0 ? 'edit' : 'register'), 'level'=>'admin']
 				])->createView(),
 			'user'		=> $user,
 		])->getContent();

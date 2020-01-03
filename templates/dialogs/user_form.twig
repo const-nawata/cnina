@@ -1,0 +1,16 @@
+{% extends 'dialogs/entity_form.twig' %}
+{% trans_default_domain 'prompts' %}
+
+{% block body %}
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.username, 'form.username'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.username ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+
+{% endblock %}
