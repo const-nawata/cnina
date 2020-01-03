@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repository;
 
 use App\Entity\Currency;
@@ -36,12 +35,8 @@ class CurrencyRepository extends CoreRepository
 	 */
 	public function getFormData($id = 0): array
 	{
-		if ($id > 0) {
-			$entity = $this->find($id);
-		} else {
-			$entity = new Currency();
-			$entity->setIsAfterPos(true);
-		}
+		$entity	= parent::getFormData($id)['entity'];
+		($id > 0) ?: $entity->setIsAfterPos(true);
 
 		return [
 			'entity' => $entity

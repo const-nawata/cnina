@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Repository;
-
-use App\Entity\Currency;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -10,12 +7,6 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 
-/**
- * @method Currency|null find($id, $lockMode = null, $lockVersion = null)
- * @method Currency|null findOneBy(array $criteria, array $orderBy = null)
- * @method Currency[]    findAll()
- * @method Currency[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class CoreRepository extends ServiceEntityRepository
 {
 	protected $logger;
@@ -32,14 +23,14 @@ class CoreRepository extends ServiceEntityRepository
 
 	protected function getPagerQuery( $search='' )
 	{
-		$qb	= $this->createQueryBuilder('record');
+		$qb	= $this->createQueryBuilder('e');
 
 		if( $search != '' ){
 			$n	= 0;
 			foreach( $this->columns as $column ){
 				if( $column['searchable'] ){
 					$qb->orWhere(
-						$qb->expr()->like('record.'.$column['field'], ':p'.$n)
+						$qb->expr()->like('e.'.$column['field'], ':p'.$n)
 					)->setParameter('p'.$n,'%'.$search.'%');
 					$n++;
 				}
@@ -67,6 +58,22 @@ class CoreRepository extends ServiceEntityRepository
 		]);
 
 		return $pagination;
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @param integer $id
+	 * @return array: Currency data
+	 */
+	public function getFormData($id = 0): array
+	{
+		$entity = ($id > 0)
+			? $this->find($id)
+			: new $this->_entityName();
+
+		return [
+			'entity' => $entity
+		];
 	}
 //______________________________________________________________________________
 
