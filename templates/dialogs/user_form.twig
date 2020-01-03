@@ -4,10 +4,80 @@
 {% block body %}
 	<div class="form-group row">
 		<div class="col-sm-3">
-			{{ form_label(form.username, 'form.username'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
+			{{ form_label(form.username, 'form.username'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_username'}} ) }}
 		</div>
 		<div class="col-sm-9">
 			{{ form_widget(form.username ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.plainPassword, 'form.password'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_plainPassword'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.plainPassword ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.firstname, 'form.firstname'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_firstname'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.firstname ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.surname, 'form.surname'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_surname'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.surname ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.postcode, 'form.postcode'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_postcode'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.postcode ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.address, 'form.address'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_address'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.address ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.phone, 'form.phone'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_phone'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.phone ) }}
+			<div id="err_name" class="modal-error-content"></div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-3">
+			{{ form_label(form.mailAddr, 'form.mail'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_mailAddr'}} ) }}
+		</div>
+		<div class="col-sm-9">
+			{{ form_widget(form.mailAddr ) }}
 			<div id="err_name" class="modal-error-content"></div>
 		</div>
 	</div>
