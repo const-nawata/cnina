@@ -14,6 +14,11 @@
                 <source>entity.field.not_blank</source>
                 <target>Значение не должно быть пустым.</target>
             </trans-unit>
+
+            <trans-unit id="entity.field.min_length">
+                <source>entity.field.min_length</source>
+                <target>Значение должно быть не менее {{ limit }} символов.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
