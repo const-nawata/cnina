@@ -57,9 +57,10 @@ class UserController extends ControllerCore
 	 *
 	 * @param Request $request
 	 * @param UserPasswordEncoderInterface $passwordEncoder
+	 * @param TranslatorInterface $translator
 	 * @return Response
 	 */
-	public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder ): Response
+	public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): Response
 	{
 		$user = new User();
 		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'register', 'level'=>'user']]);
@@ -204,8 +205,7 @@ class UserController extends ControllerCore
 		$content	= $this->render('dialogs/user_form.twig',[
 			'form'	=> $this->createForm(UserForm::class, $user,
 				[
-//					'action' => $this->generateUrl('user_save'),
-					'action' => $this->generateUrl('dummy2'),
+					'action' => $this->generateUrl('user_save'),
 					'method' => 'POST',
 					'attr' => ['mode'=> ($id > 0 ? 'edit' : 'register'), 'level'=>'admin']
 				])->createView(),
@@ -213,6 +213,68 @@ class UserController extends ControllerCore
 		])->getContent();
 
 		return new JsonResponse([ 'success'	=> true, 'entityId' => $id, 'html' => $content ]);
+	}
+//______________________________________________________________________________
+
+	/**
+	 * @Route("/save", name="user_save")
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function saveUser(Request $request): JsonResponse
+	{
+		$post	= $request->request->all()['user_form'];
+		$error	= ['message' => '', 'field' => ''];
+		$search	= '';
+
+		$con		= $this->getDoctrine()->getManager()->getConnection();
+		$con->beginTransaction();
+
+		try {
+			$repo	= $this->getDoctrine()->getRepository(User::class);
+			$data	= $repo->getFormData($post['id']);
+			$user	= $data['entity'];
+
+			$form = $this->createForm(UserForm::class, $user,
+				[
+					'action' => $this->generateUrl('user_save'),
+					'method' => 'POST',
+					'attr' => ['mode'=> ($post['id'] > 0 ? 'edit' : 'register'), 'level'=>'admin']
+				]);
+
+			$form->handleRequest( $request );
+
+			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
+				$repo->saveFormData( $post );
+				$search	= $user->getUsername();
+				$con->commit();
+			}else{
+				$error_content	= $this->getFormError( $form );;
+				throw new \Exception(serialize( $error_content ), 1);
+			}
+		} catch ( \Exception $e) {
+			$success	= false;
+			$message	= $e->getMessage();
+
+			$error	=  ( $e->getCode() == 1 )
+				? unserialize( $message )
+				: ['message' => $message.' / '.$e->getCode(), 'field' => 'general'];
+
+			$con->rollBack();
+		}
+
+		return new JsonResponse([
+			'success'	=> $success,
+			'error'		=> $error,
+
+			'table'	=> [
+				'input'	=> [
+					'search'=> [
+						'value'	=> $search
+					]
+				]
+			]
+		]);
 	}
 //______________________________________________________________________________
 

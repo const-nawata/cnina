@@ -52,4 +52,29 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
         $this->_em->flush();
     }
 
+	/**
+	 * @param array $post
+	 * @throws ORMException
+	 * @throws OptimisticLockException
+	 */
+	public function saveFormData(array $post): void
+	{
+		$entity = ($post['id'] > 0)
+			? $this->find($post['id'])
+			: new User();
+
+		$entity->setUsername($post['username']);
+		$entity->setFirstname($post['firstname']);
+		$entity->setSurname($post['surname']);
+		$entity->setPostcode($post['postcode']);
+		$entity->setAddress($post['address']);
+		$entity->setPhone($post['phone']);
+		$entity->setMailAddr($post['mailAddr']);
+
+		$this->_em->persist($entity);
+		$this->_em->flush();
+	}
+
+//______________________________________________________________________________
+
 }

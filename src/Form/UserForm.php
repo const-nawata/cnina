@@ -20,31 +20,11 @@ class UserForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options )
     {
-
     	$pass_reqrd	= $options['attr']['mode'] == 'register';
 
         $builder
 			->add('id', IntegerType::class, ['required' => false] )
 			->add('username', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => true ] )
-
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'entity.field.not_blank',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'entity.field.min_length',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-				'attr' => ['class'=> 'form-control'], 'required' => $pass_reqrd
-            ])
-
 			->add('firstname', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
 			->add('surname', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
 			->add('postcode', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
@@ -52,6 +32,26 @@ class UserForm extends AbstractType
 			->add('phone', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
 			->add('mailAddr', EmailType::class, ['attr' => ['class'=> 'form-control'], 'label' => 'Адрес e-mail', 'required' => false ] )
         ;
+
+		if($options['attr']['level'] != 'admin' ){
+			$builder ->add('plainPassword', PasswordType::class, [
+				// instead of being set onto the object directly,
+				// this is read and encoded in the controller
+				'mapped' => false,
+				'constraints' => [
+					new NotBlank([
+						'message' => 'entity.field.not_blank',
+					]),
+					new Length([
+						'min' => 6,
+						'minMessage' => 'entity.field.min_length',
+						// max length allowed by Symfony for security reasons
+						'max' => 4096,
+					]),
+				],
+				'attr' => ['class'=> 'form-control'], 'required' => $pass_reqrd
+			]);
+		}
     }
 
     public function configureOptions(OptionsResolver $resolver)
