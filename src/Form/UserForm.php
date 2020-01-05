@@ -24,7 +24,7 @@ class UserForm extends AbstractType
     	$pass_reqrd	= $options['attr']['mode'] == 'register';
 
         $builder
-			->add('id', IntegerType::class )
+			->add('id', IntegerType::class, ['required' => false] )
 			->add('username', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => true ] )
 
             ->add('plainPassword', PasswordType::class, [
