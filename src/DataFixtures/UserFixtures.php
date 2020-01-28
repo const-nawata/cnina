@@ -32,6 +32,7 @@ class UserFixtures extends Fixture
 		$user->setConfirmed(true);
 		$user->setPhone('555-555-55');
 		$user->setPostcode('RT-5566');
+		$user->setCreatedAt(new \DateTime('2019-05-10 00:51:17'));
 		$manager->persist($user);
 
 		$user = new User();
@@ -45,6 +46,7 @@ class UserFixtures extends Fixture
 		$user->setConfirmed(true);
 		$user->setPhone('555-555-53');
 		$user->setPostcode('A1-1166');
+		$user->setCreatedAt(new \DateTime('2019-12-18 17:27:41'));
 		$manager->persist($user);
 
 		$user = new User();
@@ -58,6 +60,7 @@ class UserFixtures extends Fixture
 		$user->setConfirmed(true);
 		$user->setPhone('555-555-52');
 		$user->setPostcode('RT-5566');
+		$user->setCreatedAt(new \DateTime('2019-02-25 10:22:23'));
 		$manager->persist($user);
 
 		$user = new User();
@@ -70,6 +73,7 @@ class UserFixtures extends Fixture
 		$user->setConfirmed(true);
 		$user->setPhone('755-355-55');
 		$user->setPostcode('U1-5649');
+		$user->setCreatedAt(new \DateTime('2019-03-05 02:31:33'));
 		$manager->persist($user);
 
 		$user = new User();
@@ -82,6 +86,7 @@ class UserFixtures extends Fixture
 		$user->setConfirmed(false);
 		$user->setPhone('535-575-15');
 		$user->setPostcode('U2-8438');
+		$user->setCreatedAt(new \DateTime('2019-07-20 20:44:11'));
 		$manager->persist($user);
 
 

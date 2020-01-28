@@ -76,7 +76,21 @@ class User implements UserInterface
 	 */
 	private $stressed;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->createdAt = new \DateTime();
+	}
+
+
+	public function getId(): ?int
     {
         return $this->id;
     }
@@ -240,9 +254,21 @@ class User implements UserInterface
 	}
 
 	public function setStressed(bool $stressed): self
-	{
-		$this->stressed = $stressed;
+         	{
+         		$this->stressed = $stressed;
 
-		return $this;
-	}
+         		return $this;
+         	}
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
 }
