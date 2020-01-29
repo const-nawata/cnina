@@ -46,8 +46,9 @@ form:
     wholesale: опт
 
 message:
+    no-account: "Цей обліковий запис не існує."
     savedsuccess: 'Збережено успішно'
-    unconfirmed-acc: 'Ваш обліковий запис не підтверджено.'
+    unconfirmed-acc: 'Доступ заборонено. Обліковий запис користувача не підтверджен.'
     undefined-operation: 'Невизначена операція'
 
 title:

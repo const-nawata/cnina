@@ -46,8 +46,9 @@ form:
     wholesale: опт
 
 message:
+    no-account: "Эта учетная запись не существует."
     savedsuccess: 'Сохранено успешно'
-    unconfirmed-acc: 'Ваша учетная запись не подтверждена.'
+    unconfirmed-acc: 'Доступ запрещен. Учетная запись пользователя не подтверждена.'
     undefined-operation: 'Неопределённая операция'
 
 title:

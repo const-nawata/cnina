@@ -46,8 +46,9 @@ form:
     wholesale: wholesale
 
 message:
+    no-account: "This account doesn't exist."
     savedsuccess: 'Saved successfully'
-    unconfirmed-acc: 'Your account unconfirmed.'
+    unconfirmed-acc: "Access denied. User's account was not confirmed."
     undefined-operation: 'Undefined operation'
 
 title:

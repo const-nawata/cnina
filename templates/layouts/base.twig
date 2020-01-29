@@ -56,6 +56,12 @@
 	{%   set edit_status = 'hidden' %}
 {% endif %}
 
+{% if is_granted('ROLE_ADMIN') %}
+	{%   set admin_status = '' %}
+{% else %}
+	{%   set admin_status = 'hidden' %}
+{% endif %}
+
 <div class="container c-cont">
 
 	<div class="jumbotron bg-info border-bottom border-warning jumbotron-cnina">
@@ -81,7 +87,10 @@
 					<a class="nav-link" href="{{ path('index') }}">{{ 'title.home'|trans|capitalize }}</a>
 				</li>
 
-				<li class="nav-item dropdown">
+
+
+
+				<li class="nav-item dropdown" {{ admin_status }} >
 					<a class="dropdown-toggle nav-link" href="#" role="button" id="dashboardDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.dashboard'|trans|capitalize }}</a>
 
 					<div class="dropdown-menu" aria-labelledby="dashboardDropdownMenu">
@@ -91,6 +100,9 @@
 						<a class="dropdown-item" itemScope="currency" href="{{ path('currency_list') }}">{{ 'title.currency'|trans|capitalize }}</a>
 					</div>
 				</li>
+
+
+
 			</ul>
 
 			<ul class="navbar-nav ml-auto user-menu">
