@@ -41,7 +41,7 @@
 		{# 															Add Button #}
 		<nav class="navbar navbar-expand-lg navbar-light dashboard-list">
 			<h2>{{ entityTitle|trans|capitalize }}</h2>
-			<button id="rec-0" type="button" data-toggle="modal" data-target="#modal_dialog" class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
+			<button type="button" data-toggle="modal" data-target="#modal_dialog" class="btn btn-success oi oi-plus add-item" title="{{ 'title.create'|trans|capitalize }}"></button>
 		</nav>
 		{# 															Limit, Search #}
 		<div class="row">
@@ -164,8 +164,7 @@
 
 $(document).ready(function(){
 
-    let list_tr		= null
-		,tpointer	= document.getElementById("row_tool_pointer")
+    let tpointer	= document.getElementById("row_tool_pointer")
     	,ctx		= tpointer.getContext("2d")
     	,cfn		= 1,
     	entity_id	= 0
@@ -221,9 +220,7 @@ $(document).ready(function(){
 		.attr("data-target", "#modal_dialog")
 	;
 
-    $("button.add-item").on('click',function (event) {
-        openEditFormModal( $(this).attr("id").split("-")[1] );
-    })
+    $("button.add-item").on('click',function (event) {openEditFormModal(0);})
         .attr("data-toggle", "modal")
         .attr("data-target", "#modal_dialog")
     ;
