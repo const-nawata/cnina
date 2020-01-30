@@ -167,7 +167,9 @@ $(document).ready(function(){
     let list_tr		= null
 		,tpointer	= document.getElementById("row_tool_pointer")
     	,ctx		= tpointer.getContext("2d")
-    	,cfn		= 1;
+    	,cfn		= 1,
+    	entity_id	= 0
+	;
 
     ctx.fillStyle = "#b8daff";
     ctx.strokeStyle = "#a1bfdf";
@@ -192,7 +194,7 @@ $(document).ready(function(){
 			.css('visibility','visible')
 			.offset({ top: y, left: x });
 
-        list_tr	= $(this);
+        entity_id	= $(this).attr("id").split("-")[1];
 	});
 
 	$("#table_row_tool ul li, #row_tool_pointer").on('mouseout',function (event) {
@@ -208,8 +210,8 @@ $(document).ready(function(){
         let action	= $(this).attr("action");
 
         switch( action ){
-            case "edit":	openEditFormModal(list_tr); break;
-            case "delete":	openDeleteModal(list_tr); break;
+            case "edit":	openEditFormModal(entity_id); break;
+            case "delete":	openDeleteModal(entity_id); break;
         }
 
 		$("#table_row_tool")
@@ -219,7 +221,9 @@ $(document).ready(function(){
 		.attr("data-target", "#modal_dialog")
 	;
 
-    $("button.add-item").on('click',function (event) { openEditFormModal($(this)); })
+    $("button.add-item").on('click',function (event) {
+        openEditFormModal( $(this).attr("id").split("-")[1] );
+    })
         .attr("data-toggle", "modal")
         .attr("data-target", "#modal_dialog")
     ;
@@ -243,11 +247,9 @@ $(document).ready(function(){
 });
 //______________________________________________________________________________
 
-function openDeleteModal( obj ){
-    let item_id	= obj.attr("id");
-
+function openDeleteModal( entityId ){
     $.ajax({
-        url:  "{{ path(deletePath) }}?id="+item_id.split("-")[1],
+        url:  "{{ path(deletePath) }}?id="+entityId,
         type: "POST",
         async: true,
         dataType: "json",
@@ -287,11 +289,9 @@ function openDeleteModal( obj ){
 }
 //______________________________________________________________________________
 
-function openEditFormModal( obj ){
-	let item_id	= obj.attr("id");
-
+function openEditFormModal( entityId ){
 	$.ajax({
-        url:  "{{ path(editPath) }}?id="+item_id.split("-")[1],
+        url:  "{{ path(editPath) }}?id="+entityId,
 		type: "POST",
 		async: true,
 		dataType: "json",
