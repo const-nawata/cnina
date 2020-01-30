@@ -44,18 +44,6 @@
 
 <body>
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-	{%   set login_status = 'hidden' %}
-	{%   set logout_status = '' %}
-	{%   set reg_status = 'hidden' %}
-	{%   set edit_status = '' %}
-{% else %}
-	{%   set login_status = '' %}
-	{%   set logout_status = 'hidden' %}
-	{%   set reg_status = '' %}
-	{%   set edit_status = 'hidden' %}
-{% endif %}
-
 <div class="container c-cont">
 
 	<div class="jumbotron bg-info border-bottom border-warning jumbotron-cnina">
@@ -101,10 +89,14 @@
 					<a class="dropdown-toggle" href="#" role="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.user'|trans|capitalize }}</a>
 
 					<div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-						<a class="dropdown-item" id="user_login" {{ login_status }} href="{{ path('app_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_logout" {{ logout_status }} href="{{ path('app_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_register" {{ reg_status }} href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="user_edit" {{ edit_status }} href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<a class="dropdown-item" id="user_logout" href="{{ path('app_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>
+						<a class="dropdown-item" id="useredit_10" href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>
+{% else %}
+						<a class="dropdown-item" id="user_login" href="{{ path('app_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>
+						<a class="dropdown-item" id="user_register" href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>
+{% endif %}
 					</div>
 				</li>
 			</ul>
@@ -114,6 +106,9 @@
 	{% block body %}{% endblock %}
 
 </div>
+
+{% include '/dialogs/modal.twig' %}
+
 
 <script type="text/javascript">
 $(document).ready(function(){
