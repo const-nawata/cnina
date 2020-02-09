@@ -126,6 +126,7 @@ $(document).ready(function(){
 });
 //______________________________________________________________________________
 
+{% if editPath is defined %}
 function openEditFormModal( entityId ){
 	$.ajax({
         url:  "{{ path(editPath) }}?id="+entityId,
@@ -186,7 +187,9 @@ function openEditFormModal( entityId ){
 	});
 }
 //______________________________________________________________________________
+{% endif %}
 
+{% if deletePath is defined %}
 function openDeleteModal( entityId ){
     $.ajax({
         url:  "{{ path(deletePath) }}?id="+entityId,
@@ -228,6 +231,7 @@ function openDeleteModal( entityId ){
     });
 }
 //______________________________________________________________________________
+{% endif %}
 
 </script>
 
