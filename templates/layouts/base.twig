@@ -92,7 +92,7 @@
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<a class="dropdown-item" id="user_logout" href="{{ path('app_logout') }}">{{ 'title.logging-out'|trans|capitalize }}</a>
-						<a class="dropdown-item" id="useredit_10" href="{{ path('user_edit') }}">{{ 'title.edit'|trans|capitalize }}</a>
+						<a class="dropdown-item useredit" id="useredit_10" href="#" onclick="openEditFormModal({{ app.user.id }}, '{{ path('user_form') }}');">{{ 'title.edit'|trans|capitalize }}</a>
 {% else %}
 						<a class="dropdown-item" id="user_login" href="{{ path('app_login') }}">{{ 'title.logging-in'|trans|capitalize }}</a>
 						<a class="dropdown-item" id="user_register" href="{{ path('user_register') }}">{{ 'title.registering'|trans|capitalize }}</a>
@@ -123,13 +123,16 @@ $(document).ready(function(){
 	$("div.lang a.dropdown-item").click(function(){
 		window.location.replace( "/"+$(this).attr("lang")+"/"+current_url );
 	});
+
+	$(".useredit").attr("data-toggle", "modal")
+        .attr("data-target", "#modal_dialog");
 });
 //______________________________________________________________________________
 
-{% if editPath is defined %}
-function openEditFormModal( entityId ){
+
+function openEditFormModal( entityId, editPath ){
 	$.ajax({
-        url:  "{{ path(editPath) }}?id="+entityId,
+        url:  editPath+"?id="+entityId,
 		type: "POST",
 		async: true,
 		dataType: "json",
@@ -187,7 +190,7 @@ function openEditFormModal( entityId ){
 	});
 }
 //______________________________________________________________________________
-{% endif %}
+
 
 {% if deletePath is defined %}
 function openDeleteModal( entityId ){

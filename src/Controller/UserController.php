@@ -105,6 +105,8 @@ class UserController extends ControllerCore
 //______________________________________________________________________________
 
 	/**
+	 * @deprecated
+	 *
 	 * @Route("/edit", name="user_edit")
 	 *
 	 * @param Request $request
@@ -159,7 +161,7 @@ class UserController extends ControllerCore
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function getCurrencyList( Request $request): Response
+	public function getUserList( Request $request): Response
 	{
 		$page	= $request->query->getInt('page', 1);
 		$limit	= $request->query->getInt('limit', 10);

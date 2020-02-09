@@ -209,7 +209,7 @@ $(document).ready(function(){
         let action	= $(this).attr("action");
 
         switch( action ){
-            case "edit":	openEditFormModal(entity_id); break;
+            case "edit":	openEditFormModal(entity_id, "{{ path(editPath) }}"); break;
             case "delete":	openDeleteModal(entity_id); break;
         }
 
@@ -220,7 +220,7 @@ $(document).ready(function(){
 		.attr("data-target", "#modal_dialog")
 	;
 
-    $("button.add-item").on('click',function (event) {openEditFormModal(0);})
+    $("button.add-item").on('click',function (event) {openEditFormModal(0, "{{ path(editPath) }}");})
         .attr("data-toggle", "modal")
         .attr("data-target", "#modal_dialog")
     ;
