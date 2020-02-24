@@ -33,25 +33,27 @@ class UserForm extends AbstractType
 			->add('mailAddr', EmailType::class, ['attr' => ['class'=> 'form-control'], 'label' => 'Адрес e-mail', 'required' => false ] )
         ;
 
-		if($options['attr']['level'] != 'admin' ){
+//		if($options['attr']['level'] != 'admin' ){
 			$builder ->add('plainPassword', PasswordType::class, [
 				// instead of being set onto the object directly,
 				// this is read and encoded in the controller
+
 				'mapped' => false,
+
+
 				'constraints' => [
 					new NotBlank([
 						'message' => 'entity.field.not_blank',
 					]),
 					new Length([
-						'min' => 6,
-						'minMessage' => 'entity.field.min_length',
-						// max length allowed by Symfony for security reasons
-						'max' => 4096,
+						'min'			=> 6,
+						'minMessage'	=> 'entity.field.min_length',
+						'max'			=> 4096,
 					]),
 				],
 				'attr' => ['class'=> 'form-control'], 'required' => $pass_reqrd
 			]);
-		}
+//		}
     }
 
     public function configureOptions(OptionsResolver $resolver)

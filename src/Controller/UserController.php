@@ -203,6 +203,7 @@ class UserController extends ControllerCore
 		$id		= $request->query->get('id');
 		$data	= $repo->getFormData( $id );
 		$user	= $data['entity'];
+		$user->setPassword('');
 
 		$content	= $this->render('dialogs/user_form.twig',[
 			'form'	=> $this->createForm(UserForm::class, $user,
@@ -223,7 +224,7 @@ class UserController extends ControllerCore
 	 * @param Request $request
 	 * @return JsonResponse
 	 */
-	public function saveUser(Request $request): JsonResponse
+	public function saveUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): JsonResponse
 	{
 		$post	= $request->request->all()['user_form'];
 		$error	= ['message' => '', 'field' => ''];
@@ -241,19 +242,41 @@ class UserController extends ControllerCore
 				[
 					'action' => $this->generateUrl('user_save'),
 					'method' => 'POST',
-					'attr' => ['mode'=> ($post['id'] > 0 ? 'edit' : 'register'), 'level'=>'admin']
+					'attr' => ['mode'=> ($post['id'] > 0 ? 'edit' : 'register')]
 				]);
 
 			$form->handleRequest( $request );
 
-			if( $success = ($form->isSubmitted() && $form->isValid()) ) {
-				$repo->saveFormData( $post );
-				$search	= $user->getUsername();
-				$con->commit();
-			}else{
-				$error_content	= $this->getFormError( $form );;
-				throw new \Exception(serialize( $error_content ), 1);
+			$err_field = $err_mess = $scs_message = '';
+
+			if( $form->isSubmitted() ) {
+				$pass	= $post['plainPassword'];
+
+				if( !$form->isValid()){
+					$error_content		= $this->getFormError( $form );
+					$err_mess	= $error_content['message'];
+					$err_field	= $error_content['field'];
+				}
+
+				$err_mess	= (($err_field != 'plainPassword') || (!empty($pass) && strlen($pass) < 6)) ? $err_mess : '' ;
+
+				if(empty($err_mess) || $post['id'] > 0){
+					$post['plainPassword']	= !empty($pass)
+						? $passwordEncoder->encodePassword( $user, $post['plainPassword'])
+						: $user->getPassword();
+
+					$repo->saveFormData( $post );
+					$search	= $user->getUsername();
+					$con->commit();
+
+//					$scs_message	= $translator->trans('message.savedsuccess',[],'prompts');
+				}else{
+					$error_content	= $this->getFormError( $form );
+					throw new \Exception(serialize( $error_content ), 1);
+				}
 			}
+			$success	= true;
+
 		} catch ( \Exception $e) {
 			$success	= false;
 			$message	= $e->getMessage();
