@@ -105,58 +105,6 @@ class UserController extends ControllerCore
 //______________________________________________________________________________
 
 	/**
-	 * @deprecated
-	 *
-	 * @Route("/edit", name="user_edit")
-	 *
-	 * @param Request $request
-	 * @param UserPasswordEncoderInterface $passwordEncoder
-	 * @param TranslatorInterface $translator
-	 * @return Response
-	 *
-	 */
-	public function edit( Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): Response
-	{
-		$user = $this->getUser();
-		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'edit', 'level'=>'user']]);
-		$form->handleRequest($request);
-
-		$err_field = $err_mess = $scs_message = '';
-
-		if( $form->isSubmitted() ) {
-			$pass	= $form->get('plainPassword')->getData();
-
-			if( !$form->isValid()){
-				$error		= $this->getFormError( $form );
-				$err_mess	= $error['message'];
-				$err_field	= $error['field'];
-			}
-
-			$err_mess	= (($err_field != 'plainPassword') || (!empty($pass) && strlen($pass) < 6)) ? $err_mess : '' ;
-
-			if(empty($err_mess)){
-
-				!empty($pass)
-					? $user->setPassword($passwordEncoder->encodePassword( $user, $pass))
-					: $user->setPassword($user->getPassword());
-
-				$entityManager = $this->getDoctrine()->getManager();
-				$entityManager->persist($user);
-				$entityManager->flush();
-				$scs_message	= $translator->trans('message.savedsuccess',[],'prompts');
-			}
-		}
-
-		return $this->show($request, 'pages/user/user-form.twig', [
-			'userForm'		=> $form->createView(),
-			'title'			=> 'title.edit',
-			'errMessage'	=> $err_mess,
-			'scsMessage'	=> $scs_message
-		]);
-	}
-//______________________________________________________________________________
-
-	/**
 	 * @Route("/list", name="user_list")
 	 * @param Request $request
 	 * @return Response
@@ -199,11 +147,12 @@ class UserController extends ControllerCore
 	 */
 	public function showUserForm(Request $request):JsonResponse
 	{
-		$repo	= $this->getDoctrine()->getRepository(User::class);
 		$id		= $request->query->get('id');
+
+		$repo	= $this->getDoctrine()->getRepository(User::class);
+
 		$data	= $repo->getFormData( $id );
 		$user	= $data['entity'];
-		$user->setPassword('');
 
 		$content	= $this->render('dialogs/user_form.twig',[
 			'form'	=> $this->createForm(UserForm::class, $user,
@@ -268,15 +217,12 @@ class UserController extends ControllerCore
 					$repo->saveFormData( $post );
 					$search	= $user->getUsername();
 					$con->commit();
-
-//					$scs_message	= $translator->trans('message.savedsuccess',[],'prompts');
 				}else{
 					$error_content	= $this->getFormError( $form );
 					throw new \Exception(serialize( $error_content ), 1);
 				}
 			}
 			$success	= true;
-
 		} catch ( \Exception $e) {
 			$success	= false;
 			$message	= $e->getMessage();
