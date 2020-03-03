@@ -31,15 +31,12 @@ class UserForm extends AbstractType
 			->add('address', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
 			->add('phone', TextType::class, ['attr' => ['class'=> 'form-control'], 'required' => false ] )
 			->add('mailAddr', EmailType::class, ['attr' => ['class'=> 'form-control'], 'label' => 'Адрес e-mail', 'required' => false ] )
-        ;
 
-//		if($options['attr']['level'] != 'admin' ){
-			$builder ->add('plainPassword', PasswordType::class, [
+			->add('plainPassword', PasswordType::class, [
 				// instead of being set onto the object directly,
 				// this is read and encoded in the controller
 
 				'mapped' => false,
-
 
 				'constraints' => [
 					new NotBlank([
@@ -52,8 +49,28 @@ class UserForm extends AbstractType
 					]),
 				],
 				'attr' => ['class'=> 'form-control'], 'required' => $pass_reqrd
-			]);
-//		}
+			])
+
+			->add('confirmPassword', PasswordType::class, [
+				// instead of being set onto the object directly,
+				// this is read and encoded in the controller
+
+				'mapped' => false,
+
+				'constraints' => [
+					new NotBlank([
+						'message' => 'entity.field.not_blank',
+					]),
+					new Length([
+						'min'			=> 6,
+						'minMessage'	=> 'entity.field.min_length',
+						'max'			=> 4096,
+					]),
+				],
+				'attr' => ['class'=> 'form-control'], 'required' => $pass_reqrd
+			])
+
+		;
     }
 
     public function configureOptions(OptionsResolver $resolver)

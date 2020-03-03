@@ -33,6 +33,7 @@ form:
     out_pack: 'out pack'
     packs: packs
     password: password
+    password-conf: password confirm
     phone: phone
     position: position
     postcode: postcode

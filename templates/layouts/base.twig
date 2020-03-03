@@ -153,6 +153,8 @@ function openEditFormModal( entityId, editPath ){
 				formTitle += "{{ 'title.adding'|trans|capitalize }}";
 			}
 
+			let modal_width	= (data.modalWidth === 'undefined') ? 500 : data.modalWidth;
+
 			$("#modal_label").html(formTitle);
 
 			$('div#modal_dialog form').submit(function(e) {

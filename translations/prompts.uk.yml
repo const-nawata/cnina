@@ -33,6 +33,7 @@ form:
     out_pack: розсипом
     packs: упаковок
     password: пароль
+    password-conf: підтвердити пароль
     phone: телефон
     position: позиція
     postcode: індекс
