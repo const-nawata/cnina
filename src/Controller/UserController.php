@@ -164,7 +164,7 @@ class UserController extends ControllerCore
 			'user'		=> $user,
 		])->getContent();
 
-		return new JsonResponse([ 'success'	=> true, 'entityId' => $id, 'html' => $content ]);
+		return new JsonResponse([ 'success'	=> true, 'entityId' => $id, 'html' => $content, 'modalWidth' => 500 ]);
 	}
 //______________________________________________________________________________
 

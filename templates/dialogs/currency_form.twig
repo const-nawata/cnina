@@ -3,7 +3,7 @@
 
 {% block body %}
 	<div class="form-group row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 form-label">
 			{{ form_label(form.name, 'form.denomination'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_name'}} ) }}
 		</div>
 		<div class="col-sm-9">
@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="form-group row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 form-label">
 			{{ form_label(form.symbol, 'form.sign'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_symbol'}} ) }}
 		</div>
 		<div class="col-sm-9">
@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="form-group row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 form-label">
 			{{ form_label(form.ratio, 'form.ratio-currency'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_ratio'}} ) }}
 		</div>
 
@@ -34,7 +34,7 @@
 	</div>
 
 	<div class="form-group row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 form-label">
 			{{ form_label(form.isAfterPos, 'form.position'|trans|capitalize, {'label_attr':{'class':'col-sm-2 col-form-label col-form-label-sm', 'for':'currency_form_isAfterPos'}}) }}
 		</div>
 

@@ -180,7 +180,9 @@ div.modal-body h4.delete-confirm-message{
 }
 
 
-
+div.form-group.row div.form-label{
+	white-space: nowrap;
+}
 
 
 /*  Test message for test push */
