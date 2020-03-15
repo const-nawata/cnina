@@ -51,6 +51,7 @@ message:
     savedsuccess: 'Сохранено успешно'
     unconfirmed-acc: 'Доступ запрещен. Учетная запись пользователя не подтверждена.'
     undefined-operation: 'Неопределённая операция'
+    wrong-confirm-pass: 'Не соответствует паролю'
 
 title:
     activate: активировать

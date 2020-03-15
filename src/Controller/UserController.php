@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 /**
@@ -57,10 +56,9 @@ class UserController extends ControllerCore
 	 *
 	 * @param Request $request
 	 * @param UserPasswordEncoderInterface $passwordEncoder
-	 * @param TranslatorInterface $translator
 	 * @return Response
 	 */
-	public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): Response
+	public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder ): Response
 	{
 		$user = new User();
 		$form = $this->createForm(UserForm::class, $user, ['attr' => ['mode'=>'register', 'level'=>'user']]);
@@ -171,9 +169,10 @@ class UserController extends ControllerCore
 	/**
 	 * @Route("/save", name="user_save")
 	 * @param Request $request
+	 * @param UserPasswordEncoderInterface $passwordEncoder
 	 * @return JsonResponse
 	 */
-	public function saveUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator ): JsonResponse
+	public function saveUser(Request $request, UserPasswordEncoderInterface $passwordEncoder ): JsonResponse
 	{
 		$post	= $request->request->all()['user_form'];
 		$error	= ['message' => '', 'field' => ''];
@@ -209,7 +208,7 @@ class UserController extends ControllerCore
 				} elseif ( $pass != $pass_c) {
 					$error_content	= [
 						'field'		=> 'confirmPassword',
-						'message'	=> 'Wrong confirm password value.'
+						'message'	=> $this->translator->trans('message.wrong-confirm-pass',[],'prompts')
 					];
 				}
 

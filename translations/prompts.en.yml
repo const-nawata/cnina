@@ -51,6 +51,7 @@ message:
     savedsuccess: 'Saved successfully'
     unconfirmed-acc: "Access denied. User's account was not confirmed."
     undefined-operation: 'Undefined operation'
+    wrong-confirm-pass: 'Not equal to password'
 
 title:
     activate: activate

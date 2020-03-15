@@ -51,6 +51,7 @@ message:
     savedsuccess: 'Збережено успішно'
     unconfirmed-acc: 'Доступ заборонено. Обліковий запис користувача не підтверджен.'
     undefined-operation: 'Невизначена операція'
+    wrong-confirm-pass: 'Не відповідає паролю'
 
 title:
     activate: активувати
