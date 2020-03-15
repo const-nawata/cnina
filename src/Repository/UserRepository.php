@@ -59,9 +59,12 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
 	 */
 	public function saveFormData(array $post): void
 	{
-		$entity = ($post['id'] > 0)
-			? $this->find($post['id'])
-			: new User();
+		if($post['id'] > 0){
+			$entity	= $this->find($post['id']);
+		}else{
+			$entity	= new User();
+			$entity->setConfirmed(false);
+		}
 
 		$entity->setUsername($post['username']);
 		$entity->setPassword($post['plainPassword']);
