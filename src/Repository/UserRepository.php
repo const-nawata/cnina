@@ -64,6 +64,7 @@ class UserRepository extends CoreRepository implements PasswordUpgraderInterface
 			: new User();
 
 		$entity->setUsername($post['username']);
+		$entity->setPassword($post['plainPassword']);
 		$entity->setFirstname($post['firstname']);
 		$entity->setSurname($post['surname']);
 		$entity->setPostcode($post['postcode']);

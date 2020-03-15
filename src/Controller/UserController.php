@@ -196,20 +196,26 @@ class UserController extends ControllerCore
 
 			$form->handleRequest( $request );
 
-			$err_field = $err_mess = $scs_message = '';
-
 			if( $form->isSubmitted() ) {
 				$pass	= $post['plainPassword'];
+				$pass_c	= $post['confirmPassword'];
 
-				if( !$form->isValid()){
-					$error_content		= $this->getFormError( $form );
-					$err_mess	= $error_content['message'];
-					$err_field	= $error_content['field'];
+				if( !$form->isValid()) {
+					$error_content = $this->getFormError($form);
+
+					if (($error_content['field'] == 'plainPassword' || $error_content['field'] == 'confirmPassword') && empty($pass) && empty($pass_c) && $post['id'] > 0) {
+						unset($error_content);
+					}
+				} elseif ( $pass != $pass_c) {
+					$error_content	= [
+						'field'		=> 'confirmPassword',
+						'message'	=> 'Wrong confirm password value.'
+					];
 				}
 
-				$err_mess	= (($err_field != 'plainPassword') || (!empty($pass) && strlen($pass) < 6)) ? $err_mess : '' ;
-
-				if(empty($err_mess) || $post['id'] > 0){
+				if( isset($error_content) ){
+					throw new \Exception(serialize( $error_content ), 1);
+				}else{
 					$post['plainPassword']	= !empty($pass)
 						? $passwordEncoder->encodePassword( $user, $post['plainPassword'])
 						: $user->getPassword();
@@ -217,9 +223,6 @@ class UserController extends ControllerCore
 					$repo->saveFormData( $post );
 					$search	= $user->getUsername();
 					$con->commit();
-				}else{
-					$error_content	= $this->getFormError( $form );
-					throw new \Exception(serialize( $error_content ), 1);
 				}
 			}
 			$success	= true;
